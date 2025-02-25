@@ -4,8 +4,3 @@
   --accent-color: #3f72af;
   --text-color: #112d4e;
 }
-
-body {
-  background-color: var(--accent-color);
-  color: var(--text-color);
-}
