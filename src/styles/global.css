@@ -1,6 +1,15 @@
 :root {
-  --primary-color: #f9f7f7;
-  --secondary-color: #dbe2ef;
-  --accent-color: #3f72af;
-  --text-color: #112d4e;
+  --primary: #ffffff; /* Primary (Lightest) */
+  --light-100: #c8e2f9;
+  --light-200: #91c5f2;
+  --light-300: #5ba8ec;
+  --light-400: #248be5;
+  --light-500: #156bb7;
+  --light-600: #0f4c81;
+  --light-700: #092b49;
+  --light-800: #020b12; /* Darkest */
+}
+
+body {
+  background-color: var(--primary);
 }
