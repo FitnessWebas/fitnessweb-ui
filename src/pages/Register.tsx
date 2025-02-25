@@ -1,6 +1,5 @@
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import { RegisterForm } from "../components/RegisterForm/RegisterForm";
+import RegisterForm from "../components/RegisterForm/RegisterForm.tsx";
+import React from "react";
 
 function Register() {
   return <RegisterForm />;
