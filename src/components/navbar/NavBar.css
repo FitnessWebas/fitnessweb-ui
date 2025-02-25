@@ -20,10 +20,10 @@ nav {
 
 .links-container {
   height: 100%;
-  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: flex-end;
 }
 
 nav .home-link {
@@ -42,6 +42,7 @@ nav .home-link {
   height: 40px;
   position: relative;
   margin-right: 20px;
+  margin-left: auto;
 }
 
 .search-icon {
@@ -108,7 +109,7 @@ nav svg {
   display: none;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 830px) {
   .links-container {
     flex-direction: column;
     align-items: flex-start;
@@ -126,18 +127,7 @@ nav svg {
     transition: 0.5s ease-out;
   }
 
-  .search-container {
-    position: absolute;
-    top: 15px;
-    left: 70px;
-    width: auto;
-  }
-
-  .search-container.expanded {
-    width: 200px;
-  }
-
-  nav a {
+  .links-container a {
     box-sizing: border-box;
     height: auto;
     width: 100%;
