@@ -6,12 +6,12 @@
 }
 
 html {
-  font-size: 12pt;
+  font-size: 13pt;
   font-family: "Poppins", sans-serif;
 }
 
 nav {
-  height: 60px;
+  height: 70px;
   background-color: var(--light-800);
   display: flex;
   justify-content: flex-end;
@@ -26,10 +26,14 @@ nav {
   align-items: center;
 }
 
+nav .home-link {
+  margin-right: auto;
+}
+
 .search-container {
   display: flex;
   align-items: center;
-  transition: width 0.3s ease;
+  transition: width 0.4s ease;
   background: var(--light-800);
   border-radius: 15px;
   border: 2px solid var(--primary);
@@ -37,6 +41,7 @@ nav {
   width: 40px;
   height: 40px;
   position: relative;
+  margin-right: 20px;
 }
 
 .search-icon {
@@ -64,7 +69,7 @@ nav {
   outline: none;
   color: var(--primary);
   background-color: black;
-  transition: width 0.3s ease, opacity 0.2s ease;
+  transition: width 0.4s ease, opacity 0.2s ease;
 }
 
 .expanded {
@@ -90,10 +95,6 @@ nav a:hover {
   background-color: var(--light-400);
 }
 
-nav .home-link {
-  margin-right: auto;
-}
-
 nav svg {
   fill: var(--primary);
 }
@@ -111,6 +112,7 @@ nav svg {
   .links-container {
     flex-direction: column;
     align-items: flex-start;
+    justify-content: flex-start;
 
     position: fixed;
     top: 0;

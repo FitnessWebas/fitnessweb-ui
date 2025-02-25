@@ -19,6 +19,7 @@ function NavBar() {
       </label>
       <label id="overlay" htmlFor="sidebar-active"></label>
 
+      <button className={"btn btn-outline-primary"}>button</button>
       <div className="links-container">
         <label htmlFor="sidebar-active" className="close-sidebar-button">
           <svg
