@@ -1,6 +1,10 @@
 :root {
-  --primary-color: #f9f7f7;
-  --secondary-color: #dbe2ef;
-  --accent-color: #3f72af;
-  --text-color: #112d4e;
+  --primary: #e0aaff; /* Lightest */
+  --light-200: #c77dff;
+  --light-300: #9d4edd;
+  --light-400: #7b2cbf;
+  --light-500: #5a189a;
+  --light-600: #3c096c;
+  --light-700: #240046;
+  --light-800: #10002b; /* Darkest */
 }
