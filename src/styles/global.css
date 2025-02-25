@@ -1,10 +1,15 @@
 :root {
-  --primary: #e0aaff; /* Lightest */
-  --light-200: #c77dff;
-  --light-300: #9d4edd;
-  --light-400: #7b2cbf;
-  --light-500: #5a189a;
-  --light-600: #3c096c;
-  --light-700: #240046;
-  --light-800: #10002b; /* Darkest */
+  --primary: #ffffff; /* Lightest */
+  --light-200: #c8e2f9;
+  --light-300: #91c5f2;
+  --light-400: #5ba8ec;
+  --light-500: #248be5;
+  --light-600: #156bb7;
+  --light-700: #0f4c81;
+  --light-800: #092b49;
+  --light-900: #020b12; /* Darkest */
+}
+
+body {
+  background-color: var(--primary);
 }
