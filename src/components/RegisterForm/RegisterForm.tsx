@@ -10,51 +10,55 @@ const RegisterForm = () => {
   const navigate = useNavigate();
 
   const handleSubmit = (event: React.FormEvent) => {
-    navigate("/Home");
+    event.preventDefault();
+    navigate("/Log In");
   };
+
   return (
     <div className="container1">
       <div className="header">
         <div className="text">Sign up</div>
       </div>
-      <div className="inputs">
-        <div className="input">
-          <img src={user_icon} alt="User Icon" />
-          <input type="text" placeholder="Username" />
-        </div>
+      <form className="form" onSubmit={handleSubmit}>
+        <div className="inputs">
+          <div className="input">
+            <img src={user_icon} alt="User Icon" />
+            <input type="text" placeholder="Username" />
+          </div>
 
-        <div className="input">
-          <img src={Credentials} alt="User Icon" />
-          <input type="text" placeholder="Name" />
-        </div>
+          <div className="input">
+            <img src={Credentials} alt="Credentials Icon" />
+            <input type="text" placeholder="Name" />
+          </div>
 
-        <div className="input">
-          <img src={Credentials} alt="Credentials Icon" />
-          <input type="text" placeholder="Surname" />
-        </div>
+          <div className="input">
+            <img src={Credentials} alt="Credentials Icon" />
+            <input type="text" placeholder="Surname" />
+          </div>
 
-        <div className="input">
-          <img src={Email} alt="Email Icon" />
-          <input type="email" placeholder="Email" />
-        </div>
+          <div className="input">
+            <img src={Email} alt="Email Icon" />
+            <input type="email" placeholder="Email" />
+          </div>
 
-        <div className="input">
-          <img src={Password} alt="Password Icon" />
-          <input type="password" placeholder="Password" />
+          <div className="input">
+            <img src={Password} alt="Password Icon" />
+            <input type="password" placeholder="Password" />
+          </div>
+          <div className="input">
+            <img src={Password} alt="Password Icon" />
+            <input type="password" placeholder="Repeat Password" />
+          </div>
         </div>
-        <div className="input">
-          <img src={Password} alt="Password Icon" />
-          <input type="password" placeholder="Repeat Password" />
+        <div className="forgot-password">
+          Already Have An Account ?{" "}
+          <button type="button" className="" onClick={handleSubmit}>
+            Log In!
+          </button>
         </div>
-      </div>
-
-      <div className="forgot-password">
-        Already Have An Account ? <span>Sign in!</span>
-      </div>
-      <form onSubmit={handleSubmit}>
-        <div className="submit-container">
-          <div className="submit">Sign up</div>
-        </div>
+        <button type="submit" className="submit" onClick={handleSubmit}>
+          Sign up
+        </button>
       </form>
     </div>
   );

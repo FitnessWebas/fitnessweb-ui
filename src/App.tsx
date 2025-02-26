@@ -1,6 +1,7 @@
 import "./App.css";
 import Home from "./pages/Home";
-import Register from "./pages/Register";
+import Register from "./pages/Register.tsx";
+import LogIn from "./pages/LogIn.tsx";
 import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -10,7 +11,9 @@ function App() {
       <div>
         <main>
           <Routes>
-            <Route path="/" element={<Register />} />
+            <Route path="/Register" element={<Register />} />
+            <Route path="/Log In" element={<LogIn />} />
+            <Route path="/" element={<Home />} />
           </Routes>
         </main>
       </div>

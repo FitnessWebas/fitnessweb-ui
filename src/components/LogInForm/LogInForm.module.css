@@ -7,7 +7,7 @@
   margin-top: 6rem;
   padding-bottom: 1.8rem;
   width: 500px;
-  background: var(--light-200);
+  background: var(--light-300);
   border-radius: 1rem;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
 }
@@ -29,7 +29,6 @@
 
 .form {
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
 }
@@ -65,21 +64,14 @@
   margin: 0 1.6rem;
 }
 
-.forgot-password {
+.no-account {
   margin-top: 1.7;
   color: var(--light-700);
   font-size: 1.1rem;
   font-weight: 500;
 }
 
-.forgot-password {
-  margin-top: 1.7;
-  color: var(--light-700);
-  font-size: 1rem;
-  font-weight: 500;
-}
-
-.forgot-password button {
+.noAccount button {
   color: var(--light-500);
   cursor: pointer;
   background: transparent;
@@ -89,7 +81,28 @@
   font-weight: 600;
 }
 
-.forgot-password button:hover {
+.noAccount button:hover {
+  text-decoration: underline;
+}
+
+.forgotPassword {
+  margin-top: 1.7;
+  color: var(--light-700);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.forgotPassword button {
+  color: var(--light-500);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.forgotPassword button:hover {
   text-decoration: underline;
 }
 
