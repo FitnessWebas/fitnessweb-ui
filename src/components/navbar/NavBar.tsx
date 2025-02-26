@@ -4,14 +4,10 @@ import { useState } from "react";
 
 function NavBar() {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  // Function to close the sidebar
-  const closeSidebar = () => {
-    const sidebarCheckbox = document.getElementById(
-      "sidebar-active"
-    ) as HTMLInputElement;
-    if (sidebarCheckbox) sidebarCheckbox.checked = false;
-  };
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  const closeSidebar = () => setIsSidebarOpen(false);
 
   return (
     <nav>
@@ -36,8 +32,7 @@ function NavBar() {
         <input type="text" placeholder="Search..." />
       </div>
 
-      <input type="checkbox" id="sidebar-active" />
-      <label htmlFor="sidebar-active" className="open-sidebar-button">
+      <label className="open-sidebar-button" onClick={toggleSidebar}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="32"
@@ -47,10 +42,14 @@ function NavBar() {
           <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
         </svg>
       </label>
-      <label id="overlay" htmlFor="sidebar-active"></label>
 
-      <div className="links-container">
-        <label htmlFor="sidebar-active" className="close-sidebar-button">
+      <div
+        className={`overlay ${isSidebarOpen ? "sidebar-open" : ""}`}
+        onClick={closeSidebar}
+      ></div>
+
+      <div className={`links-container ${isSidebarOpen ? "sidebar-open" : ""}`}>
+        <label className="close-sidebar-button" onClick={closeSidebar}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="32"
