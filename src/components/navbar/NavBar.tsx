@@ -4,6 +4,15 @@ import { useState } from "react";
 
 function NavBar() {
   const [isExpanded, setIsExpanded] = useState(false);
+
+  // Function to close the sidebar
+  const closeSidebar = () => {
+    const sidebarCheckbox = document.getElementById(
+      "sidebar-active"
+    ) as HTMLInputElement;
+    if (sidebarCheckbox) sidebarCheckbox.checked = false;
+  };
+
   return (
     <nav>
       <Link to="/" className="home-link">
@@ -52,12 +61,19 @@ function NavBar() {
           </svg>
         </label>
 
-        <Link to="/Store">Store</Link>
-        <Link to="/Championships">Championships</Link>
-        <Link to="/Championships/Leaderboards">Leaderboards</Link>
-        <Link to="/Info">Info</Link>
-        <Link to="/Login">
-          {" "}
+        <Link to="/Store" onClick={closeSidebar}>
+          Store
+        </Link>
+        <Link to="/Championships" onClick={closeSidebar}>
+          Championships
+        </Link>
+        <Link to="/Championships/Leaderboards" onClick={closeSidebar}>
+          Leaderboards
+        </Link>
+        <Link to="/Info" onClick={closeSidebar}>
+          Info
+        </Link>
+        <Link to="/Login" onClick={closeSidebar}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="30"
