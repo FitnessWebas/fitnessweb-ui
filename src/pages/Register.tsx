@@ -1,16 +1,15 @@
+import React, { useEffect } from "react";
 import RegisterForm from "../components/RegisterForm/RegisterForm.tsx";
-import React from "react";
 
 function Register() {
+  useEffect(() => {
+    document.title = "FitnessApp - Sign up";
+  }, []);
+
   return (
-    <>
-      <title>Sign up</title>
-      <body style={{ backgroundColor: "var(--light-100" }}>
-        <div>
-          <RegisterForm />
-        </div>
-      </body>
-    </>
+    <div>
+      <RegisterForm />
+    </div>
   );
 }
 
