@@ -1,55 +1,61 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+import "./RegisterForm.css";
+import user_icon from "../assets/Username.png";
+import Email from "../assets/Email.png";
+import Password from "../assets/Password.png";
+import Credentials from "../assets/Credentials.png";
+import { useNavigate } from "react-router-dom";
 
-export const RegisterForm = () => {
+const RegisterForm = () => {
+  const navigate = useNavigate();
+
+  const handleSubmit = (event: React.FormEvent) => {
+    navigate("/Home");
+  };
   return (
-    <div className="container d-flex justify-content-center">
-      <div>
-        <form>
-          <h3>Sign Up</h3>
-          <div className="mb-3">
-            <label>First name</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="First name"
-            />
-          </div>
-          <div className="mb-3">
-            <label>Last name</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Last name"
-            />
-          </div>
-          <div className="mb-3">
-            <label>Email address</label>
-            <input
-              type="email"
-              className="form-control"
-              placeholder="Enter email"
-            />
-          </div>
-          <div className="mb-3">
-            <label>Password</label>
-            <input
-              type="password"
-              className="form-control"
-              placeholder="Enter password"
-            />
-          </div>
-          <div className="d-grid">
-            <button type="submit" className="btn btn-primary">
-              Sign Up
-            </button>
-          </div>
-          <p className="forgot-password text-right">
-            Already registered <a href="/sign-in">sign in?</a>
-          </p>
-        </form>
+    <div className="container">
+      <div className="header">
+        <div className="text">Sign up</div>
       </div>
+      <div className="inputs">
+        <div className="input">
+          <img src={user_icon} alt="User Icon" />
+          <input type="text" placeholder="Username" />
+        </div>
+
+        <div className="input">
+          <img src={Credentials} alt="User Icon" />
+          <input type="text" placeholder="Name" />
+        </div>
+
+        <div className="input">
+          <img src={Credentials} alt="Credentials Icon" />
+          <input type="text" placeholder="Surname" />
+        </div>
+
+        <div className="input">
+          <img src={Email} alt="Email Icon" />
+          <input type="email" placeholder="Email" />
+        </div>
+
+        <div className="input">
+          <img src={Password} alt="Password Icon" />
+          <input type="password" placeholder="Password" />
+        </div>
+        <div className="input">
+          <img src={Password} alt="Password Icon" />
+          <input type="password" placeholder="Repeat Password" />
+        </div>
+      </div>
+
+      <div className="forgot-password">
+        Already Have An Account ? <span>Sign in!</span>
+      </div>
+      <form onSubmit={handleSubmit}>
+        <div className="submit-container">
+          <div className="submit">Sign up</div>
+        </div>
+      </form>
     </div>
   );
 };

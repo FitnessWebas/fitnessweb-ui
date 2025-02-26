@@ -11,5 +11,6 @@
 }
 
 body {
-  background-color: var(--primary);
+  background: var(--light-700);
+  height: 100vh;
 }
