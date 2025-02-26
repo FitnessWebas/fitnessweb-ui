@@ -13,7 +13,7 @@ const RegisterForm = () => {
     navigate("/Home");
   };
   return (
-    <div className="container">
+    <div className="container1">
       <div className="header">
         <div className="text">Sign up</div>
       </div>
