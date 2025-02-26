@@ -1,16 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  font-size: 13pt;
-  font-family: "Poppins", sans-serif;
-}
-
 nav {
+  font-size: 13pt;
   height: 70px;
   background-color: var(--light-800);
   display: flex;

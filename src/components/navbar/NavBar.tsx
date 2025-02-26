@@ -61,19 +61,19 @@ function NavBar() {
           </svg>
         </label>
 
-        <Link to="/Store" onClick={closeSidebar}>
-          Store
-        </Link>
-        <Link to="/Championships" onClick={closeSidebar}>
-          Championships
-        </Link>
-        <Link to="/Championships/Leaderboards" onClick={closeSidebar}>
-          Leaderboards
-        </Link>
         <Link to="/Info" onClick={closeSidebar}>
           Info
         </Link>
-        <Link to="/Login" onClick={closeSidebar}>
+        <Link to="/Exercises/Directory" onClick={closeSidebar}>
+          Exercises
+        </Link>
+        <Link to="/Account/Register" onClick={closeSidebar}>
+          Register
+        </Link>
+        <Link to="/Account/Login" onClick={closeSidebar}>
+          Login
+        </Link>
+        <Link to="/Account/Profile" onClick={closeSidebar}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="30"
