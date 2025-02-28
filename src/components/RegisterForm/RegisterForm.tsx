@@ -17,15 +17,11 @@ const RegisterForm = () => {
   return (
     <div className={styles.container1}>
       <div className={styles.header}>
-        <p>Sign up</p>
+        <p>Start Your Fitness Journey!</p>
       </div>
+      <hr className={styles.hr} />
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.inputs}>
-          <div className={styles.input}>
-            <img src={user_icon} alt="User Icon" />
-            <input type="text" placeholder="Username" />
-          </div>
-
           <div className={styles.input}>
             <img src={Credentials} alt="Credentials Icon" />
             <input type="text" placeholder="Name" />
@@ -34,6 +30,11 @@ const RegisterForm = () => {
           <div className={styles.input}>
             <img src={Credentials} alt="Credentials Icon" />
             <input type="text" placeholder="Surname" />
+          </div>
+
+          <div className={styles.input}>
+            <img src={user_icon} alt="User Icon" />
+            <input type="text" placeholder="Username" />
           </div>
 
           <div className={styles.input}>
