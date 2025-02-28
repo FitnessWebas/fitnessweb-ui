@@ -17,7 +17,7 @@ const RegisterForm = () => {
   return (
     <div className={styles.container1}>
       <div className={styles.header}>
-        <p className={styles.text}>Sign up</p>
+        <p>Sign up</p>
       </div>
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.inputs}>
@@ -51,14 +51,20 @@ const RegisterForm = () => {
           </div>
         </div>
         <div className={styles.createdAccount}>
-          <p>Already Have An Account ? </p>
+          Already Have An Account ?
           <button type="button" onClick={handleSubmit}>
             Log In!
           </button>
         </div>
-        <button type="submit" className={styles.submit} onClick={handleSubmit}>
-          Sign up
-        </button>
+        <div className={styles.signupButton}>
+          <button
+            type="submit"
+            className={styles.submit}
+            onClick={handleSubmit}
+          >
+            Sign up
+          </button>
+        </div>
       </form>
     </div>
   );
