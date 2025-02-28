@@ -17,7 +17,7 @@ const RegisterForm = () => {
   return (
     <div className={styles.container1}>
       <div className={styles.header}>
-        <div className={styles.text}>Sign up</div>
+        <p className={styles.text}>Sign up</p>
       </div>
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.inputs}>
@@ -50,8 +50,8 @@ const RegisterForm = () => {
             <input type="password" placeholder="Repeat Password" />
           </div>
         </div>
-        <div className={styles.forgotPassword}>
-          Already Have An Account ?{" "}
+        <div className={styles.createdAccount}>
+          <p>Already Have An Account ? </p>
           <button type="button" onClick={handleSubmit}>
             Log In!
           </button>
