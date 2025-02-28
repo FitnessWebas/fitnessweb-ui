@@ -18,4 +18,5 @@ body {
 
 html {
   font-family: "Poppins", sans-serif;
+  overflow-y: scroll;
 }

@@ -1,4 +1,7 @@
 nav {
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
   font-size: 13pt;
   height: 70px;
   background-color: var(--light-800);

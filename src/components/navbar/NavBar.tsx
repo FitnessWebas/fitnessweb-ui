@@ -1,13 +1,34 @@
 import { Link } from "react-router";
 import styles from "./NavBar.module.css";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 function NavBar() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const closeSidebar = () => setIsSidebarOpen(false);
+  const toggleSearch = () => setIsExpanded(!isExpanded);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target as Node)
+      ) {
+        setIsExpanded(false);
+      }
+    }
+
+    if (isExpanded) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isExpanded]);
 
   return (
     <nav className={styles.nav}>
@@ -16,14 +37,12 @@ function NavBar() {
       </Link>
 
       <div
+        ref={searchRef}
         className={`${styles.searchContainer} ${
           isExpanded ? styles.expanded : ""
         }`}
       >
-        <button
-          className={styles.searchIcon}
-          onClick={() => setIsExpanded(!isExpanded)}
-        >
+        <button className={styles.searchIcon} onClick={toggleSearch}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="20"
