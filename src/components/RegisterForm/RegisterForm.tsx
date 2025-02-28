@@ -27,6 +27,11 @@ const RegisterForm = () => {
           </div>
 
           <div className={styles.input}>
+            <img src={Email} alt="Email Icon" />
+            <input type="email" placeholder="Email" />
+          </div>
+
+          <div className={styles.input}>
             <img src={Credentials} alt="Credentials Icon" />
             <input type="text" placeholder="Name" />
           </div>
@@ -34,11 +39,6 @@ const RegisterForm = () => {
           <div className={styles.input}>
             <img src={Credentials} alt="Credentials Icon" />
             <input type="text" placeholder="Surname" />
-          </div>
-
-          <div className={styles.input}>
-            <img src={Email} alt="Email Icon" />
-            <input type="email" placeholder="Email" />
           </div>
 
           <div className={styles.input}>
