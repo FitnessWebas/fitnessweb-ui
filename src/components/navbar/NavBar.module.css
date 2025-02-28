@@ -4,7 +4,7 @@ nav {
   z-index: 1000;
   font-size: 13pt;
   height: 70px;
-  background-color: var(--light-800);
+  background-color: var(--light-1);
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -26,7 +26,7 @@ nav {
   display: flex;
   align-items: center;
   transition: width 0.4s ease;
-  background: var(--light-800);
+  background: var(--light-1);
   border-radius: 15px;
   border: 2px solid var(--primary);
   overflow: hidden;
@@ -61,7 +61,7 @@ nav {
   border: none;
   outline: none;
   color: var(--primary);
-  background-color: black;
+  background-color: var(--light-1);
   transition: width 0.4s ease, opacity 0.2s ease;
 }
 
@@ -81,11 +81,12 @@ nav a {
   display: flex;
   align-items: center;
   text-decoration: none;
+  font-weight: 500;
   color: var(--primary);
 }
 
 nav a:hover {
-  background-color: var(--light-400);
+  background-color: var(--accent-1);
 }
 
 nav svg {
@@ -119,7 +120,7 @@ nav svg {
     height: 100%;
 
     z-index: 10;
-    background-color: var(--light-800);
+    background-color: var(--light-1);
     box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);
     transition: 0.5s ease-out;
   }
