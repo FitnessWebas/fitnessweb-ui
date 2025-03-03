@@ -1,0 +1,146 @@
+.container1 {
+  display: flex;
+  flex-direction: column;
+  background: var(--light-1);
+  border-radius: 10px;
+  overflow: hidden;
+  transform: scale(1.2);
+  transform-origin: center;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.hr {
+  width: 92%;
+  display: flex;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 2000px;
+  opacity: 1;
+  margin: 0.5rem auto;
+  border: none;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  background: var(--light-2);
+  border: 1px solid var(--secondary);
+  padding: 0.5rem;
+  overflow: hidden;
+}
+
+.input input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--light-100);
+}
+
+.input input::placeholder {
+  color: rgba(128, 128, 128, 0.8);
+}
+
+.input img {
+  width: 16px;
+  height: 16px;
+  margin-right: 0.5rem;
+}
+
+.noAccount {
+  display: flex;
+  justify-content: right;
+  padding-bottom: 0.5rem;
+}
+
+.noAccount button {
+  display: flex;
+  color: var(--accent-2);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.noAccount button:hover {
+  text-decoration: underline;
+}
+
+.forgotPassword {
+  display: flex;
+  justify-content: right;
+  margin-top: -0.5rem;
+}
+
+.forgotPassword button {
+  color: var(--accent-2);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.forgotPassword button:hover {
+  text-decoration: underline;
+}
+
+.signupButton {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.submit {
+  padding: 5px 5px;
+  background-color: var(--accent-3);
+  color: var(--primary);
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: filter 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  border: 1px solid var(--secondary);
+  margin-top: 0.9rem;
+  border-radius: 3px;
+  width: 100%;
+}
+
+.submit:hover {
+  background-color: #e6b526;
+}
+
+.submitDisabled {
+  background-color: gray;
+  color: var(--light-700);
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .container1 {
+    margin: 40px;
+  }
+}
