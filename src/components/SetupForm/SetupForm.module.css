@@ -14,6 +14,9 @@ button:disabled {
     padding: 10px 20px;
     font-size: 16px;
   }
+  .button_selected{
+    background-color: aqua;
+  }
   h1{
     align-self: center;
     max-width: 100%;
@@ -35,6 +38,11 @@ button:disabled {
     flex-direction: column;
     margin-top: 20px;
     width: 100%; /* Ensure buttons are spaced out within the available width */
+  }
+  .setup_age{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .setup_goals{
     display: flex;

@@ -1,8 +1,22 @@
 import React, { useState } from "react";
 import styles from "./SetupForm.module.css";
 
+enum Gender {
+  Male = 1,
+  Female = 2,
+}
+enum Goal {
+  LoseWeight = 1,
+  GainStrength = 2,
+  GainMuscle = 3,
+}
+
 export default function SetupForm() {
   const [currentStep, setCurrentStep] = useState(1);
+  const [gender, setGender] = useState<Gender | null>(null);
+  const [age, setAge] = useState<Number>(0);
+  const [weight, setWeight] = useState<Number>(0);
+  const [goal, setGoal] = useState<Goal | null>(null);
 
   const nextStep = () => {
     if (currentStep < 6) {
@@ -14,34 +28,106 @@ export default function SetupForm() {
       setCurrentStep(currentStep - 1);
     }
   };
+
+  const handleAgeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.valueAsNumber;
+    if (value >= 0) {
+      setAge(value);
+    }
+  };
+  const handleWeightChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.valueAsNumber;
+    if (value >= 0) {
+      setWeight(value);
+    }
+  };
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "-") {
+      //event.preventDefault();
+    }
+  };
   return (
     <div className={styles.container}>
       <form className={styles.setup}>
         {currentStep === 1 && (
           <div className={styles.setup_gender}>
             <h1>Gender</h1>
-            <button>Male</button>
-            <button>Female</button>
+            <button
+              onClick={() => {
+                setGender(Gender.Male);
+              }}
+              className={gender === Gender.Male ? styles.button_selected : ""}
+              type="button"
+            >
+              Male
+            </button>
+            <button
+              onClick={() => {
+                setGender(Gender.Female);
+              }}
+              className={gender === Gender.Female ? styles.button_selected : ""}
+              type="button"
+            >
+              Female
+            </button>
           </div>
         )}
         {currentStep === 2 && (
-          <div className="setup-age">
+          <div className={styles.setup_age}>
             <h1>Enter your age</h1>
-            <input type="number" min={1} max={110} />
+            <input
+              type="number"
+              min={0}
+              value={age !== null ? age.toString() : ""}
+              onChange={handleAgeChange}
+              onKeyPress={handleKeyPress}
+            />
           </div>
         )}
         {currentStep === 3 && (
           <div className="setup-weight">
             <h1>Enter your weight</h1>
-            <input type="number" min={0} />
+            <input
+              type="number"
+              min={0}
+              value={weight !== null ? weight.toString() : ""}
+              onChange={handleWeightChange}
+              onKeyPress={handleKeyPress}
+            />
           </div>
         )}
         {currentStep === 4 && (
           <div className={styles.setup_goals}>
             <h1>Choose your goal</h1>
-            <button>Lose weight</button>
-            <button>Gain strength</button>
-            <button>Gain muscle</button>
+            <button
+              type="button"
+              className={goal === Goal.LoseWeight ? styles.button_selected : ""}
+              onClick={() => {
+                setGoal(Goal.LoseWeight);
+              }}
+            >
+              Lose weight
+            </button>
+            <button
+              type="button"
+              className={
+                goal === Goal.GainStrength ? styles.button_selected : ""
+              }
+              onClick={() => {
+                setGoal(Goal.GainStrength);
+              }}
+            >
+              Gain strength
+            </button>
+            <button
+              type="button"
+              className={goal === Goal.GainMuscle ? styles.button_selected : ""}
+              onClick={() => {
+                setGoal(Goal.GainMuscle);
+              }}
+            >
+              Gain muscle
+            </button>
           </div>
         )}
         {currentStep === 5 && (
@@ -92,7 +178,17 @@ export default function SetupForm() {
           <button type="button" onClick={prevStep} disabled={currentStep === 1}>
             Previous
           </button>
-          <button type="button" onClick={nextStep} disabled={currentStep === 6}>
+          <button
+            type="button"
+            onClick={nextStep}
+            disabled={
+              currentStep === 6 ||
+              (currentStep === 1 && gender == null) ||
+              (currentStep == 2 && age == 0) ||
+              (currentStep == 3 && weight == 0) ||
+              (currentStep == 4 && goal == null)
+            }
+          >
             Next
           </button>
         </div>
