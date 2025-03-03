@@ -12,7 +12,7 @@
 }
 
 body {
-  background: var(--primary) !important;
+  background-color: var(--primary) !important;
   height: 100vh;
 }
 
