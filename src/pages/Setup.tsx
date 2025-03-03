@@ -3,7 +3,7 @@ import SetupForm from "../components/SetupForm/SetupForm";
 
 function Setup() {
   return (
-    <div className="">
+    <div className="vh-100 d-flex justify-content-center align-items-center">
       <SetupForm />
     </div>
   );
