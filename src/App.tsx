@@ -1,5 +1,7 @@
 import Home from "./pages/Home";
+import LogIn from "./pages/LogIn.tsx";
 import { Routes, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
@@ -7,6 +9,7 @@ function App() {
       <div>
         <main>
           <Routes>
+            <Route path="/LogIn" element={<LogIn />} />
             <Route path="/" element={<Home />} />
           </Routes>
         </main>
