@@ -1,4 +1,3 @@
-import "./App.css";
 import Home from "./pages/Home";
 import LogIn from "./pages/LogIn.tsx";
 import { Routes, Route } from "react-router-dom";
