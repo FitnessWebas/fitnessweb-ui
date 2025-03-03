@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./RegisterForm.module.css";
-import user_icon from "../assets/Username.png";
-import Email from "../assets/Email.png";
-import Password from "../assets/Password.png";
-import Credentials from "../assets/Credentials.png";
+import user_icon from "../../assets/Username.png";
+import Email from "../../assets/Email.png";
+import Password from "../../assets/Password.png";
+import Credentials from "../../assets/Credentials.png";
 import { useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
@@ -11,7 +11,7 @@ const RegisterForm = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    navigate("/Log_In");
+    navigate("/LogIn");
   };
 
   return (
