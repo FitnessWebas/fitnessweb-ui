@@ -7,17 +7,15 @@ import NavBar from "./components/navbar/NavBar";
 
 function App() {
   return (
-    <>
-      <div>
-        <main>
-          <Routes>
-            <Route path="/Register" element={<Register />} />
-            <Route path="/Log In" element={<LogIn />} />
-            <Route path="/" element={<Home />} />
-          </Routes>
-        </main>
-      </div>
-    </>
+    <div>
+      <NavBar />
+      <main style={{ paddingTop: "70px" }}>
+        <Routes>
+          <Route path="/LogIn" element={<LogIn />} />
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </main>
+    </div>
   );
 }
 
