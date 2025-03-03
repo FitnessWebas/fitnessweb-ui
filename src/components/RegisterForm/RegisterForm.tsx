@@ -11,7 +11,7 @@ const RegisterForm = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    navigate("/Log In");
+    navigate("/Log_In");
   };
 
   return (
