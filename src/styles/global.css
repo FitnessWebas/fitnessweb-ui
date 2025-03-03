@@ -1,13 +1,12 @@
 :root {
-  --primary: #ffffff; /* Primary (Lightest) */
-  --light-100: #c8e2f9;
-  --light-200: #91c5f2;
-  --light-300: #5ba8ec;
-  --light-400: #248be5;
-  --light-500: #156bb7;
-  --light-600: #0f4c81;
-  --light-700: #092b49;
-  --light-800: #020b12; /* Darkest */
+  --primary: #1b1b1bff;
+  --secondary: #2c2c2cff;
+  --tertiary: #444444ff;
+  --light-1: #eaeaeaff;
+  --light-2: #ffffffff;
+  --accent-1: #ff6b6bff;
+  --accent-2: #00adb5ff;
+  --accent-3: #ffcc29ff;
 }
 
 body {
