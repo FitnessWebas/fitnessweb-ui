@@ -1,28 +1,58 @@
-container {
-    height: 100%; 
+.container {
+    padding-top: 50px;
     display: flex; 
     justify-content: center; 
-    align-items: center; 
     width: 100%;
 }
-.setup {
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
+
+button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
   }
-  .setup-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    width: 100%;
-  }
-  
+
   button {
     padding: 10px 20px;
     font-size: 16px;
   }
-  
-  button:disabled {
-    background-color: #ddd;
-    cursor: not-allowed;
+  h1{
+    align-self: center;
+    max-width: 100%;
   }
+.setup {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    background-color: var(--light-1);
+    /* max-height: 500px; */
+    height: 100%;
+    padding: 50px;
+    width: 700px;
+    height: 500px;
+  }
+  .setup_gender {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-top: 20px;
+    width: 100%; /* Ensure buttons are spaced out within the available width */
+  }
+  .setup_goals{
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    width: 90%;
+  }
+  .setup_buttons{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+  }
+
+  .setup_buttons button{
+    width: 100%;
+  }
+  
+
+  
