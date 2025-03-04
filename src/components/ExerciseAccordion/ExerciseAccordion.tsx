@@ -5,8 +5,9 @@ import styles from "./ExerciseAccordion.module.css";
 type Exercise = {
   id: number;
   name: string;
-  muscleGroup: string;
+  muscleGroup: string[];
   equipment: string;
+  difficulty: string;
   image: string;
   description: string;
 };
@@ -32,14 +33,48 @@ const ExerciseAccordion = ({ exercises }: Props) => {
             className={styles.accordionTitle}
             onClick={() => toggleAccordion(index)}
           >
-            <p className={styles.exerciseName}>{exercise.name}</p>
-            <p>
-              <strong>Muscle Group:</strong> {exercise.muscleGroup}
-            </p>
-            <p>
-              <strong>Equipment:</strong> {exercise.equipment}
-            </p>
+            <div className={styles.titleLeft}>
+              <p className={styles.exerciseName}>{exercise.name}</p>
+            </div>
+
+            <div className={styles.titleRight}>
+              {exercise.muscleGroup &&
+                exercise.muscleGroup.map((muscle, idx) => (
+                  <span
+                    key={idx}
+                    className={styles.bubble}
+                    style={{ backgroundColor: "var(--accent-1)" }}
+                  >
+                    {muscle}
+                  </span>
+                ))}
+              <span
+                className={styles.bubble}
+                style={{ backgroundColor: "var(--accent-2)" }}
+              >
+                {exercise.equipment}
+              </span>
+              <span
+                className={styles.bubble}
+                style={{ backgroundColor: "var(--accent-3)" }}
+              >
+                {exercise.difficulty}
+              </span>
+            </div>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="40px"
+              viewBox="0 -960 960 960"
+              width="40px"
+              className={`${styles.icon} ${
+                openIndices.includes(index) ? styles.rotated : ""
+              }`}
+            >
+              <path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z" />
+            </svg>
           </button>
+
           <motion.div
             className={`${styles.accordionContent} ${
               openIndices.includes(index) ? styles.open : ""
@@ -52,7 +87,14 @@ const ExerciseAccordion = ({ exercises }: Props) => {
           >
             <div className={styles.accordionContentInner}>
               <img src={exercise.image} alt={exercise.name} />
-              <p>{exercise.description}</p>
+              <span className={styles.desription}>
+                <h1>Starting position:</h1>
+                <p>{exercise.description}</p>
+              </span>
+              <span className={styles.desription}>
+                <h1>Execution:</h1>
+                <p>{exercise.description}</p>
+              </span>
             </div>
           </motion.div>
         </div>
