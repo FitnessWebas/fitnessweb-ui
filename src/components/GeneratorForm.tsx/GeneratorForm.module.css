@@ -37,7 +37,7 @@ button:disabled {
     justify-content: space-between;
     flex-direction: column;
     margin-top: 20px;
-    width: 100%; /* Ensure buttons are spaced out within the available width */
+    width: 100%; 
   }
   .setup_age{
     display: flex;
@@ -60,6 +60,12 @@ button:disabled {
 
   .setup_buttons button{
     width: 100%;
+  }
+  .submit{
+    display: none;
+  }
+  .submit_visible{
+    display: block;
   }
   
 

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import SetupForm from "../components/SetupForm/SetupForm";
+import GeneratorForm from "../components/GeneratorForm.tsx/GeneratorForm";
 
 function Setup() {
   return (
     <div className="vh-100 d-flex justify-content-center">
-      <SetupForm />
+      <GeneratorForm />
     </div>
   );
 }
