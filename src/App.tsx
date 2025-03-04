@@ -1,5 +1,6 @@
-import Home from "./pages/Home";
+import ExerciseDirectory from "./pages/ExerciseDirectory";
 import LogIn from "./pages/LogIn.tsx";
+import Home from "./pages/Home";
 import Register from "./pages/Register.tsx";
 import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -15,6 +16,7 @@ function App() {
           <Route path="/LogIn" element={<LogIn />} />
           <Route path="/" element={<Home />} />
           <Route path="/Register" element={<Register />} />
+          <Route path="/Exercises/Directory" element={<ExerciseDirectory />} />
         </Routes>
       </main>
     </div>
