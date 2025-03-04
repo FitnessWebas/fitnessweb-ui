@@ -133,7 +133,14 @@ button:disabled {
   }
 
 
-  /* Age Slider */
+  @media (max-width: 600px) {
+    .container h1{
+      font-size: 2.2rem;
+    }
+    .setup_equipment button, .setup_workout button{
+      width: 40%;
+    }
+  }
   
 
   
