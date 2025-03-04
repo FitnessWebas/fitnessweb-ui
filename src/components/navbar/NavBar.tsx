@@ -93,8 +93,8 @@ function NavBar() {
           Exercises
         </Link>
 
-        <Link to="/Workouts/My_Workouts" onClick={closeSidebar}>
-          My Workouts
+        <Link to="/Workouts/Generator" onClick={closeSidebar}>
+          Workout Generator
         </Link>
 
         <Link to="/Register" onClick={closeSidebar}>
