@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./GeneratorForm.module.css";
+import { useNavigate } from "react-router-dom";
 
 enum Gender {
   Male = 1,
@@ -22,7 +23,19 @@ enum Workout {
   upper = 4,
   lower = 5,
   fullBody = 6,
+  shoulders = 7,
+  abdominal = 8,
 }
+export const workoutList = [
+  "Push",
+  "Pull",
+  "Legs",
+  "Upper",
+  "Lower",
+  "Full Body",
+  "Shoulders",
+  "Abdominal",
+];
 
 const equipmentList = [
   "Dumbbell",
@@ -35,14 +48,17 @@ const equipmentList = [
 ];
 
 export default function GeneratorForm() {
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
-  const [gender, setGender] = useState<Gender | null>(null);
-  const [age, setAge] = useState<Number>(0);
-  const [weight, setWeight] = useState<Number>(0);
+  const [weight, setWeight] = useState<Number>(25);
   const [goal, setGoal] = useState<Goal | null>(null);
   const [level, setLevel] = useState<Level | null>(null);
   const [workout, setWorkout] = useState<Workout | null>(null);
-  const [equip, SetEquip] = useState<boolean>(false);
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    navigate("/");
+  };
 
   const nextStep = () => {
     if (currentStep < 6) {
@@ -55,12 +71,6 @@ export default function GeneratorForm() {
     }
   };
 
-  const handleAgeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.valueAsNumber;
-    if (value >= 0) {
-      setAge(value);
-    }
-  };
   const handleWeightChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.valueAsNumber;
     if (value >= 0) {
@@ -71,6 +81,9 @@ export default function GeneratorForm() {
     if (event.key === "-") {
       //event.preventDefault();
     }
+  };
+  const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setWeight(Number(event.target.value));
   };
   const handleLevelChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
@@ -120,6 +133,7 @@ export default function GeneratorForm() {
   };
 
   const [selectedEquipment, setSelectedEquipment] = useState<string[]>([]);
+  const [selectedWorkout, setSelectedWorkou] = useState<string[]>([]);
 
   const toggleEquipment = (equipment: string) => {
     setSelectedEquipment(
@@ -129,20 +143,39 @@ export default function GeneratorForm() {
           : [...prevSelected, equipment] // Add if not selected
     );
   };
+  const toggleWorkout = (workout: string) => {
+    setSelectedEquipment(
+      (prevSelected) =>
+        prevSelected.includes(workout)
+          ? prevSelected.filter((item) => item !== workout) // Remove if already selected
+          : [...prevSelected, workout] // Add if not selected
+    );
+  };
 
   return (
     <div className={styles.container}>
       <form className={styles.setup}>
         {currentStep === 1 && (
-          <div className="setup-weight">
+          <div className={styles.setup_weight}>
             <h1>Enter your weight</h1>
             <input
               type="number"
-              min={0}
+              min={1}
+              max={100}
               value={weight !== null ? weight.toString() : ""}
               onChange={handleWeightChange}
               onKeyPress={handleKeyPress}
             />
+            <div className={styles.slider_container}>
+              <input
+                type="range"
+                className="slider"
+                min={1}
+                max={100}
+                value={weight !== null ? weight.toString() : ""}
+                onChange={handleSliderChange}
+              />
+            </div>
           </div>
         )}
         {currentStep === 2 && (
@@ -180,29 +213,52 @@ export default function GeneratorForm() {
           </div>
         )}
         {currentStep === 3 && (
-          <div className="setup-level">
+          <div className={styles.setup_level}>
             <h1>Select your fitness level</h1>
-            <select onChange={handleLevelChange} value={level?.toString()}>
-              <option value="0">--Choose an option--</option>
-              <option value="1">Beginner</option>
-              <option value="2">Intermediate</option>
-              <option value="2">Advanced</option>
-            </select>
+            <button
+              type="button"
+              className={level === Level.Beginner ? styles.button_selected : ""}
+              onClick={() => {
+                setLevel(Level.Beginner);
+              }}
+            >
+              Beginner
+            </button>
+            <button
+              type="button"
+              className={
+                level === Level.Intermediate ? styles.button_selected : ""
+              }
+              onClick={() => {
+                setLevel(Level.Intermediate);
+              }}
+            >
+              Intermediate
+            </button>
+            <button
+              type="button"
+              className={level === Level.Expert ? styles.button_selected : ""}
+              onClick={() => {
+                setLevel(Level.Expert);
+              }}
+            >
+              Expert
+            </button>
           </div>
         )}
         {currentStep === 4 && (
-          <div className="setup-equipment">
+          <div className={styles.setup_equipment}>
             <h1>Choose the equipment</h1>
             {equipmentList.map((equipment) => (
               <button
                 key={equipment}
                 type="button"
                 onClick={() => toggleEquipment(equipment)}
-                className={`equipment-button ${
+                className={
                   selectedEquipment.includes(equipment)
                     ? styles.button_selected
                     : ""
-                }`}
+                }
               >
                 {equipment}
               </button>
@@ -210,21 +266,31 @@ export default function GeneratorForm() {
           </div>
         )}
         {currentStep === 5 && (
-          <div className="setup-bodypart">
+          <div className={styles.setup_workout}>
             <h1>What you want to do today?</h1>
-            <select onChange={handleWorkoutChange} value={workout?.toString()}>
-              <option value="0">--Choose an option--</option>
-              <option value="1">Push</option>
-              <option value="2">Pull</option>
-              <option value="3">Legs</option>
-              <option value="4">Upper body</option>
-              <option value="5">Lower body</option>
-              <option value="6">Full body</option>
-            </select>
+            {workoutList.map((workout) => (
+              <button
+                key={workout}
+                type="button"
+                onClick={() => toggleWorkout(workout)}
+                className={
+                  selectedEquipment.includes(workout)
+                    ? styles.button_selected
+                    : ""
+                }
+              >
+                {workout}
+              </button>
+            ))}
           </div>
         )}
         <div className={styles.setup_buttons}>
-          <button type="button" onClick={prevStep} disabled={currentStep === 1}>
+          <button
+            type="button"
+            className={styles.submit_visible}
+            onClick={prevStep}
+            disabled={currentStep === 1}
+          >
             Previous
           </button>
           <button
@@ -243,6 +309,7 @@ export default function GeneratorForm() {
           </button>
           <button
             type="submit"
+            onClick={handleSubmit}
             className={currentStep == 5 ? styles.submit_visible : styles.submit}
           >
             Generate
