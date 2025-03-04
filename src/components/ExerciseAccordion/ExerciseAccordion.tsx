@@ -9,7 +9,8 @@ type Exercise = {
   equipment: string;
   difficulty: string;
   image: string;
-  description: string;
+  startDescription: string;
+  executionDescription: string;
 };
 
 type Props = {
@@ -89,11 +90,11 @@ const ExerciseAccordion = ({ exercises }: Props) => {
               <img src={exercise.image} alt={exercise.name} />
               <span className={styles.desription}>
                 <h1>Starting position:</h1>
-                <p>{exercise.description}</p>
+                <p>{exercise.startDescription}</p>
               </span>
               <span className={styles.desription}>
                 <h1>Execution:</h1>
-                <p>{exercise.description}</p>
+                <p>{exercise.executionDescription}</p>
               </span>
             </div>
           </motion.div>
