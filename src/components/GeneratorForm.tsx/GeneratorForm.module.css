@@ -19,6 +19,7 @@ button:disabled {
     align-self: center;
     max-width: 100%;
     font-size: 3rem;
+    text-align: center;
   }
 .setup {
     display: flex;
@@ -64,7 +65,7 @@ button:disabled {
     width: 90%;
     height: 100%;
   }
-  .setup_equipment{
+  .setup_equipment, .setup_workout{
     display: flex;
     align-items: center;
     flex-wrap: wrap;
