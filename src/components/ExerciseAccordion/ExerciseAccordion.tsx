@@ -32,7 +32,7 @@ const ExerciseAccordion = ({ exercises }: Props) => {
             className={styles.accordionTitle}
             onClick={() => toggleAccordion(index)}
           >
-            {exercise.name}
+            <p className={styles.exerciseName}>{exercise.name}</p>
             <p>
               <strong>Muscle Group:</strong> {exercise.muscleGroup}
             </p>
@@ -44,10 +44,9 @@ const ExerciseAccordion = ({ exercises }: Props) => {
             className={`${styles.accordionContent} ${
               openIndices.includes(index) ? styles.open : ""
             }`}
-            initial={{ height: 0, opacity: 0 }}
+            initial={{ height: 0 }}
             animate={{
               height: openIndices.includes(index) ? "auto" : 0,
-              opacity: openIndices.includes(index) ? 1 : 0,
             }}
             transition={{ duration: 0.3 }}
           >
