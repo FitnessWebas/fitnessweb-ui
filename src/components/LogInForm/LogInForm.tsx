@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./LogInForm.module.css";
-import user_icon from "../assets/Username.png";
-import Password from "../assets/Password.png";
+import user_icon from "../../assets/Username.png";
+import Password from "../../assets/Password.png";
 import { useNavigate } from "react-router-dom";
 
 const LogInForm = () => {
@@ -15,7 +15,7 @@ const LogInForm = () => {
   };
 
   const handleSignUpClick = () => {
-    navigate("/SignUp");
+    navigate("/Register");
   };
 
   const handleForgotPass = () => {
