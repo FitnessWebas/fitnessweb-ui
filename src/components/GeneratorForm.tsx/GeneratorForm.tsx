@@ -161,7 +161,7 @@ export default function GeneratorForm() {
             <input
               type="number"
               min={1}
-              max={100}
+              max={200}
               value={weight !== null ? weight.toString() : ""}
               onChange={handleWeightChange}
               onKeyPress={handleKeyPress}
@@ -171,7 +171,7 @@ export default function GeneratorForm() {
                 type="range"
                 className="slider"
                 min={1}
-                max={100}
+                max={200}
                 value={weight !== null ? weight.toString() : ""}
                 onChange={handleSliderChange}
               />

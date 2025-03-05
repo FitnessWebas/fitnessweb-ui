@@ -39,7 +39,7 @@
 .bubble {
   border-radius: 15px;
   padding: 5px 10px;
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 600;
   margin-bottom: 6px;
   min-width: 14%; /* Ensure minimum width for smaller content like 'Hard' or 'Intermediate' */
@@ -89,19 +89,19 @@
 }
 
 .desription h1 {
-  font-size: 50px;
-  font-weight: 600;
+  font-size: 30px;
+  font-weight: 700;
   margin-bottom: 2%;
 }
 
 .desription p {
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 400;
   margin-bottom: 10px;
 }
 
 .exerciseName {
-  font-size: 50px;
+  font-size: 30px;
   font-weight: 600;
 }
 
