@@ -2,11 +2,13 @@ import { Link } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import { useState, useRef, useEffect } from "react";
 import RegisterModal from "../ModalPopUp/RegisterModal";
+import LoginModal from "../ModalPopUp/LogInModal";
 
 function NavBar() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
@@ -21,6 +23,28 @@ function NavBar() {
 
   const handleCloseRegisterModal = () => {
     setShowRegisterModal(false);
+  };
+
+  const handleOpenLoginModal = (event: React.MouseEvent) => {
+    event.preventDefault();
+    setShowLoginModal(true);
+    closeSidebar();
+  };
+
+  const handleCloseLoginModal = () => {
+    setShowLoginModal(false);
+  };
+
+  const handleOpenLoginModalHasAcc = () => {
+    handleCloseRegisterModal();
+    setShowLoginModal(true);
+    closeSidebar();
+  };
+
+  const handleOpenRegisterModalNoAcc = () => {
+    handleCloseLoginModal();
+    setShowRegisterModal(true);
+    closeSidebar();
   };
 
   useEffect(() => {
@@ -112,7 +136,7 @@ function NavBar() {
         <Link to="/Register" onClick={handleOpenRegisterModal}>
           Register
         </Link>
-        <Link to="/Login" onClick={closeSidebar}>
+        <Link to="/Login" onClick={handleOpenLoginModal}>
           Login
         </Link>
       </div>
@@ -120,6 +144,12 @@ function NavBar() {
       <RegisterModal
         show={showRegisterModal}
         onClose={handleCloseRegisterModal}
+        onOpenLogin={handleOpenLoginModalHasAcc}
+      />
+      <LoginModal
+        show={showLoginModal}
+        onClose={handleCloseLoginModal}
+        OnOpenRegister={handleOpenRegisterModalNoAcc}
       />
     </nav>
   );

@@ -7,9 +7,13 @@ import Credentials from "../../assets/Credentials.png";
 
 interface RegisterFormProps {
   onClose: () => void;
+  onOpenLogin: () => void;
 }
 
-const RegisterForm: React.FC<RegisterFormProps> = ({ onClose }) => {
+const RegisterForm: React.FC<RegisterFormProps> = ({
+  onClose,
+  onOpenLogin,
+}) => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [username, setUsername] = useState("");
@@ -98,7 +102,10 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onClose }) => {
           </div>
         </div>
         <div className={styles.createdAccount}>
-          Already Have An Account ?<button type="button">Log In!</button>
+          Already Have An Account ?
+          <button type="button" onClick={onOpenLogin}>
+            Log In!
+          </button>
         </div>
         <div className={styles.signupButton}>
           <button
