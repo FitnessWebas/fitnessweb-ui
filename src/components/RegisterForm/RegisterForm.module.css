@@ -117,8 +117,14 @@
   width: 100%;
 }
 
-.submit:hover {
-  background-color: #e6b526;
+.submitDisabled {
+  background-color: gray;
+  color: var(--light-700);
+  cursor: not-allowed;
+}
+
+.submitDisabled:hover {
+  cursor: not-allowed;
 }
 
 @media (max-width: 600px) {
