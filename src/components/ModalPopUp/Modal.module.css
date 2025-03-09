@@ -13,7 +13,7 @@
 }
 
 .modalContent {
-  background: white;
+  background: none;
   padding: 2rem;
   border-radius: 10px;
   position: relative;
@@ -23,11 +23,24 @@
 
 .closeButton {
   position: absolute;
-  top: 10px;
+  top: -5px;
   right: 10px;
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   cursor: pointer;
   z-index: 1002;
+}
+
+@media (max-width: 350px) {
+  .closeButton {
+    position: absolute;
+    top: -15px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    cursor: pointer;
+    z-index: 1002;
+  }
 }
