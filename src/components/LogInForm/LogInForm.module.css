@@ -140,6 +140,41 @@
 
 @media (max-width: 600px) {
   .container1 {
-    margin: 40px;
+    margin: 10px;
+  }
+  .header {
+    font-size: 2rem;
+  }
+
+  .input input::placeholder {
+    color: rgba(128, 128, 128, 0.8);
+    font-size: 1rem;
+  }
+
+  .input img {
+    width: 16px;
+    height: 16px;
+    margin-right: 0.4rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .container1 {
+    margin: 1px;
+  }
+
+  .header {
+    font-size: 2rem;
+  }
+
+  .input input::placeholder {
+    color: rgba(128, 128, 128, 0.8);
+    font-size: 1rem;
+  }
+
+  .input img {
+    width: 16px;
+    height: 16px;
+    margin-right: 0.2rem;
   }
 }
