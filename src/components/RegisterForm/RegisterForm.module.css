@@ -58,6 +58,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .input input::placeholder {
@@ -100,9 +101,7 @@
 }
 
 .signupButton {
-  display: flex;
-  justify-content: center;
-  text-align: center;
+  overflow: hidden;
 }
 
 .submit {
@@ -176,12 +175,12 @@
 
   .input input::placeholder {
     color: rgba(128, 128, 128, 0.8);
-    font-size: 0.65rem;
+    font-size: 0.55rem;
   }
 
   .input img {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     margin-top: 0.3rem;
     margin-right: 0.2rem;
   }
