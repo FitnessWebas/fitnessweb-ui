@@ -100,9 +100,7 @@
 }
 
 .signupButton {
-  display: flex;
-  justify-content: center;
-  text-align: center;
+  overflow: hidden;
 }
 
 .submit {

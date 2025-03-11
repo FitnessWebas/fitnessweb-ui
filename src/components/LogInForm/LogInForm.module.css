@@ -1,6 +1,7 @@
 .container1 {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   background: var(--light-1);
   border-radius: 10px;
   overflow: hidden;
@@ -55,6 +56,7 @@
   border: none;
   outline: none;
   color: var(--light-100);
+  width: 100%;
 }
 
 .input input::placeholder {
@@ -109,9 +111,6 @@
 }
 
 .signupButton {
-  display: flex;
-  justify-content: center;
-  text-align: center;
   overflow: hidden;
 }
 
