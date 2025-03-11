@@ -21,10 +21,11 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    onClose();
-  };
+  //kept for later, if we decide to make it auto log in after register
+  // const handleSubmit = (event: React.FormEvent) => {
+  //   event.preventDefault();
+  //   onClose();
+  // };
 
   const isFormValid =
     name.trim() !== "" &&
@@ -40,7 +41,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
         <p>Start Your Fitness Journey!</p>
       </div>
       <hr className={styles.hr} />
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form className={styles.form}>
         <div className={styles.inputs}>
           <div className={styles.input}>
             <img src={Credentials} alt="Credentials Icon" />
@@ -114,6 +115,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
               !isFormValid ? styles.submitDisabled : ""
             }`}
             disabled={!isFormValid}
+            onClick={onOpenLogin}
           >
             Sign up
           </button>
