@@ -2,24 +2,19 @@ import React, { useState } from "react";
 import styles from "./LogInForm.module.css";
 import user_icon from "../../assets/Username.png";
 import Password from "../../assets/Password.png";
-import { useNavigate } from "react-router-dom";
 
-const LogInForm = () => {
-  const navigate = useNavigate();
+interface LogInFormProps {
+  onClose: () => void;
+  OnOpenRegister: () => void;
+}
+
+const LogInForm: React.FC<LogInFormProps> = ({ onClose, OnOpenRegister }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    navigate("/");
-  };
-
-  const handleSignUpClick = () => {
-    navigate("/Register");
-  };
-
-  const handleForgotPass = () => {
-    navigate("/ResetPassword");
+    onClose();
   };
 
   const isFormValid = username.trim() !== "" && password.trim() !== "";
@@ -52,12 +47,12 @@ const LogInForm = () => {
           </div>
         </div>
         <div className={styles.noAccount}>
-          <button type="button" onClick={handleSignUpClick}>
+          <button type="button" onClick={OnOpenRegister}>
             Don't Have An Account ?
           </button>
         </div>
         <div className={styles.forgotPassword}>
-          <button type="button" onClick={handleForgotPass}>
+          <button type="button" onClick={onClose}>
             Forgot Password ?
           </button>
         </div>
@@ -67,7 +62,6 @@ const LogInForm = () => {
             className={`${styles.submit} ${
               !isFormValid ? styles.submitDisabled : ""
             }`}
-            onClick={handleSubmit}
             disabled={!isFormValid}
           >
             Log In

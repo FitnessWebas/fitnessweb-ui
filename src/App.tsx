@@ -1,5 +1,4 @@
 import ExerciseDirectory from "./pages/ExerciseDirectory";
-import LogIn from "./pages/LogIn.tsx";
 import Setup from "./pages/Generator.tsx";
 import Home from "./pages/Home";
 import { Routes, Route } from "react-router-dom";
@@ -13,7 +12,6 @@ function App() {
       <NavBar />
       <main style={{ paddingTop: "70px" }}>
         <Routes>
-          <Route path="/LogIn" element={<LogIn />} />
           <Route path="/" element={<Home />} />
           <Route path="/Exercises/Directory" element={<ExerciseDirectory />} />
           <Route path="/Workouts/Generator" element={<Setup />} />
