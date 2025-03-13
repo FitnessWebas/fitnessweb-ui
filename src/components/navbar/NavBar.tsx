@@ -1,15 +1,27 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import { useState, useRef, useEffect } from "react";
+import RegisterModal from "../ModalPopUp/RegisterModal";
 
 function NavBar() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const closeSidebar = () => setIsSidebarOpen(false);
   const toggleSearch = () => setIsExpanded(!isExpanded);
+
+  const handleOpenRegisterModal = (event: React.MouseEvent) => {
+    event.preventDefault();
+    setShowRegisterModal(true);
+    closeSidebar();
+  };
+
+  const handleCloseRegisterModal = () => {
+    setShowRegisterModal(false);
+  };
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -97,13 +109,18 @@ function NavBar() {
           Workout Generator
         </Link>
 
-        <Link to="/Register" onClick={closeSidebar}>
+        <Link to="/Register" onClick={handleOpenRegisterModal}>
           Register
         </Link>
         <Link to="/Login" onClick={closeSidebar}>
           Login
         </Link>
       </div>
+
+      <RegisterModal
+        show={showRegisterModal}
+        onClose={handleCloseRegisterModal}
+      />
     </nav>
   );
 }

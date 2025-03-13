@@ -4,7 +4,6 @@
   background: var(--light-1);
   border-radius: 10px;
   overflow: hidden;
-
   transform: scale(1.2);
   transform-origin: center;
 }
@@ -56,6 +55,10 @@
   border: none;
   outline: none;
   color: var(--light-100);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .input input::placeholder {
@@ -98,9 +101,7 @@
 }
 
 .signupButton {
-  display: flex;
-  justify-content: center;
-  text-align: center;
+  overflow: hidden;
 }
 
 .submit {
@@ -129,6 +130,68 @@
 
 @media (max-width: 600px) {
   .container1 {
-    margin: 40px;
+    margin: 10px;
+  }
+  .header {
+    font-size: 1.2rem;
+  }
+
+  .input input::placeholder {
+    color: rgba(128, 128, 128, 0.8);
+    font-size: 0.75rem;
+  }
+
+  .input img {
+    width: 10px;
+    height: 10px;
+    margin-top: 0.35rem;
+    margin-right: 0.3rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .container1 {
+    margin: 1px;
+  }
+
+  .header {
+    font-size: 1.2rem;
+  }
+
+  .input {
+    display: flex;
+    align-items: center;
+    background: var(--light-2);
+    border: 1px solid var(--secondary);
+    padding: 0.5rem;
+  }
+
+  .input input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--light-500);
+  }
+
+  .input input::placeholder {
+    color: rgba(128, 128, 128, 0.8);
+    font-size: 0.55rem;
+  }
+
+  .input img {
+    width: 10px;
+    height: 10px;
+    margin-top: 0.3rem;
+    margin-right: 0.2rem;
+  }
+
+  .createdAccount {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    padding-top: 9px;
+    color: var(--light-700);
+    font-size: 10px;
+    font-weight: 500;
   }
 }
