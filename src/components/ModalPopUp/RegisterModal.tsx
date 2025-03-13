@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "./Modal";
 import RegisterForm from "../RegisterForm/RegisterForm";
+import { useCreateUser } from "../../api/user/useCreateUser";
 
 interface RegisterModalProps {
   show: boolean;
@@ -13,9 +14,15 @@ const RegisterModal: React.FC<RegisterModalProps> = ({
   onClose,
   onOpenLogin,
 }) => {
+  const createUserMutation = useCreateUser();
+
   return (
     <Modal show={show} onClose={onClose}>
-      <RegisterForm onClose={onClose} onOpenLogin={onOpenLogin} />
+      <RegisterForm
+        onClose={onClose}
+        onOpenLogin={onOpenLogin}
+        createUserMutation={createUserMutation}
+      />
     </Modal>
   );
 };

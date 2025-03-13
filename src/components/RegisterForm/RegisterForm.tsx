@@ -4,13 +4,17 @@ import user_icon from "../../assets/Username.png";
 import Email from "../../assets/Email.png";
 import Password from "../../assets/Password.png";
 import Credentials from "../../assets/Credentials.png";
+import { UserCreate } from "../../api/user/useCreateUser";
+import { UseMutationResult } from "@tanstack/react-query";
 
 interface RegisterFormProps {
+  createUserMutation: UseMutationResult<void, Error, UserCreate>;
   onClose: () => void;
   onOpenLogin: () => void;
 }
 
 const RegisterForm: React.FC<RegisterFormProps> = ({
+  createUserMutation,
   onClose,
   onOpenLogin,
 }) => {
@@ -34,6 +38,24 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
     email.trim() !== "" &&
     password.trim() !== "" &&
     repeatPassword.trim() !== "";
+
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    createUserMutation.mutate(
+      {
+        firstName: name,
+        lastName: surname,
+        username: username,
+        email: email,
+        password: password,
+      },
+      {
+        onSuccess: () => {
+          console.log(`User registered successfully`);
+        },
+      }
+    );
+  };
 
   return (
     <div className={styles.container1}>
@@ -115,7 +137,10 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
               !isFormValid ? styles.submitDisabled : ""
             }`}
             disabled={!isFormValid}
-            onClick={onOpenLogin}
+            onClick={(e) => {
+              handleSubmit(e);
+              onOpenLogin();
+            }}
           >
             Sign up
           </button>
