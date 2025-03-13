@@ -10,7 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-query": "4",
+    "axios": "^1.8.3",
     "bootstrap": "^5.3.3",
+    "dotenv": "^16.4.7",
     "framer-motion": "^12.4.7",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
