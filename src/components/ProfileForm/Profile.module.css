@@ -10,6 +10,7 @@
 .content1 {
   width: 50%;
   transform: scale(0.9);
+  padding-bottom: 20px;
 }
 
 .hr {
@@ -120,9 +121,16 @@
   grid-template-columns: 0.5fr 0.5fr 0.8fr;
 }
 
+.settingsDesc {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .settingsData {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .settingsData button {
@@ -167,5 +175,18 @@
 @media (max-width: 800px) {
   .container1 {
     text-size-adjust: 70%;
+  }
+  .content1 {
+    width: 80%;
+  }
+}
+
+@media (max-width: 500px) {
+  .container1 {
+    text-size-adjust: 70%;
+  }
+
+  .content1 {
+    width: 100%;
   }
 }
