@@ -20,17 +20,17 @@ export const Profile = () => {
 
   const handlePrivacyChange = (newPrivacy: string) => {
     setPrivacy(newPrivacy);
-    setIsPrivacyOpen(false); // Close the dropdown after selection
+    setIsPrivacyOpen(false);
   };
 
   const handleThemeChange = (newTheme: string) => {
     setTheme(newTheme);
-    setIsThemeOpen(false); // Close the dropdown after selection
+    setIsThemeOpen(false);
   };
 
   const handleUnitsChange = (newUnits: string) => {
     setUnits(newUnits);
-    setIsUnitsOpen(false); // Close the dropdown after selection
+    setIsUnitsOpen(false);
   };
 
   return (
@@ -51,7 +51,7 @@ export const Profile = () => {
               <h4>Email address</h4>
               <p>{email}</p>
             </div>
-            <hr className={styles.credHr} />
+            <hr className={styles.hr} />
           </div>
         </form>
         <form className={styles.information}>
@@ -138,7 +138,18 @@ export const Profile = () => {
                   type="button"
                   onClick={() => setIsPrivacyOpen(!isPrivacyOpen)}
                 >
-                  <h5>{privacy}</h5>
+                  <h5>
+                    {privacy}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="24px"
+                      viewBox="0 -960 960 960"
+                      width="24px"
+                      fill="#e3e3e3"
+                    >
+                      <path d="M480-345 240-585l56-56 184 183 184-183 56 56-240 240Z" />
+                    </svg>
+                  </h5>
                 </button>
                 {isPrivacyOpen && (
                   <div className={styles.dropdownContent}>
@@ -154,7 +165,18 @@ export const Profile = () => {
                   type="button"
                   onClick={() => setIsThemeOpen(!isThemeOpen)}
                 >
-                  <h5>{theme}</h5>
+                  <h5>
+                    {theme}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="24px"
+                      viewBox="0 -960 960 960"
+                      width="24px"
+                      fill="#e3e3e3"
+                    >
+                      <path d="M480-345 240-585l56-56 184 183 184-183 56 56-240 240Z" />
+                    </svg>
+                  </h5>
                 </button>
                 {isThemeOpen && (
                   <div className={styles.dropdownContent}>
@@ -168,7 +190,18 @@ export const Profile = () => {
                   type="button"
                   onClick={() => setIsUnitsOpen(!isUnitsOpen)}
                 >
-                  <h5>{units}</h5>
+                  <h5>
+                    {units}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="24px"
+                      viewBox="0 -960 960 960"
+                      width="24px"
+                      fill="#e3e3e3"
+                    >
+                      <path d="M480-345 240-585l56-56 184 183 184-183 56 56-240 240Z" />
+                    </svg>
+                  </h5>
                 </button>
                 {isUnitsOpen && (
                   <div className={styles.dropdownContent}>
