@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Username from "../../assets/Username.png";
+import Username1 from "../../assets/Username1.jpg";
 import styles from "./Profile.module.css";
 
 export const Profile = () => {
@@ -39,7 +40,7 @@ export const Profile = () => {
         <hr className={styles.hr} />
         <form className={styles.credentials}>
           <div className={styles.credImg}>
-            <img src={Username} alt="Profile picture" />
+            <img src={Username1} alt="Profile picture" />
           </div>
           <div className={styles.credInfo}>
             <div>
