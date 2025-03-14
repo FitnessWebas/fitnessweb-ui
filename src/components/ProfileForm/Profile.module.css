@@ -26,10 +26,9 @@
 
 .credentials {
   display: grid;
-  grid-template-columns: 0.7fr 2fr;
+  grid-template-columns: 0.5fr 2fr;
   padding: 1rem;
   padding-left: 0;
-  min-width: 600px;
 }
 
 .credImg {
@@ -37,8 +36,8 @@
   justify-content: left;
 }
 .credentials img {
-  width: 90%;
-  height: 90%;
+  width: 96%;
+  height: 96%;
 }
 
 .credInfo {
