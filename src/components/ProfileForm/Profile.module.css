@@ -28,16 +28,17 @@
   display: grid;
   grid-template-columns: 0.7fr 2fr;
   padding: 1rem;
+  padding-left: 0;
+  min-width: 600px;
 }
 
 .credImg {
   display: flex;
-  justify-content: center;
-  margin: 5px;
+  justify-content: left;
 }
 .credentials img {
-  width: 80%;
-  height: 80%;
+  width: 90%;
+  height: 90%;
 }
 
 .credInfo {
