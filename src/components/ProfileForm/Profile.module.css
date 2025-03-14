@@ -26,19 +26,18 @@
 
 .credentials {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 0.7fr 2fr;
   padding: 1rem;
 }
 
 .credImg {
   display: flex;
   justify-content: center;
-  overflow: hidden;
   margin: 5px;
 }
 .credentials img {
   width: 80%;
-  height: 100%;
+  height: 80%;
 }
 
 .credInfo {
@@ -116,6 +115,10 @@
   overflow: hidden;
 }
 
+.account {
+  margin-top: 20px;
+}
+
 .accSettings {
   display: grid;
   grid-template-columns: 0.5fr 0.5fr 0.8fr;
@@ -172,7 +175,7 @@
   font-weight: 100;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .container1 {
     text-size-adjust: 70%;
   }
