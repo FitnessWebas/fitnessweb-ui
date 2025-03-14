@@ -177,7 +177,7 @@
 
 @media (max-width: 900px) {
   .container1 {
-    text-size-adjust: 70%;
+    font-size: 0.875rem;
   }
   .content1 {
     width: 80%;
@@ -186,10 +186,21 @@
 
 @media (max-width: 500px) {
   .container1 {
-    text-size-adjust: 70%;
+    font-size: 0.75rem;
   }
 
   .content1 {
     width: 100%;
+  }
+
+  .infoButton button {
+    width: 70%;
+    border-radius: 12px;
+    background-color: var(--accent-1);
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    height: 50px;
+    overflow: hidden;
   }
 }
