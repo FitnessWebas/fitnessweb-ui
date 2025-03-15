@@ -1,0 +1,203 @@
+.container1 {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+  margin-top: 1%;
+  color: white;
+}
+
+.content1 {
+  width: 50%;
+  transform: scale(0.9);
+  padding-bottom: 20px;
+}
+
+.hr {
+  width: 100%;
+  height: 2px;
+  background: var(--light-1);
+  border-radius: 2000px;
+  opacity: 1;
+  margin: auto;
+  margin-bottom: 0px;
+  border: none;
+}
+
+.credentials {
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  grid-template-rows: 10rem;
+  gap: 1rem;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.credentials img {
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+.credInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.credInfo p {
+  font-size: small;
+}
+
+.information {
+  display: grid;
+  grid-template-columns: 0.8fr 1fr 1fr;
+  padding-bottom: 1rem;
+}
+
+.infoDesc {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 10px;
+}
+
+.infoDesc div {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin-bottom: 0.5rem;
+}
+
+.infoData {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.infoData h4 {
+  font-weight: 100;
+}
+
+.infoData div {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+.infoButton {
+  grid-column: 3;
+  grid-row: 1;
+  display: flex;
+  justify-content: right;
+  align-items: flex-end;
+}
+
+.infoButton button {
+  width: 70%;
+  border-radius: 12px;
+  background-color: var(--accent-1);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 500;
+  height: 50px;
+  overflow: hidden;
+}
+
+.account {
+  margin-top: 15px;
+}
+
+.accSettings {
+  display: grid;
+  grid-template-columns: 13rem 1fr;
+  margin-top: 20px;
+}
+
+.settingsDesc {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.settingsData {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.settingsData button {
+  border: none;
+  background: none;
+  color: white;
+  display: flex;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown button {
+  width: 110px;
+}
+
+.dropdown svg {
+  float: right;
+}
+
+.dropdownContent {
+  display: block;
+  position: absolute;
+  background-color: var(--primary);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdownContent p {
+  color: white;
+  padding-left: 8px;
+  padding-bottom: 10px;
+  margin-bottom: 0px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdownContent p:hover {
+  cursor: pointer;
+}
+
+.settingsData h5 {
+  font-weight: 100;
+}
+
+@media (max-width: 900px) {
+  .container1 {
+    font-size: 0.875rem;
+  }
+  .content1 {
+    width: 80%;
+  }
+}
+
+@media (max-width: 500px) {
+  .container1 {
+    font-size: 0.75rem;
+  }
+
+  .content1 {
+    width: 100%;
+  }
+
+  .infoButton button {
+    width: 70%;
+    border-radius: 12px;
+    background-color: var(--accent-1);
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+    height: 50px;
+    overflow: hidden;
+  }
+}
