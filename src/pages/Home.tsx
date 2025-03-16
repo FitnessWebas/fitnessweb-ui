@@ -3,6 +3,7 @@ import ActionButton from "../components/HomePage/ActionButton";
 import FeatureCard from "../components/HomePage/FeatureCard";
 import StepCircle from "../components/HomePage/StepCircle";
 import Footer from "../components/HomePage/Footer";
+import { useModal } from "../components/ModalPopUp/ModalOperations";
 import {
   ArrowRight,
   Dumbbell,
@@ -13,6 +14,8 @@ import {
 import styles from "../components/HomePage/Home.module.css";
 
 function Home() {
+  const { toggleRegisterModal } = useModal();
+
   return (
     <div className={styles.app}>
       {/* Hero Section */}
@@ -141,7 +144,7 @@ function Home() {
             Join thousands of users who have revolutionized their workout
             experience with our intuitive platform.
           </p>
-          <ActionButton variant="primary">
+          <ActionButton variant="primary" onClick={toggleRegisterModal}>
             Get Started <ArrowRight size={16} />
           </ActionButton>
         </div>
