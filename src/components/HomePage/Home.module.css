@@ -1,0 +1,385 @@
+body {
+  background-color: #111111;
+  color: #f8f9fa;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Feature Card */
+.featureCard {
+  background-color: white;
+  color: #111111;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform: scale(1);
+}
+
+.featureCard:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.iconContainer {
+  margin-bottom: 1rem;
+}
+
+.featureTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.featureDescription {
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+/* Action Button */
+.actionButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.primaryButton {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+}
+
+.primaryButton:hover {
+  background-color: rgba(255, 107, 107, 0.9);
+}
+
+.secondaryButton {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.secondaryButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Step Circle */
+.stepCircle {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ff6b6b;
+  color: white;
+  font-weight: 600;
+}
+
+/* Sections */
+section {
+  padding: 5rem 0;
+}
+
+/* Hero Section */
+.heroSection {
+  position: relative;
+  padding: 6rem 0;
+  overflow: hidden;
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.heroTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.heroHighlight {
+  color: #ff6b6b;
+}
+
+.heroDescription {
+  font-size: 1.125rem;
+  color: #adb5bd;
+  margin-bottom: 2rem;
+  max-width: 32rem;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.heroImageContainer {
+  position: relative;
+  border: 2px solid rgba(76, 201, 240, 0.3);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.heroImage {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Features Section */
+.featuresSection {
+  padding: 5rem 0;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.sectionTitle {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.sectionDescription {
+  color: #adb5bd;
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2rem;
+}
+
+/* How It Works Section */
+.stepsContainer {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 3rem;
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+.stepItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stepTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.stepDescription {
+  color: #adb5bd;
+}
+
+/* CTA Section */
+.ctaSection {
+  padding: 5rem 0;
+  background: linear-gradient(to bottom right, #111111, #000000);
+  text-align: center;
+}
+
+.ctaTitle {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.ctaDescription {
+  color: #adb5bd;
+  margin-bottom: 2.5rem;
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid #343a40;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+  margin-top: 5rem;
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2rem;
+}
+
+.footerTitle {
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.footerDescription {
+  color: #6c757d;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.footerHeading {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.footerLinks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footerLink {
+  color: #6c757d;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footerLink:hover {
+  color: white;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 1rem;
+}
+
+.socialLink {
+  color: #6c757d;
+  transition: color 0.3s ease;
+}
+
+.socialLink:hover {
+  color: white;
+}
+
+.footerBottom {
+  border-top: 1px solid #343a40;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.copyright {
+  font-size: 0.75rem;
+  color: #6c757d;
+}
+
+.legalLinks {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.legalLink {
+  font-size: 0.75rem;
+  color: #6c757d;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.legalLink:hover {
+  color: white;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animateFadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .heroTitle {
+    font-size: 3rem;
+  }
+
+  .featuresGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stepsContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .footerGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footerBottom {
+    flex-direction: row;
+  }
+
+  .legalLinks {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .heroContent {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .heroLeft {
+    width: 50%;
+    padding-right: 2rem;
+  }
+
+  .heroRight {
+    width: 50%;
+  }
+
+  .featuresGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .footerGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
