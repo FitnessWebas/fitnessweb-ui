@@ -96,10 +96,10 @@ p{
 /* Exercises list */
 
 .exercises{
-    display: block;
+    display: none;
 }
 .active{
-    display: none;
+    display: block;
 }
 
 .exercises h2{

@@ -11,7 +11,6 @@ const WorkoutForm = () => {
 
   const showExercises = () => {
     setisActive(!isActive);
-    console.log(isActive);
   };
 
   return (
