@@ -3,6 +3,7 @@ import styles from "./NavBar.module.css";
 import { useState, useRef, useEffect } from "react";
 import RegisterModal from "../ModalPopUp/RegisterModal";
 import LoginModal from "../ModalPopUp/LogInModal";
+import { useModal } from "../ModalPopUp/ModalOperations";
 import InitialProfileSetupModal from "../ModalPopUp/InitialProfileSetupModal";
 import { useGetByUserIdUserMetrics } from "../../api/userMetrics/useGetByUserIdUserMetrics";
 
@@ -24,23 +25,26 @@ function NavBar() {
     }
   );
 
+  const {
+    showRegisterModal,
+    showLoginModal,
+    toggleRegisterModal,
+    toggleLoginModal,
+  } = useModal();
+
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const closeSidebar = () => setIsSidebarOpen(false);
   const toggleSearch = () => setIsExpanded(!isExpanded);
 
   const handleOpenRegisterModal = (event: React.MouseEvent) => {
     event.preventDefault();
-    setShowRegisterModal(true);
+    toggleRegisterModal();
     closeSidebar();
-  };
-
-  const handleCloseRegisterModal = () => {
-    setShowRegisterModal(false);
   };
 
   const handleOpenLoginModal = (event: React.MouseEvent) => {
     event.preventDefault();
-    setShowLoginModal(true);
+    toggleLoginModal();
     closeSidebar();
   };
 
@@ -54,14 +58,14 @@ function NavBar() {
   };
 
   const handleOpenLoginModalHasAcc = () => {
-    handleCloseRegisterModal();
-    setShowLoginModal(true);
+    toggleRegisterModal();
+    toggleLoginModal();
     closeSidebar();
   };
 
   const handleOpenRegisterModalNoAcc = () => {
-    handleCloseLoginModal();
-    setShowRegisterModal(true);
+    toggleLoginModal();
+    toggleRegisterModal();
     closeSidebar();
   };
 
@@ -182,12 +186,12 @@ function NavBar() {
 
       <RegisterModal
         show={showRegisterModal}
-        onClose={handleCloseRegisterModal}
+        onClose={toggleRegisterModal}
         onOpenLogin={handleOpenLoginModalHasAcc}
       />
       <LoginModal
         show={showLoginModal}
-        onClose={handleCloseLoginModal}
+        onClose={toggleLoginModal}
         OnOpenRegister={handleOpenRegisterModalNoAcc}
         handleSubmit={handleSubmitLoginModal}
       />
