@@ -1,64 +1,88 @@
 import React, { useState } from "react";
 import styles from "./WorkoutForm.module.css";
 import CloakIcon from "../../assets/clock-svg.svg";
-import KetbellIcon from "../../assets/gym-fitness-rumbbel-health-svg.svg";
 import BarbellIcon from "../../assets/barbell-svg.svg";
 import DumbellIcon from "../../assets/dumbbell-gym-svg.svg";
 import BodyIcon from "../../assets/chest-gym-svg.svg";
+import MachineIcon from "../../assets/gym-fitness-rumbbel-health-svg.svg";
 import ArrowUpIcon from "../../assets/keyboard_arrow_up.svg";
-const WorkoutForm = () => {
-  const [isActive, setisActive] = useState<boolean>(false);
+import { Workout, getWorkoutEquipment } from "../../types/types";
+
+const equipmentIcons: Record<string, string> = {
+  Barbell: BarbellIcon,
+  Dumbbell: DumbellIcon,
+  Bodyweight: BodyIcon,
+  Machine: MachineIcon,
+};
+
+interface WorkoutFormProps {
+  workout: Workout;
+}
+
+const WorkoutForm: React.FC<WorkoutFormProps> = ({ workout }) => {
+  const [isActive, setIsActive] = useState<boolean>(false);
 
   const showExercises = () => {
-    setisActive(!isActive);
+    setIsActive(!isActive);
   };
+
+  // Get unique equipment used in this workout
+  const workoutEquipment = getWorkoutEquipment(workout);
 
   return (
     <div className={styles.container}>
-      <h1>Arms workout</h1>
-      <h2>April, 69</h2>
+      <h1>{workout.name}</h1>
+      <h2>{workout.date}</h2>
       <div className={styles.date}>
         <img src={CloakIcon} alt="clockSvg" />
-        <p>45 min</p>
+        <p>{workout.duration} min</p>
       </div>
       <div className={styles.types}>
-        <span>Intermediate</span>
-        <span>Gain Strenght</span>
+        <span>{workout.difficulty}</span>
+        <span>{workout.goal}</span>
       </div>
       <h2>Muscle Groups</h2>
       <div className={styles.muscles}>
-        <span>Chest</span>
-        <span>Byceps</span>
-        <span>Penis</span>
+        {workout.muscleGroups.map((muscle, index) => (
+          <span key={index}>{muscle}</span>
+        ))}
       </div>
       <h2>Equipment</h2>
       <div className={styles.equipment}>
-        <img src={KetbellIcon} alt="kettlebell icon" />
-        <img src={BarbellIcon} alt="Barbell icon" />
-        <img src={DumbellIcon} alt="dumbell icon" />
-        <img src={BodyIcon} alt="body icon" />
+        {workoutEquipment.map((item, index) => (
+          <img key={index} src={equipmentIcons[item]} alt={`${item} icon`} />
+        ))}
       </div>
-      <div className={styles.exercisesBtn} onClick={showExercises}>
-        <p>Show exercises</p>
+      <div
+        className={`${styles.exercisesBtn} ${isActive ? styles.active : ""}`}
+        onClick={showExercises}
+      >
+        <p>{isActive ? "Hide exercises" : "Show exercises"}</p>
         <img src={ArrowUpIcon} alt="arrow up" />
       </div>
       <div className={`${styles.exercises} ${isActive ? styles.active : ""}`}>
         <h2>Exercises</h2>
-        <div className={styles.exercise}>
-          <h2>Bycep curl</h2>
-          <div className={styles.boxes}>
-            <div className={styles.equipmentInfo}>
-              <span>
-                Barberl <img src={BarbellIcon} alt="barbell icon" />
-              </span>
+        {workout.exercises.map(({ exercise, sets, repsPerSet }, index) => (
+          <div key={index} className={styles.exercise}>
+            <h2>{exercise.name}</h2>
+            <div className={styles.boxes}>
+              <div className={styles.equipmentInfo}>
+                <span>
+                  {exercise.equipment}{" "}
+                  <img
+                    src={equipmentIcons[exercise.equipment]}
+                    alt={`${exercise.equipment} icon`}
+                  />
+                </span>
+              </div>
+              <span>{exercise.muscleGroup.join(", ")}</span>
             </div>
-            <span>Bycep</span>
+            <span className={styles.exerciseInfo}>
+              <span>Sets: {sets}</span>
+              <span>Reps per Set: {repsPerSet}</span>
+            </span>
           </div>
-          <span className={styles.exerciseInfo}>
-            <span>Sets:10</span>
-            <span>Reps per Set: 100</span>
-          </span>
-        </div>
+        ))}
       </div>
     </div>
   );

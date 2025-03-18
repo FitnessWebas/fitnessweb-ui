@@ -71,9 +71,7 @@ p{
 }
 /* Equipment */
 
-.equipment{
 
-}
 .equipment img{
     height: 30px;
     width: 30px;
@@ -95,21 +93,33 @@ p{
 /* Exercises list */
 
 .exercises{
-    display: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out, opacity 0.3s ease-in-out;
+    opacity: 0;
 }
 .active{
-    display: block;
+    max-height: 1000px;
+    opacity: 1;
 }
 
 .exercises h2{
     margin: 20px 0;
 }
-
+.exercisesBtn img {
+    transition: transform 0.3s ease-in-out;
+}
+.exercisesBtn.active img {
+    transform: rotate(180deg);
+}
 .exercise{
     background-color: var(--tertiary);
     border-radius: 15px;
     padding: 7px 12px;
 }
+.exercise:not(:last-of-type) {
+    margin-bottom: 16px;
+  }
 .exercise h2{
     margin-bottom: 10px;
     font-size: 20px;
@@ -129,6 +139,9 @@ p{
     margin-right: 20px;
     background-color: var(--secondary);
     border-radius: 5px;
+}
+.equipmentInfo img{
+    fill: var(--accent-1);
 }
 .exerciseInfo span:first-of-type{
     margin-right: 35px;
