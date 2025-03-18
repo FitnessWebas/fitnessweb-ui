@@ -1,8 +1,11 @@
 .container {
-  padding-top: 50px;
   display: flex;
-  justify-content: center;
-  width: 100%;
+  flex-direction: column;
+  background: var(--light-1);
+  border-radius: 10px;
+  overflow: hidden;
+  transform: scale(1.2);
+  transform-origin: center;
 }
 
 button:disabled {
@@ -26,10 +29,9 @@ button:disabled {
   flex-direction: column;
   align-items: center;
   background-color: var(--light-1);
-  /* max-height: 500px; */
   height: 100%;
   padding: 30px;
-  width: 700px;
+  width: 100%;
   height: 500px;
   border-radius: 30px;
 }
@@ -135,7 +137,8 @@ button:disabled {
   background-color: aqua;
 }
 form button {
-  margin-right: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 button:hover {
   opacity: 80%;
