@@ -1,0 +1,154 @@
+.container {
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 80%;
+}
+.setup button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: var(--accent-1);
+  font-size: 1.1rem;
+}
+.container h1 {
+  align-self: center;
+  max-width: 100%;
+  font-size: 3rem;
+  text-align: center;
+}
+.setup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--light-1);
+  /* max-height: 500px; */
+  height: 100%;
+  padding: 30px;
+  width: 700px;
+  height: 500px;
+  border-radius: 30px;
+}
+.setup_weight {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.setup_weight > * {
+  margin-bottom: 40px;
+}
+.setup_weight input {
+  padding: 5px 10px;
+  font-size: 1.3rem;
+  outline: none;
+  border-radius: 10px;
+}
+.setup_weight .slider_container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.setup_weight .slider_container input {
+  width: 50%;
+}
+.setup_goals,
+.setup_level {
+  display: flex;
+  flex-direction: column;
+
+  padding-top: 20px;
+  width: 90%;
+  height: 100%;
+}
+.setup_equipment,
+.setup_workout {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100%;
+  justify-content: center;
+}
+.setup_equipment button,
+.setup_workout button {
+  width: 30%;
+  margin: 10px;
+  padding: 10px 10px;
+}
+.setup_equipment h1 {
+  align-self: center;
+}
+.setup_goals button,
+.setup_level button,
+.setup_equipment button,
+.setup_workout button {
+  margin-bottom: 20px;
+  background-color: var(--secondary);
+  color: var(--light-1);
+  margin-right: 0;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+}
+.setup_goals h1 {
+  margin-bottom: 30px;
+}
+.setup_buttons {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  /* height: 100%; */
+  width: 100%;
+}
+
+.setup_buttons button {
+  width: 100%;
+}
+.setup_goals button.button_selected,
+.setup_level button.button_selected,
+.setup_equipment button.button_selected,
+.setup_workout button.button_selected {
+  opacity: 60%;
+  transition: 0.3 ease;
+}
+.setup_level h1,
+.setup_workout h1 {
+  margin-bottom: 30px;
+}
+.setup_workout {
+  height: 100%;
+}
+.submit {
+  display: none;
+}
+.submit_visible {
+  display: block;
+  border-radius: 20px;
+  border: none;
+}
+.button_selected {
+  background-color: aqua;
+}
+form button {
+  margin-right: 20px;
+}
+button:hover {
+  opacity: 80%;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+@media (max-width: 600px) {
+  .container h1 {
+    font-size: 2.2rem;
+  }
+  .setup_equipment button,
+  .setup_workout button {
+    width: 40%;
+  }
+}

@@ -3,13 +3,26 @@ import styles from "./NavBar.module.css";
 import { useState, useRef, useEffect } from "react";
 import RegisterModal from "../ModalPopUp/RegisterModal";
 import LoginModal from "../ModalPopUp/LogInModal";
+import InitialProfileSetupModal from "../ModalPopUp/InitialProfileSetupModal";
+import { useGetByUserIdUserMetrics } from "../../api/userMetrics/useGetByUserIdUserMetrics";
 
 function NavBar() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showInitialProfileSetupModal, setShowInitialProfileSetupModal] =
+    useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
+
+  const loggedInUserId = "eeb7d4e2-be0b-4cb7-8ae7-4e2074e105a8";
+  const { data: getByUserIdUserMetricsData } = useGetByUserIdUserMetrics(
+    loggedInUserId,
+    {
+      enabled: isLoggedIn,
+    }
+  );
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const closeSidebar = () => setIsSidebarOpen(false);
@@ -35,6 +48,11 @@ function NavBar() {
     setShowLoginModal(false);
   };
 
+  const handleSubmitLoginModal = () => {
+    setShowLoginModal(false);
+    setIsLoggedIn(true);
+  };
+
   const handleOpenLoginModalHasAcc = () => {
     handleCloseRegisterModal();
     setShowLoginModal(true);
@@ -45,6 +63,10 @@ function NavBar() {
     handleCloseLoginModal();
     setShowRegisterModal(true);
     closeSidebar();
+  };
+
+  const handleCloseInitialProfileSetupModal = () => {
+    setShowInitialProfileSetupModal(false);
   };
 
   useEffect(() => {
@@ -65,6 +87,13 @@ function NavBar() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isExpanded]);
+
+  useEffect(() => {
+    if (getByUserIdUserMetricsData === null) {
+      setShowInitialProfileSetupModal(true);
+      closeSidebar();
+    }
+  }, [getByUserIdUserMetricsData]);
 
   return (
     <nav className={styles.nav}>
@@ -160,6 +189,11 @@ function NavBar() {
         show={showLoginModal}
         onClose={handleCloseLoginModal}
         OnOpenRegister={handleOpenRegisterModalNoAcc}
+        handleSubmit={handleSubmitLoginModal}
+      />
+      <InitialProfileSetupModal
+        show={showInitialProfileSetupModal}
+        onClose={handleCloseInitialProfileSetupModal}
       />
     </nav>
   );
