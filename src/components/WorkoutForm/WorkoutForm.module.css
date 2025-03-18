@@ -5,9 +5,8 @@
     border-radius: 20px;
     color: var(--light-1);
     font-family: Poppins;
-    padding-left: 15px;
-    padding-bottom: 15px;
-    padding-right: 15px;
+
+    padding: 20px 15px 15px 15px;
 }
 .container:hover{
     scale: 1.03;
@@ -15,7 +14,7 @@
 }
 /* text elements */
 .container > h1:first-of-type{
-    margin: 20px 0;
+    margin-bottom: 20px;
     font-size: 28px;
 }
 
