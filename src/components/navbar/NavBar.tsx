@@ -3,13 +3,19 @@ import styles from "./NavBar.module.css";
 import { useState, useRef, useEffect } from "react";
 import RegisterModal from "../ModalPopUp/RegisterModal";
 import LoginModal from "../ModalPopUp/LogInModal";
+import { useModal } from "../ModalPopUp/ModalOperations";
 
 function NavBar() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [showRegisterModal, setShowRegisterModal] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
+
+  const {
+    showRegisterModal,
+    showLoginModal,
+    toggleRegisterModal,
+    toggleLoginModal,
+  } = useModal();
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const closeSidebar = () => setIsSidebarOpen(false);
@@ -17,33 +23,25 @@ function NavBar() {
 
   const handleOpenRegisterModal = (event: React.MouseEvent) => {
     event.preventDefault();
-    setShowRegisterModal(true);
+    toggleRegisterModal();
     closeSidebar();
-  };
-
-  const handleCloseRegisterModal = () => {
-    setShowRegisterModal(false);
   };
 
   const handleOpenLoginModal = (event: React.MouseEvent) => {
     event.preventDefault();
-    setShowLoginModal(true);
+    toggleLoginModal();
     closeSidebar();
   };
 
-  const handleCloseLoginModal = () => {
-    setShowLoginModal(false);
-  };
-
   const handleOpenLoginModalHasAcc = () => {
-    handleCloseRegisterModal();
-    setShowLoginModal(true);
+    toggleRegisterModal();
+    toggleLoginModal();
     closeSidebar();
   };
 
   const handleOpenRegisterModalNoAcc = () => {
-    handleCloseLoginModal();
-    setShowRegisterModal(true);
+    toggleLoginModal();
+    toggleRegisterModal();
     closeSidebar();
   };
 
@@ -153,12 +151,12 @@ function NavBar() {
 
       <RegisterModal
         show={showRegisterModal}
-        onClose={handleCloseRegisterModal}
+        onClose={toggleRegisterModal}
         onOpenLogin={handleOpenLoginModalHasAcc}
       />
       <LoginModal
         show={showLoginModal}
-        onClose={handleCloseLoginModal}
+        onClose={toggleLoginModal}
         OnOpenRegister={handleOpenRegisterModalNoAcc}
       />
     </nav>
