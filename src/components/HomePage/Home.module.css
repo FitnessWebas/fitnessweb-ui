@@ -116,6 +116,7 @@ section {
 .heroContent {
   position: relative;
   z-index: 2;
+  bottom: 40px;
 }
 
 .heroText {
