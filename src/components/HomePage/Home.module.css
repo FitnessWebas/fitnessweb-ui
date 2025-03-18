@@ -115,7 +115,7 @@ section {
 
 .heroContent {
   position: relative;
-  margin-left: 90px;
+  margin-left: 0px;
   z-index: 2;
   bottom: 40px;
 }
@@ -152,10 +152,14 @@ section {
   gap: 1rem;
 }
 
+.gradientWrapper {
+  background: linear-gradient(to bottom right, var(--primary), var(--dark-1));
+}
+
 /* Features Section */
 .featuresSection {
   padding: 5rem 0;
-  background-color: var(--secondary);
+  background: none;
 }
 
 .sectionHeader {
@@ -184,7 +188,7 @@ section {
 
 /* How It Works Section */
 .howItWorksSection {
-  background-color: var(--primary);
+  background: none;
 }
 
 .stepsContainer {
@@ -217,11 +221,6 @@ section {
 /* CTA Section */
 .ctaSection {
   padding: 5rem 0;
-  background: linear-gradient(
-    to bottom right,
-    var(--primary),
-    var(--secondary)
-  );
   text-align: center;
 }
 
@@ -356,6 +355,10 @@ section {
 
 /* Responsive Design */
 @media (min-width: 768px) {
+  .heroContent {
+    margin-left: 90px;
+  }
+
   .heroTitle {
     font-size: 4rem;
   }
