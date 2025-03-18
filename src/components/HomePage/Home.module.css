@@ -107,22 +107,10 @@ section {
   min-height: 600px;
   display: flex;
   align-items: center;
-}
-
-.heroBackground {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.heroBgImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: right;
+  background-image: url("../../assets/We_love_women.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .heroContent {
@@ -392,10 +380,6 @@ section {
 }
 
 @media (min-width: 1024px) {
-  .heroBgImage {
-    object-position: center right;
-  }
-
   .featuresGrid {
     grid-template-columns: repeat(4, 1fr);
   }

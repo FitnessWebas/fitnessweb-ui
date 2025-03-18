@@ -17,13 +17,6 @@ function Home() {
     <div className={styles.app}>
       {/* Hero Section */}
       <section className={styles.heroSection}>
-        <div className={styles.heroBackground}>
-          <img
-            src="src\assets\Big_guy_John.png"
-            alt="Fitness Model"
-            className={styles.heroBgImage}
-          />
-        </div>
         <div className={styles.container}>
           <div className={styles.heroContent}>
             <div className={styles.heroText}>
