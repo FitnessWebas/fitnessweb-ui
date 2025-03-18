@@ -1,6 +1,6 @@
 body {
-  background-color: #111111;
-  color: #f8f9fa;
+  background-color: var(--primary);
+  color: var(--light-2);
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -14,12 +14,14 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
+  position: relative;
+  z-index: 2;
 }
 
 /* Feature Card */
 .featureCard {
-  background-color: white;
-  color: #111111;
+  background-color: var(--light-2);
+  color: var(--primary);
   padding: 1.5rem;
   border-radius: 0.75rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -43,7 +45,7 @@ body {
 
 .featureDescription {
   font-size: 0.875rem;
-  color: #6c757d;
+  color: var(--tertiary);
 }
 
 /* Action Button */
@@ -59,8 +61,8 @@ body {
 }
 
 .primaryButton {
-  background-color: #ff6b6b;
-  color: white;
+  background-color: var(--accent-1);
+  color: var(--light-2);
   border: none;
 }
 
@@ -70,8 +72,8 @@ body {
 
 .secondaryButton {
   background-color: transparent;
-  color: white;
-  border: 2px solid white;
+  color: var(--light-2);
+  border: 2px solid var(--light-2);
 }
 
 .secondaryButton:hover {
@@ -86,8 +88,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ff6b6b;
-  color: white;
+  background-color: var(--accent-1);
+  color: var(--light-2);
   font-weight: 600;
 }
 
@@ -101,26 +103,55 @@ section {
   position: relative;
   padding: 6rem 0;
   overflow: hidden;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+}
+
+.heroBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.heroBgImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right;
 }
 
 .heroContent {
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  z-index: 2;
+}
+
+.heroText {
+  max-width: 500px;
+  text-align: left;
+  padding-left: 2rem;
+  margin-right: auto;
 }
 
 .heroTitle {
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
+  line-height: 1.1;
+  color: var(--light-2);
 }
 
 .heroHighlight {
-  color: #ff6b6b;
+  color: var(--accent-1);
 }
 
 .heroDescription {
   font-size: 1.125rem;
-  color: #adb5bd;
+  color: var(--light-2);
   margin-bottom: 2rem;
   max-width: 32rem;
 }
@@ -131,23 +162,10 @@ section {
   gap: 1rem;
 }
 
-.heroImageContainer {
-  position: relative;
-  border: 2px solid rgba(76, 201, 240, 0.3);
-  border-radius: 0.5rem;
-  overflow: hidden;
-}
-
-.heroImage {
-  width: 100%;
-  height: 500px;
-  object-fit: cover;
-  object-position: center;
-}
-
 /* Features Section */
 .featuresSection {
   padding: 5rem 0;
+  background-color: var(--secondary);
 }
 
 .sectionHeader {
@@ -156,7 +174,8 @@ section {
 }
 
 .sectionTitle {
-  font-size: 1.875rem;
+  color: var(--light-2);
+  font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
 }
@@ -174,6 +193,10 @@ section {
 }
 
 /* How It Works Section */
+.howItWorksSection {
+  background-color: var(--primary);
+}
+
 .stepsContainer {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -190,6 +213,7 @@ section {
 }
 
 .stepTitle {
+  color: var(--light-2);
   font-size: 1.25rem;
   font-weight: 600;
   margin-top: 1.5rem;
@@ -203,18 +227,23 @@ section {
 /* CTA Section */
 .ctaSection {
   padding: 5rem 0;
-  background: linear-gradient(to bottom right, #111111, #000000);
+  background: linear-gradient(
+    to bottom right,
+    var(--primary),
+    var(--secondary)
+  );
   text-align: center;
 }
 
 .ctaTitle {
-  font-size: 1.875rem;
+  color: var(--light-2);
+  font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
 }
 
 .ctaDescription {
-  color: #adb5bd;
+  color: var(--light-1);
   margin-bottom: 2.5rem;
   max-width: 42rem;
   margin-left: auto;
@@ -236,6 +265,7 @@ section {
 }
 
 .footerTitle {
+  color: var(--light-2);
   font-weight: 700;
   font-size: 1.25rem;
   margin-bottom: 1rem;
@@ -248,6 +278,7 @@ section {
 }
 
 .footerHeading {
+  color: var(--light-2);
   font-weight: 600;
   margin-bottom: 1rem;
 }
@@ -268,7 +299,7 @@ section {
 }
 
 .footerLink:hover {
-  color: white;
+  color: var(--light-2);
 }
 
 .socialLinks {
@@ -282,7 +313,7 @@ section {
 }
 
 .socialLink:hover {
-  color: white;
+  color: var(--light-2);
 }
 
 .footerBottom {
@@ -314,7 +345,7 @@ section {
 }
 
 .legalLink:hover {
-  color: white;
+  color: var(--light-2);
 }
 
 /* Animation */
@@ -336,7 +367,7 @@ section {
 /* Responsive Design */
 @media (min-width: 768px) {
   .heroTitle {
-    font-size: 3rem;
+    font-size: 4rem;
   }
 
   .featuresGrid {
@@ -361,18 +392,8 @@ section {
 }
 
 @media (min-width: 1024px) {
-  .heroContent {
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .heroLeft {
-    width: 50%;
-    padding-right: 2rem;
-  }
-
-  .heroRight {
-    width: 50%;
+  .heroBgImage {
+    object-position: center right;
   }
 
   .featuresGrid {

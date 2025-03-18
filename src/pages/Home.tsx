@@ -17,9 +17,16 @@ function Home() {
     <div className={styles.app}>
       {/* Hero Section */}
       <section className={styles.heroSection}>
+        <div className={styles.heroBackground}>
+          <img
+            src="src\assets\Big_guy_John.png"
+            alt="Fitness Model"
+            className={styles.heroBgImage}
+          />
+        </div>
         <div className={styles.container}>
           <div className={styles.heroContent}>
-            <div className={styles.heroLeft}>
+            <div className={styles.heroText}>
               <h1 className={styles.heroTitle}>
                 Design Your{" "}
                 <span className={styles.heroHighlight}>Fitness Journey</span>
@@ -36,15 +43,6 @@ function Home() {
                 <ActionButton variant="secondary">
                   Browse Exercises
                 </ActionButton>
-              </div>
-            </div>
-            <div className={styles.heroRight}>
-              <div className={styles.heroImageContainer}>
-                <img
-                  src="https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=1000&auto=format&fit=crop"
-                  alt="Fitness Model"
-                  className={styles.heroImage}
-                />
               </div>
             </div>
           </div>

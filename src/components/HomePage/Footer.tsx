@@ -82,7 +82,7 @@ const Footer = () => {
 
         <div className={styles.footerBottom}>
           <p className={styles.copyright}>
-            © 2023 FitnessApp. All rights reserved.
+            © 2025 BombiniaiBebrai. All rights reserved.
           </p>
           <div className={styles.legalLinks}>
             <a href="#" className={styles.legalLink}>
