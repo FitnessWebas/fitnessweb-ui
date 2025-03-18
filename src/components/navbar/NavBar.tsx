@@ -10,11 +10,7 @@ import { useGetByUserIdUserMetrics } from "../../api/userMetrics/useGetByUserIdU
 function NavBar() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [showRegisterModal, setShowRegisterModal] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [showInitialProfileSetupModal, setShowInitialProfileSetupModal] =
-    useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
 
   const loggedInUserId = "eeb7d4e2-be0b-4cb7-8ae7-4e2074e105a8";
@@ -28,8 +24,10 @@ function NavBar() {
   const {
     showRegisterModal,
     showLoginModal,
+    showInitialProfileSetupModal,
     toggleRegisterModal,
     toggleLoginModal,
+    toggleInitialProfileSetupModal,
   } = useModal();
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
@@ -48,12 +46,8 @@ function NavBar() {
     closeSidebar();
   };
 
-  const handleCloseLoginModal = () => {
-    setShowLoginModal(false);
-  };
-
   const handleSubmitLoginModal = () => {
-    setShowLoginModal(false);
+    toggleLoginModal();
     setIsLoggedIn(true);
   };
 
@@ -70,7 +64,7 @@ function NavBar() {
   };
 
   const handleCloseInitialProfileSetupModal = () => {
-    setShowInitialProfileSetupModal(false);
+    toggleInitialProfileSetupModal();
   };
 
   useEffect(() => {
@@ -94,9 +88,10 @@ function NavBar() {
 
   useEffect(() => {
     if (getByUserIdUserMetricsData === null) {
-      setShowInitialProfileSetupModal(true);
+      toggleInitialProfileSetupModal();
       closeSidebar();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getByUserIdUserMetricsData]);
 
   return (

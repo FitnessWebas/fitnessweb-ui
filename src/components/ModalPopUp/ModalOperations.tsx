@@ -3,8 +3,10 @@ import React, { createContext, useState, useContext, ReactNode } from "react";
 interface ModalContextProps {
   showRegisterModal: boolean;
   showLoginModal: boolean;
+  showInitialProfileSetupModal: boolean;
   toggleRegisterModal: () => void;
   toggleLoginModal: () => void;
+  toggleInitialProfileSetupModal: () => void;
 }
 
 const ModalContext = createContext<ModalContextProps | undefined>(undefined);
@@ -12,6 +14,8 @@ const ModalContext = createContext<ModalContextProps | undefined>(undefined);
 export const ModalProvider = ({ children }: { children: ReactNode }) => {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showInitialProfileSetupModal, setShowInitialProfileSetupModal] =
+    useState(false);
 
   const toggleRegisterModal = () => {
     setShowRegisterModal(!showRegisterModal);
@@ -21,13 +25,19 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
     setShowLoginModal(!showLoginModal);
   };
 
+  const toggleInitialProfileSetupModal = () => {
+    setShowInitialProfileSetupModal(!showInitialProfileSetupModal);
+  };
+
   return (
     <ModalContext.Provider
       value={{
         showRegisterModal,
         showLoginModal,
+        showInitialProfileSetupModal,
         toggleRegisterModal,
         toggleLoginModal,
+        toggleInitialProfileSetupModal,
       }}
     >
       {children}
