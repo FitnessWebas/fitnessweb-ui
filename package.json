@@ -15,6 +15,7 @@
     "bootstrap": "^5.3.3",
     "dotenv": "^16.4.7",
     "framer-motion": "^12.4.7",
+    "lucide-react": "^0.482.0",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",
