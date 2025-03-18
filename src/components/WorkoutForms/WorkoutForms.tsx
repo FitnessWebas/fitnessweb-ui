@@ -1,5 +1,6 @@
 import React from "react";
-import styles from "./WorkoutForm.module.css";
+import styles from "./WorkoutForms.module.css";
+
 const WorkoutForm = () => {
   return <div className={styles.container}></div>;
 };

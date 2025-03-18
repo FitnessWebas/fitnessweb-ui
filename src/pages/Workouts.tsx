@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import WorkoutForm from "../components/WorkoutForm/WorkoutForm";
+import WorkoutForms from "../components/WorkoutForms/WorkoutForms";
 
 function Setup() {
   return (
     <div className="vh-100 d-flex justify-content-center">
-      <WorkoutForm />
+      <WorkoutForms />
     </div>
   );
 }
