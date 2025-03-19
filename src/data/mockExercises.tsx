@@ -122,7 +122,7 @@ const mockExercises = [
     id: 10,
     name: "Chest Fly",
     muscleGroup: ["Chest"],
-    equipment: "Dumbell",
+    equipment: "Dumbbell",
     difficulty: "Easy",
     image: chestFly,
     startDescription:
