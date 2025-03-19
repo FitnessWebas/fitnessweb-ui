@@ -6,16 +6,16 @@ import Password from "../../assets/Password.png";
 interface LogInFormProps {
   onClose: () => void;
   OnOpenRegister: () => void;
+  handleSubmit: () => void;
 }
 
-const LogInForm: React.FC<LogInFormProps> = ({ onClose, OnOpenRegister }) => {
+const LogInForm: React.FC<LogInFormProps> = ({
+  onClose,
+  OnOpenRegister,
+  handleSubmit,
+}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    onClose();
-  };
 
   const isFormValid = username.trim() !== "" && password.trim() !== "";
 
