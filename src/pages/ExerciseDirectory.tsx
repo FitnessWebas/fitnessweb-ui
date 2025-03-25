@@ -8,14 +8,14 @@ const ExercisePage = () => {
     return <div>No exercise data is available</div>;
   }
 
-  exercises.map((exercise) => ({
+  const mappedExercises = exercises.map((exercise) => ({
     ...exercise,
     imagePath: `${import.meta.env.VITE_BASE_IMAGES}${exercise.imagePath}`,
   }));
 
   return (
     <div>
-      <ExerciseAccordion exercises={exercises} />
+      <ExerciseAccordion exercises={mappedExercises} />
     </div>
   );
 };
