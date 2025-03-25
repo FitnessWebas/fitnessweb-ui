@@ -10,7 +10,7 @@ export enum Equipment {
 export const EquipmentOptions = [
   { value: Equipment.Barbell, label: "Barbell" },
   { value: Equipment.Dumbbell, label: "Dumbbell" },
-  { value: Equipment.BodyWeight, label: "Body weight" },
+  { value: Equipment.BodyWeight, label: "Bodyweight" },
   { value: Equipment.Machine, label: "Machine" },
   { value: Equipment.Cardio, label: "Cardio" },
   { value: Equipment.Kettlebell, label: "Kettlebell" },
