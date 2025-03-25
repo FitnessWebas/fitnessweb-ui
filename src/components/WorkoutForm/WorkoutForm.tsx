@@ -75,7 +75,9 @@ const WorkoutForm: React.FC<WorkoutFormProps> = ({ workout }) => {
                   />
                 </span>
               </div>
-              <span>{exercise.muscleGroup.join(", ")}</span>
+              <span>
+                {exercise.muscles.map((muscle) => muscle.name).join(", ")}
+              </span>
             </div>
             <span className={styles.exerciseInfo}>
               <span>Sets: {sets}</span>

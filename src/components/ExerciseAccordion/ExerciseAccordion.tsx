@@ -1,23 +1,15 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import styles from "./ExerciseAccordion.module.css";
+import { EquipmentOptions } from "../../types/Equipments";
+import { FitnessLevelOptions } from "../../types/FitnessLevels";
+import { Exercise } from "../../types/types";
 
-type Exercise = {
-  id: number;
-  name: string;
-  muscleGroup: string[];
-  equipment: string;
-  difficulty: string;
-  image: string;
-  startDescription: string;
-  executionDescription: string;
-};
-
-type Props = {
+type ExerciseAccordionProps = {
   exercises: Exercise[];
 };
 
-const ExerciseAccordion = ({ exercises }: Props) => {
+const ExerciseAccordion = ({ exercises }: ExerciseAccordionProps) => {
   const [openIndices, setOpenIndices] = useState<number[]>([]);
 
   const toggleAccordion = (index: number) => {
@@ -39,27 +31,27 @@ const ExerciseAccordion = ({ exercises }: Props) => {
             </div>
 
             <div className={styles.titleRight}>
-              {exercise.muscleGroup &&
-                exercise.muscleGroup.map((muscle, idx) => (
+              {exercise.muscles &&
+                exercise.muscles.map((muscle, idx) => (
                   <span
                     key={idx}
                     className={styles.bubble}
                     style={{ backgroundColor: "var(--accent-1)" }}
                   >
-                    {muscle}
+                    {muscle.name}
                   </span>
                 ))}
               <span
                 className={styles.bubble}
                 style={{ backgroundColor: "var(--accent-2)" }}
               >
-                {exercise.equipment}
+                {EquipmentOptions[exercise.equipment].label}
               </span>
               <span
                 className={styles.bubble}
                 style={{ backgroundColor: "var(--accent-3)" }}
               >
-                {exercise.difficulty}
+                {FitnessLevelOptions[exercise.difficulty].label}
               </span>
             </div>
 
@@ -87,10 +79,10 @@ const ExerciseAccordion = ({ exercises }: Props) => {
             transition={{ duration: 0.3 }}
           >
             <div className={styles.accordionContentInner}>
-              <img src={exercise.image} alt={exercise.name} />
+              <img src={exercise.imagePath} alt={exercise.name} />
               <span className={styles.desription}>
                 <h1>Starting position:</h1>
-                <p>{exercise.startDescription}</p>
+                <p>{exercise.startingPositionDescription}</p>
               </span>
               <span className={styles.desription}>
                 <h1>Execution:</h1>
