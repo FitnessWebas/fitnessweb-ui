@@ -13,8 +13,8 @@ export interface Exercise {
   minutesPerSet: number;
   equipment: Equipment;
   difficulty: FitnessLevel;
-  image: string;
-  startDescription: string;
+  imagePath: string;
+  startingPositionDescription: string;
   executionDescription: string;
 }
 
