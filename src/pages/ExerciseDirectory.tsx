@@ -1,6 +1,6 @@
 import { useGetAllExercises } from "../api/exercise/useGetAllExercises";
 import ExerciseAccordion from "../components/ExerciseAccordion/ExerciseAccordion";
-import ExerciseListHeader from "../components/ExerciseList/ExerciseListHeader/ExerciseListHeader";
+import ExerciseListHeader from "../components/Exercises/ExerciseListHeader/ExerciseListHeader";
 
 const ExercisePage = () => {
   const { data: exercises } = useGetAllExercises();
