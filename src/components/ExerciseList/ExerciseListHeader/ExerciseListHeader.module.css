@@ -1,0 +1,17 @@
+.container {
+  width: 100%;
+}
+
+.header h1 {
+  color: var(--light-1);
+  margin-left: 5%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.header hr {
+  background-color: var(--light-1);
+  height: 5px;
+  width: 90%;
+  margin: auto;
+}

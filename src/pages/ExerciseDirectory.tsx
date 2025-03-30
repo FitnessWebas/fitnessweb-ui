@@ -1,5 +1,6 @@
 import { useGetAllExercises } from "../api/exercise/useGetAllExercises";
 import ExerciseAccordion from "../components/ExerciseAccordion/ExerciseAccordion";
+import ExerciseListHeader from "../components/ExerciseList/ExerciseListHeader/ExerciseListHeader";
 
 const ExercisePage = () => {
   const { data: exercises } = useGetAllExercises();
@@ -14,9 +15,10 @@ const ExercisePage = () => {
   }));
 
   return (
-    <div>
+    <>
+      <ExerciseListHeader />
       <ExerciseAccordion exercises={mappedExercises} />
-    </div>
+    </>
   );
 };
 
