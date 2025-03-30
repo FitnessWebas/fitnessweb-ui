@@ -7,6 +7,7 @@ import BodyIcon from "../../assets/chest-gym-svg.svg";
 import MachineIcon from "../../assets/gym-fitness-rumbbel-health-svg.svg";
 import ArrowUpIcon from "../../assets/keyboard_arrow_up.svg";
 import { Workout, getWorkoutEquipment } from "../../types/types";
+import { EquipmentOptions } from "../../types/Equipments";
 
 const equipmentIcons: Record<string, string> = {
   Barbell: BarbellIcon,
@@ -70,7 +71,9 @@ const WorkoutForm: React.FC<WorkoutFormProps> = ({ workout }) => {
                 <span>
                   {exercise.equipment}{" "}
                   <img
-                    src={equipmentIcons[exercise.equipment]}
+                    src={
+                      equipmentIcons[EquipmentOptions[exercise.equipment].label]
+                    }
                     alt={`${exercise.equipment} icon`}
                   />
                 </span>
