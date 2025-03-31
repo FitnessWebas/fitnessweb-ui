@@ -148,7 +148,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
           >
             <img src={Password} alt="Password Icon" />
             <input
-              type="password"
+              type="text"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -164,7 +164,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
           >
             <img src={Password} alt="Password Icon" />
             <input
-              type="password"
+              type="text"
               placeholder="Repeat Password"
               value={repeatPassword}
               onChange={(e) => setRepeatPassword(e.target.value)}

@@ -75,7 +75,7 @@
   display: flex;
   align-items: center;
   background: var(--light-2);
-  border: 2px solid var(--accent-1);
+  border: 3px solid var(--warning);
   padding: 0.5rem;
   overflow: hidden;
 }
