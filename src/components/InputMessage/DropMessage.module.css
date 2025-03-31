@@ -1,0 +1,27 @@
+.popupMessage {
+  position: absolute;
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 8px 12px;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  font-size: 12px;
+  z-index: 10;
+  white-space: normal;
+  transform: translateY(90%);
+  transition: opacity 0.3s ease;
+  max-width: 100%;
+  margin-right: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.visible {
+  opacity: 1;
+  pointer-events: auto;
+}

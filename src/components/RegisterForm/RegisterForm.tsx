@@ -6,6 +6,7 @@ import Password from "../../assets/Password.png";
 import Credentials from "../../assets/Credentials.png";
 import { UserCreate } from "../../api/user/useCreateUser";
 import { UseMutationResult } from "@tanstack/react-query";
+import DropMessage from "../InputMessage/DropMessage";
 
 interface RegisterFormProps {
   createUserMutation: UseMutationResult<void, Error, UserCreate>;
@@ -24,6 +25,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [showNamePopup, setShowNamePopup] = useState(false);
 
   //kept for later, if we decide to make it auto log in after register
   // const handleSubmit = (event: React.FormEvent) => {
@@ -72,6 +74,10 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
               placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
+            />
+            <DropMessage
+              message="Window can't be empty and should only have letters"
+              isVisible={true}
             />
           </div>
 
