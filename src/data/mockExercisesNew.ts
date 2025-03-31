@@ -87,7 +87,7 @@ export const mockExercisesNew: Exercise[] = [
       { id: "hamstrings_1", name: "Hamstrings" },
       { id: "back_lower_1", name: "Lower Back" },
     ],
-    equipment: Equipment.Kettlebell,
+    equipment: Equipment.BodyWeight,
     difficulty: FitnessLevel.Beginner,
     minutesPerSet: 9,
     imagePath: dip,

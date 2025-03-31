@@ -1,4 +1,4 @@
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import {
   FitnessLevel,
   FitnessLevelOptions,
@@ -56,7 +56,7 @@ export default function ExerciseItem({ exercise }: { exercise: Exercise }) {
           </div>
         </div>
         <div className={styles.expandIcon}>
-          {expanded ? <ChevronUp /> : <ChevronDown />}
+          <ChevronDown />
         </div>
       </div>
 

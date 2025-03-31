@@ -19,7 +19,7 @@ const ExercisePage = () => {
     <>
       <ExerciseListHeader />
       <ExerciseList />
-      <ExerciseAccordion exercises={mappedExercises} />
+      {/* <ExerciseAccordion exercises={mappedExercises} /> */}
     </>
   );
 };

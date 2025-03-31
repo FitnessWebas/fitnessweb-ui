@@ -7,6 +7,10 @@
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
   font-family: Poppins;
 }
+.item:hover {
+  scale: 1.03;
+  transition: 0.4s ease;
+}
 
 .itemHeader {
   display: flex;
@@ -35,7 +39,7 @@
 }
 
 .labelDot {
-  color: #e0e0e0;
+  color: var(--light-2);
   font-weight: 500;
   font-size: 30px;
   line-height: 1;
@@ -125,6 +129,7 @@
   border-radius: 8px;
   padding: 10px;
   margin-top: auto;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.25);
 }
 
 .exerciseImage {
@@ -155,7 +160,8 @@
   display: flex;
   justify-content: space-between;
   overflow: hidden;
-  margin-top: 10px;
+  padding-top: 10px;
+  padding-bottom: 0px;
   gap: 10px;
 }
 
@@ -168,6 +174,7 @@
   background-color: var(--gray-1);
   padding: 5px 10px;
   border-radius: 15px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.25);
 }
 
 .metaInfoTitle {
