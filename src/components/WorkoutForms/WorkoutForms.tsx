@@ -104,14 +104,22 @@ const sampleWorkouts: Workout[] = [
 
 const WorkoutForms = () => {
   const [search, setSearch] = useState<string>("");
+  const [durationMin, setDurationMin] = useState<number>(0);
+  const [durationMax, setDurationMax] = useState<number>(90);
 
   const filterBySeach = (workouts: Workout[]): Workout[] => {
     if (search !== "") {
       return workouts.filter((workout) =>
-        workout.name.toLowerCase().startsWith(search.toLowerCase())
+        workout.name.toLowerCase().includes(search.toLowerCase())
       );
     }
     return workouts;
+  };
+  const filterByDuration = (workouts: Workout[]): Workout[] => {
+    return workouts.filter(
+      (workout) =>
+        workout.duration >= durationMin && workout.duration <= durationMax
+    );
   };
 
   return (
@@ -124,10 +132,17 @@ const WorkoutForms = () => {
       </div>
       <div className={styles.forms}>
         <div className={styles.filter}>
-          <WorkoutFilter search={search} setSearch={setSearch} />
+          <WorkoutFilter
+            search={search}
+            setSearch={setSearch}
+            durationMin={durationMin}
+            durationMax={durationMax}
+            setDurationMin={setDurationMin}
+            setDurationMax={setDurationMax}
+          />
         </div>
         <div className={styles.workoutForms}>
-          {filterBySeach(sampleWorkouts).map((workout) => (
+          {filterByDuration(sampleWorkouts).map((workout) => (
             <WorkoutForm key={workout.id} workout={workout} />
           ))}
         </div>

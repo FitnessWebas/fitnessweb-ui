@@ -36,17 +36,23 @@ interface EquipmentItem {
   isSelected: boolean;
 }
 
-interface SearchComponentProps {
+interface Props {
   search: string;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
+  durationMin: number;
+  durationMax: number;
+  setDurationMin: React.Dispatch<React.SetStateAction<number>>;
+  setDurationMax: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const WorkoutFilters: React.FC<SearchComponentProps> = ({
+const WorkoutFilters: React.FC<Props> = ({
   search,
   setSearch,
+  durationMin,
+  durationMax,
+  setDurationMin,
+  setDurationMax,
 }) => {
-  const [durationMin, setDurationMin] = useState<number>(0);
-  const [durationMax, setDurationMax] = useState<number>(90);
   const [muscleGroups, setMuscleGroups] = useState<MuscleGroups>({
     fullBody: false,
     legs: false,
