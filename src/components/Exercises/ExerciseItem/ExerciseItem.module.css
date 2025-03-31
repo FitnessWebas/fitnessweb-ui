@@ -8,8 +8,8 @@
   font-family: Poppins;
 }
 .item:hover {
-  scale: 1.03;
-  transition: 0.4s ease;
+  scale: 1.005;
+  transition: 0.2s ease;
 }
 
 .itemHeader {

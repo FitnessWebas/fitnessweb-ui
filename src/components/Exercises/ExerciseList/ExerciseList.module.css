@@ -27,13 +27,17 @@
 
 @media (max-width: 620px) {
   .exerciseListPaper {
-    width: 100%;
-    border-radius: 0px;
+    width: 96%;
     padding: 50px 10px 50px 10px;
   }
 
   .exerciseListPaperName {
-    font-family: Poppins;
     font-size: 32px;
+  }
+}
+
+@media (max-width: 450px) {
+  .exerciseListPaperName {
+    font-size: 24px;
   }
 }
