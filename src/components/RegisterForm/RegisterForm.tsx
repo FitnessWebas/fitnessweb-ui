@@ -25,7 +25,6 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  const [showNamePopup, setShowNamePopup] = useState(false);
 
   // Touched states
   const [touchedName, setTouchedName] = useState(false);
@@ -34,6 +33,14 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
   const [touchedEmail, setTouchedEmail] = useState(false);
   const [touchedPassword, setTouchedPassword] = useState(false);
   const [touchedRepeatPassword, setTouchedRepeatPassword] = useState(false);
+
+  // Active states
+  const [activeName, setActiveName] = useState(false);
+  const [activeSurname, setActiveSurname] = useState(false);
+  const [activeUsername, setActiveUsername] = useState(false);
+  const [activeEmail, setActiveEmail] = useState(false);
+  const [activePassword, setActivePassword] = useState(false);
+  const [activeRepeatPassword, setActiveRepeatPassword] = useState(false);
 
   // Validation rules
   const isNameValid =
@@ -94,11 +101,17 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
               placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              onBlur={() => setTouchedName(true)} // Mark as touched on blur
+              onBlur={() => {
+                setTouchedName(true);
+                setActiveName(false);
+              }}
+              onFocus={() => {
+                if (touchedName) setActiveName(true);
+              }}
             />
             <DropMessage
-              message="Window can't be empty and should only have letters"
-              isVisible={true}
+              message="Name can't be empty and should only contain letters"
+              isVisible={!isNameValid && activeName}
             />
           </div>
 
@@ -113,7 +126,17 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
               placeholder="Surname"
               value={surname}
               onChange={(e) => setSurname(e.target.value)}
-              onBlur={() => setTouchedSurname(true)} // Mark as touched on blur
+              onBlur={() => {
+                setTouchedSurname(true);
+                setActiveSurname(false);
+              }}
+              onFocus={() => {
+                if (touchedSurname) setActiveSurname(true);
+              }}
+            />
+            <DropMessage
+              message="Surname can't be empty and should only contain letters"
+              isVisible={!isSurnameValid && activeSurname}
             />
           </div>
 
@@ -128,7 +151,17 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
               placeholder="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              onBlur={() => setTouchedUsername(true)} // Mark as touched on blur
+              onBlur={() => {
+                setTouchedUsername(true);
+                setActiveUsername(false);
+              }}
+              onFocus={() => {
+                if (touchedUsername) setActiveUsername(true);
+              }}
+            />
+            <DropMessage
+              message="Username should be at least 4 characters long"
+              isVisible={!isUsernameValid && activeUsername}
             />
           </div>
 
@@ -143,7 +176,17 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              onBlur={() => setTouchedEmail(true)} // Mark as touched on blur
+              onBlur={() => {
+                setTouchedEmail(true);
+                setActiveEmail(false);
+              }}
+              onFocus={() => {
+                if (touchedEmail) setActiveEmail(true);
+              }}
+            />
+            <DropMessage
+              message="Invalid email format"
+              isVisible={!isEmailValid && activeEmail}
             />
           </div>
 
@@ -158,7 +201,17 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              onBlur={() => setTouchedPassword(true)} // Mark as touched on blur
+              onBlur={() => {
+                setTouchedPassword(true);
+                setActivePassword(false);
+              }}
+              onFocus={() => {
+                if (touchedPassword) setActivePassword(true);
+              }}
+            />
+            <DropMessage
+              message="Password must contain at least: 8+ chars, 1 uppercase, 1 lowercase, 1 number, 1 special."
+              isVisible={!isPasswordValid && activePassword}
             />
           </div>
           <div
@@ -174,7 +227,17 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
               placeholder="Repeat Password"
               value={repeatPassword}
               onChange={(e) => setRepeatPassword(e.target.value)}
-              onBlur={() => setTouchedRepeatPassword(true)} // Mark as touched on blur
+              onBlur={() => {
+                setTouchedRepeatPassword(true);
+                setActiveRepeatPassword(false);
+              }}
+              onFocus={() => {
+                if (touchedRepeatPassword) setActiveRepeatPassword(true);
+              }}
+            />
+            <DropMessage
+              message="Passwords must match"
+              isVisible={!isPasswordValid && activeRepeatPassword}
             />
           </div>
         </div>

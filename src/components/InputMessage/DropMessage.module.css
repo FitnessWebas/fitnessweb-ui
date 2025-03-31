@@ -12,8 +12,6 @@
   transition: opacity 0.3s ease;
   max-width: 100%;
   margin-right: 5px;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .hidden {
@@ -24,4 +22,10 @@
 .visible {
   opacity: 1;
   pointer-events: auto;
+}
+
+@media (max-width: 400px) {
+  .popupMessage {
+    transform: translateY(65%);
+  }
 }
