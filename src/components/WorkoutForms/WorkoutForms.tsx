@@ -3,6 +3,7 @@ import styles from "./WorkoutForms.module.css";
 import WorkoutForm from "../WorkoutForm/WorkoutForm";
 import mockExercises from "../../data/mockExercises";
 import { Workout } from "../../types/types";
+import WorkoutFilter from "../WorkoutFilter/WorkoutFilter";
 
 const sampleWorkouts: Workout[] = [
   {
@@ -110,7 +111,9 @@ const WorkoutForms = () => {
         <hr />
       </div>
       <div className={styles.forms}>
-        <div className={styles.filter}></div>
+        <div className={styles.filter}>
+          <WorkoutFilter />
+        </div>
         <div className={styles.workoutForms}>
           {sampleWorkouts.map((workout) => (
             <WorkoutForm key={workout.id} workout={workout} />

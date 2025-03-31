@@ -1,0 +1,176 @@
+.container {
+  background-color: #27272a;
+  color: white;
+  padding: 16px;
+  border-radius: 8px;
+  width: 256px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.sectionTitle {
+  margin-bottom: 8px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 8px;
+  background-color: #3f3f46;
+  border-radius: 4px;
+  font-size: 14px;
+  border: none;
+  color: white;
+}
+
+.searchInput::placeholder {
+  color: #a1a1aa;
+}
+
+.rangeContainer {
+  position: relative;
+  height: 24px;
+  margin: 16px 0;
+}
+
+.rangeInput {
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  background: none;
+  pointer-events: none;
+  -webkit-appearance: none;
+}
+
+.rangeInput::-webkit-slider-thumb {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  pointer-events: auto;
+  -webkit-appearance: none;
+}
+
+.rangeInput::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  pointer-events: auto;
+  -moz-appearance: none;
+}
+
+.rangeInput:focus {
+  outline: none;
+}
+
+.rangeInput::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 5px;
+  cursor: pointer;
+  background: #3f3f46;
+  border-radius: 3px;
+}
+
+.rangeInput::-moz-range-track {
+  width: 100%;
+  height: 5px;
+  cursor: pointer;
+  background: #3f3f46;
+  border-radius: 3px;
+}
+
+.durationDisplay {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #a1a1aa;
+}
+
+.checkboxGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.checkboxColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.checkboxItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #52525b;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.checkboxChecked {
+  background-color: #71717a;
+  border-color: #71717a;
+}
+
+.checkboxLabel {
+  font-size: 14px;
+}
+
+.equipmentContainer {
+  display: flex;
+  gap: 8px;
+}
+
+.equipmentIcon {
+  background-color: #3f3f46;
+  border-radius: 50%;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.equipmentIconSelected {
+  background-color: #f87171;
+}
+
+.equipmentText {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.clearButton {
+  margin-top: 8px;
+  background-color: #f87171;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  width: 100%;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.clearButton:hover {
+  background-color: #ef4444;
+}.container {
+    width: 100%;
+}
