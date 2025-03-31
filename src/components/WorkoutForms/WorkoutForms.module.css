@@ -29,11 +29,12 @@
 }
 
 .filter {
-    width: 40%;
+    max-width: 500px;
+    margin-right: 50px;
 }
 
 .workoutForms {
-    width: 80%;
+    width: 60%;
     max-width: 1000px;
     column-count: 2;
     column-gap: 30px;

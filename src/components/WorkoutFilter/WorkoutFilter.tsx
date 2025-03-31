@@ -1,6 +1,14 @@
 import React, { useState } from "react";
-import { CheckIcon, Dumbbell, User, Weight } from "lucide-react";
 import styles from "./WorkoutFilter.module.css";
+import { CheckIcon } from "lucide-react";
+
+// Import custom SVG icons
+import Kettlebell from "../../assets/gym-fitness-rumbbel-health-svg.svg";
+import Barbell from "../../assets/barbell-svg.svg";
+import Bands from "../../assets/rubber-band 1.svg";
+import Body from "../../assets/body-svgrepo-com 1.svg";
+import Dumbbell from "../../assets/dumbbell-gym-svg.svg";
+import Machine from "../../assets/chest-gym-svg.svg";
 
 interface MuscleGroups {
   fullBody: boolean;
@@ -23,20 +31,26 @@ interface WorkoutGoals {
   gainStrength: boolean;
 }
 
-const WorkoutFilter: React.FC = () => {
+interface EquipmentItem {
+  id: string;
+  icon: string;
+  isSelected: boolean;
+}
+
+const WorkoutFilters: React.FC = () => {
   const [durationMin, setDurationMin] = useState<number>(0);
   const [durationMax, setDurationMax] = useState<number>(90);
   const [muscleGroups, setMuscleGroups] = useState<MuscleGroups>({
     fullBody: false,
-    legs: true,
+    legs: false,
     abs: false,
     arms: false,
     shoulders: false,
-    chest: true,
+    chest: false,
   });
   const [difficulty, setDifficulty] = useState<DifficultyLevels>({
     beginner: false,
-    intermediate: true,
+    intermediate: false,
     advanced: false,
   });
   const [goals, setGoals] = useState<WorkoutGoals>({
@@ -44,12 +58,33 @@ const WorkoutFilter: React.FC = () => {
     gainMuscle: false,
     gainStrength: false,
   });
+  const [equipment, setEquipment] = useState<EquipmentItem[]>([
+    { id: "dumbbell", icon: Dumbbell, isSelected: false },
+    { id: "body", icon: Body, isSelected: false },
+    { id: "barbell", icon: Barbell, isSelected: false },
+    { id: "bands", icon: Bands, isSelected: false },
+    { id: "kettlebell", icon: Kettlebell, isSelected: false },
+    { id: "machine", icon: Machine, isSelected: false },
+  ]);
 
   const handleMuscleGroupChange = (group: keyof MuscleGroups): void => {
-    setMuscleGroups((prev) => ({
-      ...prev,
-      [group]: !prev[group],
-    }));
+    setMuscleGroups((prev) => {
+      if (group === "fullBody") {
+        var newValue = !prev.fullBody;
+        return {
+          fullBody: !prev.fullBody,
+          legs: !prev.fullBody,
+          abs: !prev.fullBody,
+          arms: !prev.fullBody,
+          shoulders: !prev.fullBody,
+          chest: !prev.fullBody,
+        };
+      }
+      return {
+        ...prev,
+        [group]: !prev[group],
+      };
+    });
   };
 
   const handleDifficultyChange = (level: keyof DifficultyLevels): void => {
@@ -64,6 +99,16 @@ const WorkoutFilter: React.FC = () => {
       ...prev,
       [goal]: !prev[goal],
     }));
+  };
+
+  const handleEquipmentChange = (equipmentId: string): void => {
+    setEquipment((prev) =>
+      prev.map((item) =>
+        item.id === equipmentId
+          ? { ...item, isSelected: !item.isSelected }
+          : item
+      )
+    );
   };
 
   const handleMinChange = (
@@ -101,7 +146,20 @@ const WorkoutFilter: React.FC = () => {
       gainMuscle: false,
       gainStrength: false,
     });
+    setEquipment((prev) =>
+      prev.map((item) => ({ ...item, isSelected: false }))
+    );
   };
+
+  // Map for muscle group icons
+  // const muscleGroupIcons: Record<keyof MuscleGroups, string> = {
+  //   fullBody: Body,
+  //   legs: Body, // Replace with leg-specific icon if available
+  //   abs: Body, // Replace with abs-specific icon if available
+  //   arms: Body, // Replace with arm-specific icon if available
+  //   shoulders: Body, // Replace with shoulder-specific icon if available
+  //   chest: Chest,
+  // };
 
   return (
     <div className={styles.container}>
@@ -203,27 +261,21 @@ const WorkoutFilter: React.FC = () => {
       <div>
         <p className={styles.sectionTitle}>Equipment</p>
         <div className={styles.equipmentContainer}>
-          <div className={styles.equipmentIcon}>
-            <Dumbbell size={18} />
-          </div>
-          <div
-            className={`${styles.equipmentIcon} ${styles.equipmentIconSelected}`}
-          >
-            <User size={18} />
-          </div>
-          <div className={styles.equipmentIcon}>
-            <Weight size={18} />
-          </div>
-          <div
-            className={`${styles.equipmentIcon} ${styles.equipmentIconSelected}`}
-          >
-            <span className={styles.equipmentText}>TRX</span>
-          </div>
-          <div
-            className={`${styles.equipmentIcon} ${styles.equipmentIconSelected}`}
-          >
-            <span className={styles.equipmentText}>KB</span>
-          </div>
+          {equipment.map((item) => (
+            <div
+              key={item.id}
+              className={`${styles.equipmentIcon} ${
+                item.isSelected ? styles.equipmentIconSelected : ""
+              }`}
+              onClick={() => handleEquipmentChange(item.id)}
+            >
+              <img
+                src={item.icon}
+                alt={item.id}
+                className={styles.equipmentImage}
+              />
+            </div>
+          ))}
         </div>
       </div>
 
@@ -261,4 +313,4 @@ const WorkoutFilter: React.FC = () => {
   );
 };
 
-export default WorkoutFilter;
+export default WorkoutFilters;
