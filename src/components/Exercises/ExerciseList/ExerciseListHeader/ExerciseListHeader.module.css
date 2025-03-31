@@ -4,6 +4,9 @@
 
 .header h1 {
   color: var(--light-1);
+  font-family: Poppins;
+  font-size: 64px;
+  font-weight: bold;
   width: 90%;
   max-width: 1300px;
   margin-left: auto;

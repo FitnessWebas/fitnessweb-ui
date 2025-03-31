@@ -22,7 +22,7 @@
 .exerciseTitle {
   font-size: 32px;
   font-weight: bold;
-  color: white;
+  color: var(--light-2);
   margin-bottom: 10px;
 }
 
