@@ -29,8 +29,7 @@
 }
 
 .filter {
-    max-width: 500px;
-    margin-right: 50px;
+    margin-right: 200px;
 }
 
 .workoutForms {
@@ -41,7 +40,6 @@
 
 .workoutForms > * {
     display: inline-block;
-    width: 100%;
     margin-bottom: 30px;
     break-inside: avoid;
 }

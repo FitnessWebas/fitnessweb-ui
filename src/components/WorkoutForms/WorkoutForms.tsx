@@ -6,6 +6,18 @@ import { Workout } from "../../types/types";
 import WorkoutFilter from "../WorkoutFilter/WorkoutFilter";
 import { Regex } from "lucide-react";
 
+interface MuscleGroups {
+  fullBody: boolean;
+  legs: boolean;
+  abs: boolean;
+  shoulders: boolean;
+  chest: boolean;
+  triceps: boolean;
+  biceps: boolean;
+  back: boolean;
+  forearms: boolean;
+}
+
 const sampleWorkouts: Workout[] = [
   {
     id: 1,
@@ -106,6 +118,17 @@ const WorkoutForms = () => {
   const [search, setSearch] = useState<string>("");
   const [durationMin, setDurationMin] = useState<number>(0);
   const [durationMax, setDurationMax] = useState<number>(90);
+  const [muscleGroups, setMuscleGroups] = useState<MuscleGroups>({
+    fullBody: false,
+    legs: false,
+    abs: false,
+    shoulders: false,
+    chest: false,
+    triceps: false,
+    biceps: false,
+    back: false,
+    forearms: false,
+  });
 
   const filterBySeach = (workouts: Workout[]): Workout[] => {
     if (search !== "") {
@@ -120,6 +143,55 @@ const WorkoutForms = () => {
       (workout) =>
         workout.duration >= durationMin && workout.duration <= durationMax
     );
+  };
+  const filterByMuscleGroups = (workouts: Workout[]): Workout[] => {
+    const activeGroups = Object.entries(muscleGroups)
+      .filter(([_, isActive]) => isActive)
+      .map(([group]) => group) as (keyof MuscleGroups)[];
+    console.log(activeGroups);
+
+    const workoutGroups = workouts.map((workout) => {
+      workout.id, workout.muscleGroups;
+    });
+
+    return workouts;
+  };
+  const filterByMuscleGroupss = (workouts: Workout[]): Workout[] => {
+    const activeGroups = Object.entries(muscleGroups)
+      .filter(([_, isActive]) => isActive)
+      .map(([group]) => group) as (keyof MuscleGroups)[];
+
+    if (activeGroups.length === 0) {
+      return workouts;
+    }
+
+    return workouts.filter((workout) => {
+      const workoutGroupsLower = workout.muscleGroups.map((grp) =>
+        grp.toLowerCase()
+      );
+      if (muscleGroups.fullBody) {
+        const requiredGroups: (keyof MuscleGroups)[] = [
+          "legs",
+          "abs",
+          "shoulders",
+          "chest",
+          "triceps",
+          "biceps",
+          "back",
+          "forearms",
+        ];
+        return requiredGroups.every((group) =>
+          workoutGroupsLower.includes(group)
+        );
+      } else {
+        const nonFullBodyActiveGroups = activeGroups.filter(
+          (group) => group !== "fullBody"
+        );
+        return nonFullBodyActiveGroups.some((group) =>
+          workoutGroupsLower.includes(group)
+        );
+      }
+    });
   };
 
   return (
@@ -139,10 +211,12 @@ const WorkoutForms = () => {
             durationMax={durationMax}
             setDurationMin={setDurationMin}
             setDurationMax={setDurationMax}
+            muscleGroups={muscleGroups}
+            setMuscleGroups={setMuscleGroups}
           />
         </div>
         <div className={styles.workoutForms}>
-          {filterByDuration(sampleWorkouts).map((workout) => (
+          {filterByMuscleGroupss(sampleWorkouts).map((workout) => (
             <WorkoutForm key={workout.id} workout={workout} />
           ))}
         </div>

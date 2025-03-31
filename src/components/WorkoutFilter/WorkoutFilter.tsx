@@ -1,6 +1,6 @@
 import React, { useState, useRef, Ref } from "react";
 import styles from "./WorkoutFilter.module.css";
-import { CheckIcon } from "lucide-react";
+import { BicepsFlexed, CheckIcon } from "lucide-react";
 
 import Kettlebell from "../../assets/gym-fitness-rumbbel-health-svg.svg";
 import Barbell from "../../assets/barbell-svg.svg";
@@ -8,14 +8,18 @@ import Bands from "../../assets/rubber-band 1.svg";
 import Body from "../../assets/body-svgrepo-com 1.svg";
 import Dumbbell from "../../assets/dumbbell-gym-svg.svg";
 import Machine from "../../assets/chest-gym-svg.svg";
+import { backIn } from "framer-motion";
 
 interface MuscleGroups {
   fullBody: boolean;
   legs: boolean;
   abs: boolean;
-  arms: boolean;
   shoulders: boolean;
   chest: boolean;
+  triceps: boolean;
+  biceps: boolean;
+  back: boolean;
+  forearms: boolean;
 }
 
 interface DifficultyLevels {
@@ -43,6 +47,8 @@ interface Props {
   durationMax: number;
   setDurationMin: React.Dispatch<React.SetStateAction<number>>;
   setDurationMax: React.Dispatch<React.SetStateAction<number>>;
+  muscleGroups: MuscleGroups;
+  setMuscleGroups: React.Dispatch<React.SetStateAction<MuscleGroups>>;
 }
 
 const WorkoutFilters: React.FC<Props> = ({
@@ -52,15 +58,9 @@ const WorkoutFilters: React.FC<Props> = ({
   durationMax,
   setDurationMin,
   setDurationMax,
+  muscleGroups,
+  setMuscleGroups,
 }) => {
-  const [muscleGroups, setMuscleGroups] = useState<MuscleGroups>({
-    fullBody: false,
-    legs: false,
-    abs: false,
-    arms: false,
-    shoulders: false,
-    chest: false,
-  });
   const [difficulty, setDifficulty] = useState<DifficultyLevels>({
     beginner: false,
     intermediate: false,
@@ -91,6 +91,10 @@ const WorkoutFilters: React.FC<Props> = ({
           arms: !prev.fullBody,
           shoulders: !prev.fullBody,
           chest: !prev.fullBody,
+          triceps: !prev.fullBody,
+          biceps: !prev.fullBody,
+          back: !prev.fullBody,
+          forearms: !prev.fullBody,
         };
       }
       return {
@@ -145,9 +149,12 @@ const WorkoutFilters: React.FC<Props> = ({
       fullBody: false,
       legs: false,
       abs: false,
-      arms: false,
       shoulders: false,
       chest: false,
+      triceps: false,
+      biceps: false,
+      back: false,
+      forearms: false,
     });
     setDifficulty({
       beginner: false,
@@ -217,9 +224,12 @@ const WorkoutFilters: React.FC<Props> = ({
               fullBody: "Full body",
               legs: "Legs",
               abs: "Abs",
-              arms: "Arms",
               shoulders: "Shoulders",
               chest: "Chest",
+              triceps: "Triceps",
+              biceps: "Biceps",
+              back: "Back",
+              forearms: "Forearms",
             }) as [keyof MuscleGroups, string][]
           ).map(([key, label]) => (
             <div key={key} className={styles.checkboxItem}>
