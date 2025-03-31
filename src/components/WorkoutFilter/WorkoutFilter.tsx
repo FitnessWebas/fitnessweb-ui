@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef, Ref } from "react";
 import styles from "./WorkoutFilter.module.css";
 import { CheckIcon } from "lucide-react";
 
-// Import custom SVG icons
 import Kettlebell from "../../assets/gym-fitness-rumbbel-health-svg.svg";
 import Barbell from "../../assets/barbell-svg.svg";
 import Bands from "../../assets/rubber-band 1.svg";
@@ -37,7 +36,15 @@ interface EquipmentItem {
   isSelected: boolean;
 }
 
-const WorkoutFilters: React.FC = () => {
+interface SearchComponentProps {
+  search: string;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const WorkoutFilters: React.FC<SearchComponentProps> = ({
+  search,
+  setSearch,
+}) => {
   const [durationMin, setDurationMin] = useState<number>(0);
   const [durationMax, setDurationMax] = useState<number>(90);
   const [muscleGroups, setMuscleGroups] = useState<MuscleGroups>({
@@ -151,16 +158,6 @@ const WorkoutFilters: React.FC = () => {
     );
   };
 
-  // Map for muscle group icons
-  // const muscleGroupIcons: Record<keyof MuscleGroups, string> = {
-  //   fullBody: Body,
-  //   legs: Body, // Replace with leg-specific icon if available
-  //   abs: Body, // Replace with abs-specific icon if available
-  //   arms: Body, // Replace with arm-specific icon if available
-  //   shoulders: Body, // Replace with shoulder-specific icon if available
-  //   chest: Chest,
-  // };
-
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Filters</h2>
@@ -172,6 +169,9 @@ const WorkoutFilters: React.FC = () => {
           type="text"
           placeholder="Search workouts..."
           className={styles.searchInput}
+          onChange={(event) => {
+            setSearch(event.target.value);
+          }}
         />
       </div>
 

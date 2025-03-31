@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./WorkoutForms.module.css";
 import WorkoutForm from "../WorkoutForm/WorkoutForm";
 import mockExercises from "../../data/mockExercises";
 import { Workout } from "../../types/types";
 import WorkoutFilter from "../WorkoutFilter/WorkoutFilter";
+import { Regex } from "lucide-react";
 
 const sampleWorkouts: Workout[] = [
   {
@@ -102,6 +103,17 @@ const sampleWorkouts: Workout[] = [
 ];
 
 const WorkoutForms = () => {
+  const [search, setSearch] = useState<string>("");
+
+  const filterBySeach = (workouts: Workout[]): Workout[] => {
+    if (search !== "") {
+      return workouts.filter((workout) =>
+        workout.name.toLowerCase().startsWith(search.toLowerCase())
+      );
+    }
+    return workouts;
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -112,10 +124,10 @@ const WorkoutForms = () => {
       </div>
       <div className={styles.forms}>
         <div className={styles.filter}>
-          <WorkoutFilter />
+          <WorkoutFilter search={search} setSearch={setSearch} />
         </div>
         <div className={styles.workoutForms}>
-          {sampleWorkouts.map((workout) => (
+          {filterBySeach(sampleWorkouts).map((workout) => (
             <WorkoutForm key={workout.id} workout={workout} />
           ))}
         </div>

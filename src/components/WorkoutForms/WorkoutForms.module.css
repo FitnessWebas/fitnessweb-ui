@@ -34,7 +34,6 @@
 }
 
 .workoutForms {
-    width: 60%;
     max-width: 1000px;
     column-count: 2;
     column-gap: 30px;
