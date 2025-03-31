@@ -10,6 +10,8 @@ import BarbellIcon from "../../../assets/barbell-svg.svg";
 import DumbellIcon from "../../../assets/dumbbell-gym-svg.svg";
 import BodyIcon from "../../../assets/chest-gym-svg.svg";
 import MachineIcon from "../../../assets/gym-fitness-rumbbel-health-svg.svg";
+import KettlebellIcon from "../../../assets/kettlebell.svg";
+import CardioIcon from "../../../assets/treadmill.svg";
 
 import { EquipmentOptions } from "../../../types/Equipments";
 import ExerciseMusclesDisplay from "./ExerciseMusclesDisplay/ExerciseMusclesDisplay";
@@ -19,6 +21,8 @@ const equipmentIcons: Record<string, string> = {
   Dumbbell: DumbellIcon,
   Bodyweight: BodyIcon,
   Machine: MachineIcon,
+  Kettlebell: KettlebellIcon,
+  Cardio: CardioIcon,
 };
 
 export default function ExerciseItem({ exercise }: { exercise: Exercise }) {
