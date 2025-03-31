@@ -34,8 +34,10 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
   const [touchedRepeatPassword, setTouchedRepeatPassword] = useState(false);
 
   // Validation rules
-  const isNameValid = name.trim().length >= 2; // Name must have at least 2 characters
-  const isSurnameValid = surname.trim().length >= 2; // Surname must have at least 2 characters
+  const isNameValid =
+    /^[A-Za-z]+$/.test(name.trim()) && name.trim().length >= 1; // Name must contain only letters and be at least 2 characters long
+  const isSurnameValid =
+    /^[A-Za-z]+$/.test(surname.trim()) && surname.trim().length >= 1; // Surname must contain only letters and be at least 2 characters long
   const isUsernameValid = username.trim().length >= 4; // Username must have at least 4 characters
   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); // Valid email format
   const isPasswordValid =
