@@ -25,19 +25,33 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
 
-  //kept for later, if we decide to make it auto log in after register
-  // const handleSubmit = (event: React.FormEvent) => {
-  //   event.preventDefault();
-  //   onClose();
-  // };
+  // Touched states
+  const [touchedName, setTouchedName] = useState(false);
+  const [touchedSurname, setTouchedSurname] = useState(false);
+  const [touchedUsername, setTouchedUsername] = useState(false);
+  const [touchedEmail, setTouchedEmail] = useState(false);
+  const [touchedPassword, setTouchedPassword] = useState(false);
+  const [touchedRepeatPassword, setTouchedRepeatPassword] = useState(false);
+
+  // Validation rules
+  const isNameValid = name.trim().length >= 2; // Name must have at least 2 characters
+  const isSurnameValid = surname.trim().length >= 2; // Surname must have at least 2 characters
+  const isUsernameValid = username.trim().length >= 4; // Username must have at least 4 characters
+  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); // Valid email format
+  const isPasswordValid =
+    password === repeatPassword &&
+    password.length >= 8 && // Minimum length of 8 characters
+    /[A-Z]/.test(password) && // At least one uppercase letter
+    /[a-z]/.test(password) && // At least one lowercase letter
+    /[0-9]/.test(password) && // At least one number
+    /[!@#$%^&*(),.?":{}|<>]/.test(password); // At least one special character
 
   const isFormValid =
-    name.trim() !== "" &&
-    surname.trim() !== "" &&
-    username.trim() !== "" &&
-    email.trim() !== "" &&
-    password.trim() !== "" &&
-    repeatPassword.trim() !== "";
+    isNameValid &&
+    isSurnameValid &&
+    isUsernameValid &&
+    isEmailValid &&
+    isPasswordValid;
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
@@ -65,62 +79,94 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
       <hr className={styles.hr} />
       <form className={styles.form}>
         <div className={styles.inputs}>
-          <div className={styles.input}>
+          <div
+            className={`${styles.input} ${
+              touchedName && !isNameValid ? styles.inputInvalid : ""
+            }`}
+          >
             <img src={Credentials} alt="Credentials Icon" />
             <input
               type="text"
               placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              onBlur={() => setTouchedName(true)} // Mark as touched on blur
             />
           </div>
 
-          <div className={styles.input}>
+          <div
+            className={`${styles.input} ${
+              touchedSurname && !isSurnameValid ? styles.inputInvalid : ""
+            }`}
+          >
             <img src={Credentials} alt="Credentials Icon" />
             <input
               type="text"
               placeholder="Surname"
               value={surname}
               onChange={(e) => setSurname(e.target.value)}
+              onBlur={() => setTouchedSurname(true)} // Mark as touched on blur
             />
           </div>
 
-          <div className={styles.input}>
+          <div
+            className={`${styles.input} ${
+              touchedUsername && !isUsernameValid ? styles.inputInvalid : ""
+            }`}
+          >
             <img src={user_icon} alt="User Icon" />
             <input
               type="text"
               placeholder="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              onBlur={() => setTouchedUsername(true)} // Mark as touched on blur
             />
           </div>
 
-          <div className={styles.input}>
+          <div
+            className={`${styles.input} ${
+              touchedEmail && !isEmailValid ? styles.inputInvalid : ""
+            }`}
+          >
             <img src={Email} alt="Email Icon" />
             <input
               type="email"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              onBlur={() => setTouchedEmail(true)} // Mark as touched on blur
             />
           </div>
 
-          <div className={styles.input}>
+          <div
+            className={`${styles.input} ${
+              touchedPassword && !isPasswordValid ? styles.inputInvalid : ""
+            }`}
+          >
             <img src={Password} alt="Password Icon" />
             <input
               type="password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              onBlur={() => setTouchedPassword(true)} // Mark as touched on blur
             />
           </div>
-          <div className={styles.input}>
+          <div
+            className={`${styles.input} ${
+              touchedRepeatPassword && !isPasswordValid
+                ? styles.inputInvalid
+                : ""
+            }`}
+          >
             <img src={Password} alt="Password Icon" />
             <input
               type="password"
               placeholder="Repeat Password"
               value={repeatPassword}
               onChange={(e) => setRepeatPassword(e.target.value)}
+              onBlur={() => setTouchedRepeatPassword(true)} // Mark as touched on blur
             />
           </div>
         </div>
