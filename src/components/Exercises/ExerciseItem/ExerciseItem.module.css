@@ -1,0 +1,232 @@
+.item {
+  background-color: var(--tertiary);
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+  font-family: Poppins;
+}
+
+.itemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.exerciseTitle {
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.muscleGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.muscleLabel {
+  color: var(--light-2);
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.labelDot {
+  color: #e0e0e0;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1;
+  margin: 0;
+}
+
+.difficultyBadge {
+  font-size: 20px;
+  color: var(--primary);
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.beginner {
+  background-color: var(--difficulty-1);
+}
+
+.intermediate {
+  background-color: var(--difficulty-2);
+}
+
+.expert {
+  background-color: var(--difficulty-3);
+}
+
+.expandIcon {
+  background-color: var(--gray-1);
+  color: var(--light-1);
+  border-radius: 100%;
+  padding: 14px 10px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.expanded .expandIcon {
+  transform: rotate(180deg);
+}
+
+.exerciseContent {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.expanded .exerciseContent {
+  max-height: 1500px;
+}
+
+.twoColumnLayout {
+  display: flex;
+  gap: 20px;
+}
+
+.imageColumn {
+  margin-top: 30px;
+  flex: 0 0 40%;
+  max-width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.imageColumn .musclesSection {
+  display: none;
+}
+.instructionsColumn .musclesSection {
+  display: block;
+  order: 3;
+}
+.instructionsColumn .instructionSection {
+  order: 1;
+}
+
+.instructionsColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.musclesSection {
+  background-color: var(--gray-1);
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: auto;
+}
+
+.exerciseImage {
+  width: 100%;
+  border-radius: 50px;
+  margin-bottom: 10px;
+  background-color: var(--light-1);
+}
+
+.sectionTitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--light-2);
+  margin: 25px 0 10px;
+}
+
+.description {
+  color: var(--light-2);
+  margin: 0 0 16px;
+  font-size: 24px;
+}
+
+.instructionSection {
+  margin-bottom: 25px;
+}
+
+.metaInfoContainer {
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.metaInfoItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 90%;
+  background-color: var(--gray-1);
+  padding: 5px 10px;
+  border-radius: 15px;
+}
+
+.metaInfoTitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--light-2);
+  margin-bottom: 10px;
+}
+
+.metaInfoValue {
+  font-size: 24px;
+  color: var(--light-2);
+  font-weight: 500;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.metaInfoSecondsBolded {
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .twoColumnLayout {
+    flex-direction: column;
+  }
+
+  .imageColumn {
+    max-width: 100%;
+    order: 1;
+  }
+
+  .instructionsColumn {
+    max-width: 100%;
+    order: 2;
+  }
+
+  .description {
+    margin-bottom: 0px;
+  }
+
+  .excerciseDetails {
+    padding: none;
+  }
+
+  .imageColumn .musclesSection {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 47px;
+  }
+
+  .instructionsColumn .musclesSection {
+    display: none;
+  }
+
+  .instructionsColumn .instructionSection {
+    order: initial;
+    margin-bottom: 0px;
+  }
+}
