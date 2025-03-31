@@ -238,3 +238,189 @@
     margin-bottom: 0px;
   }
 }
+
+@media (max-width: 620px) {
+  .item {
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.25);
+  }
+
+  .exerciseTitle {
+    font-size: 26px;
+    margin-bottom: 8px;
+  }
+
+  .muscleGroup {
+    gap: 6px;
+  }
+
+  .muscleLabel {
+    font-size: 19px;
+  }
+
+  .labelDot {
+    font-size: 24px;
+  }
+
+  .difficultyBadge {
+    font-size: 16px;
+    padding: 3px 6px;
+    border-radius: 16px;
+  }
+
+  .expandIcon {
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .twoColumnLayout {
+    gap: 16px;
+  }
+
+  .imageColumn {
+    margin-top: 24px;
+  }
+
+  .imageColumn .musclesSection {
+    margin-top: 16px;
+    margin-bottom: 38px;
+  }
+
+  .musclesSection {
+    border-radius: 6px;
+    padding: 8px;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25);
+  }
+
+  .exerciseImage {
+    border-radius: 40px;
+    margin-bottom: 8px;
+  }
+
+  .sectionTitle {
+    font-size: 19px;
+    margin: 20px 0 8px;
+  }
+
+  .description {
+    font-size: 19px;
+  }
+
+  .metaInfoContainer {
+    padding-top: 8px;
+    gap: 8px;
+  }
+
+  .metaInfoItem {
+    padding: 4px 8px;
+    border-radius: 12px;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25);
+  }
+
+  .metaInfoTitle {
+    font-size: 19px;
+    margin-bottom: 8px;
+  }
+
+  .metaInfoValue {
+    font-size: 19px;
+    gap: 8px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+  }
+}
+
+@media (max-width: 450px) {
+  .item {
+    padding: 13px;
+    border-radius: 10px;
+    box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.25);
+  }
+
+  .exerciseTitle {
+    font-size: 21px;
+    margin-bottom: 6px;
+  }
+
+  .muscleGroup {
+    gap: 5px;
+  }
+
+  .muscleLabel {
+    font-size: 15px;
+  }
+
+  .labelDot {
+    font-size: 19px;
+  }
+
+  .difficultyBadge {
+    font-size: 13px;
+    padding: 2px 5px;
+    border-radius: 13px;
+  }
+
+  .expandIcon {
+    padding: 8px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .twoColumnLayout {
+    gap: 13px;
+  }
+
+  .imageColumn {
+    margin-top: 19px;
+  }
+
+  .imageColumn .musclesSection {
+    margin-top: 13px;
+    margin-bottom: 30px;
+  }
+
+  .musclesSection {
+    border-radius: 5px;
+    padding: 6px;
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .exerciseImage {
+    border-radius: 32px;
+    margin-bottom: 6px;
+  }
+
+  .sectionTitle {
+    font-size: 15px;
+    margin: 16px 0 6px;
+  }
+
+  .description {
+    font-size: 15px;
+  }
+
+  .metaInfoContainer {
+    padding-top: 6px;
+    gap: 6px;
+  }
+
+  .metaInfoItem {
+    padding: 3px 6px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .metaInfoTitle {
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+
+  .metaInfoValue {
+    font-size: 15px;
+    gap: 6px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+  }
+}

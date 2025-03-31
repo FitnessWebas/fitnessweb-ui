@@ -23,3 +23,9 @@
   margin-bottom: 70px;
   max-width: 1300px;
 }
+
+@media (max-width: 620px) {
+  .header h1 {
+    font-size: 48px;
+  }
+}

@@ -24,3 +24,16 @@
   font-weight: bold;
   color: var(--light-1);
 }
+
+@media (max-width: 620px) {
+  .exerciseListPaper {
+    width: 100%;
+    border-radius: 0px;
+    padding: 50px 10px 50px 10px;
+  }
+
+  .exerciseListPaperName {
+    font-family: Poppins;
+    font-size: 32px;
+  }
+}
