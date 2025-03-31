@@ -98,7 +98,7 @@ export default function ExerciseItem({ exercise }: { exercise: Exercise }) {
                 <ExerciseMusclesDisplay
                   muscles={{
                     primary: exercise.muscles[0],
-                    secondary: exercise.muscles,
+                    secondary: exercise.muscles.slice(1),
                   }}
                 />
               </div>

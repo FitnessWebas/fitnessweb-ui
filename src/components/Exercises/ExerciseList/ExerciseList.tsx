@@ -1,13 +1,13 @@
 import ExerciseItem from "../ExerciseItem/ExerciseItem";
 import styles from "./ExerciseList.module.css";
-import { mockExercisesNew } from "../../../data/mockExercisesNew";
+import { Exercise } from "../../../types/types";
 
-export default function ExerciseList() {
+export default function ExerciseList({ exercises }: { exercises: Exercise[] }) {
   return (
     <div className={styles.container}>
       <div className={styles.exerciseListPaper}>
         <div className={styles.exerciseListPaperName}>Available exercises</div>
-        {mockExercisesNew.map((exercise) => (
+        {exercises.map((exercise) => (
           <ExerciseItem key={exercise.id} exercise={exercise} />
         ))}
       </div>
