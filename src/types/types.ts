@@ -1,7 +1,7 @@
 import { Equipment, EquipmentOptions } from "./Equipments";
 import { FitnessLevel } from "./FitnessLevels";
 
-type MuscleInfo = {
+export type MuscleInfo = {
   id: string;
   name: string;
 };

@@ -33,7 +33,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
   const [touchedEmail, setTouchedEmail] = useState(false);
   const [touchedPassword, setTouchedPassword] = useState(false);
   const [touchedRepeatPassword, setTouchedRepeatPassword] = useState(false);
-
+  
   // Active states
   const [activeName, setActiveName] = useState(false);
   const [activeSurname, setActiveSurname] = useState(false);

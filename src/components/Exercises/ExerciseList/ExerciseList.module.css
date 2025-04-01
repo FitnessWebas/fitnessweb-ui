@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.exerciseListPaper {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 50px 40px 50px 40px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 1300px;
+  background-color: var(--secondary);
+  min-height: 100px;
+  margin-bottom: 70px;
+  box-shadow: 0px 15px 10px 10px rgba(0, 0, 0, 0.25);
+}
+
+.exerciseListPaperName {
+  font-family: Poppins;
+  font-size: 48px;
+  font-weight: bold;
+  color: var(--light-1);
+}
+
+@media (max-width: 620px) {
+  .exerciseListPaper {
+    width: 96%;
+    padding: 50px 10px 50px 10px;
+  }
+
+  .exerciseListPaperName {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 450px) {
+  .exerciseListPaperName {
+    font-size: 24px;
+  }
+}
