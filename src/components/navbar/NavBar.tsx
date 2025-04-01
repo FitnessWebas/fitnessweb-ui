@@ -156,6 +156,9 @@ function NavBar() {
         <Link to="/Exercises/Directory" onClick={closeSidebar}>
           Exercises
         </Link>
+        <Link to="/Workouts/MyWorkouts" onClick={closeSidebar}>
+          Workouts
+        </Link>
 
         <Link to="/Workouts/Generator" onClick={closeSidebar}>
           Workout Generator
