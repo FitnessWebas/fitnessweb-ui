@@ -74,7 +74,7 @@ const WorkoutForm: React.FC<WorkoutFormProps> = ({ workout }) => {
             <div className={styles.boxes}>
               <div className={styles.equipmentInfo}>
                 <span>
-                  {exercise.equipment}{" "}
+                  {EquipmentOptions[exercise.equipment].label}{" "}
                   <img
                     src={
                       equipmentIcons[EquipmentOptions[exercise.equipment].label]

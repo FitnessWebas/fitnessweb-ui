@@ -39,6 +39,7 @@
   position: relative;
   height: 24px;
   margin: 16px 0;
+  overflow: visible;
 }
 
 .rangeInput {
@@ -58,6 +59,12 @@
   cursor: pointer;
   pointer-events: auto;
   -webkit-appearance: none;
+  transform: translateY(-2px);
+  z-index: 2;
+}
+
+.rangeInput:last-of-type::-webkit-slider-runnable-track {
+  background: transparent; 
 }
 
 .rangeInput::-moz-range-thumb {
@@ -68,6 +75,8 @@
   cursor: pointer;
   pointer-events: auto;
   -moz-appearance: none;
+  transform: translateY(-2px);
+  z-index: 2;
 }
 
 .rangeInput:focus {
@@ -80,6 +89,7 @@
   cursor: pointer;
   background: #3f3f46;
   border-radius: 3px;
+  z-index: 1;
 }
 
 .rangeInput::-moz-range-track {
@@ -88,6 +98,7 @@
   cursor: pointer;
   background: #3f3f46;
   border-radius: 3px;
+  z-index: 1;
 }
 
 .durationDisplay {
@@ -176,3 +187,17 @@
 }.container {
     width: 100%;
 }
+
+@media (max-width: 430px) {
+  .equipmentImage {
+      scale: 0.8;
+      /* or you can use transform */
+      /* transform: scale(0.8); */
+  }
+}
+@media (max-width: 430px) {
+  .equipmentIcon{
+    padding: 4px;
+  }
+}
+
