@@ -74,7 +74,7 @@ const InitialProfileSetupForm: React.FC<InitialProfileSetupFormProps> = ({
             <div className={styles.slider_container}>
               <input
                 type="range"
-                className="slider"
+                className={styles.slider}
                 min={1}
                 max={200}
                 value={height !== null ? height.toString() : ""}
@@ -90,6 +90,7 @@ const InitialProfileSetupForm: React.FC<InitialProfileSetupFormProps> = ({
               type="date"
               value={birthday ?? ""}
               onChange={(e) => setBirthday(e.target.value)}
+              className={styles.date_picker}
             />
           </div>
         )}
