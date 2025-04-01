@@ -180,6 +180,9 @@ const WorkoutForms = () => {
   });
 
   const filterBySeach = (workouts: Workout[]): Workout[] => {
+    if (workouts.length == 0) {
+      return [];
+    }
     if (search !== "") {
       return workouts.filter((workout) =>
         workout.name.toLowerCase().includes(search.toLowerCase())
@@ -193,19 +196,11 @@ const WorkoutForms = () => {
         workout.duration >= durationMin && workout.duration <= durationMax
     );
   };
+
   const filterByMuscleGroups = (workouts: Workout[]): Workout[] => {
-    const activeGroups = Object.entries(muscleGroups)
-      .filter(([_, isActive]) => isActive)
-      .map(([group]) => group) as (keyof MuscleGroups)[];
-    console.log(activeGroups);
-
-    const workoutGroups = workouts.map((workout) => {
-      workout.id, workout.muscleGroups;
-    });
-
-    return workouts;
-  };
-  const filterByMuscleGroupss = (workouts: Workout[]): Workout[] => {
+    if (workouts.length == 0) {
+      return [];
+    }
     const activeGroups = Object.entries(muscleGroups)
       .filter(([_, isActive]) => isActive)
       .map(([group]) => group) as (keyof MuscleGroups)[];
@@ -244,6 +239,9 @@ const WorkoutForms = () => {
   };
 
   const filterByDifficulty = (workouts: Workout[]): Workout[] => {
+    if (workouts.length == 0) {
+      return [];
+    }
     const activeDifficulties = Object.entries(difficulty)
       .filter(([_, isActive]) => isActive)
       .map(([group]) => group) as (keyof DifficultyLevels)[];
@@ -276,6 +274,9 @@ const WorkoutForms = () => {
   };
 
   const filteredByEquipment = (workouts: Workout[]): Workout[] => {
+    if (workouts.length == 0) {
+      return [];
+    }
     const activeEquipment = equipment.filter(
       (equipment) => equipment.isSelected
     );
@@ -299,6 +300,19 @@ const WorkoutForms = () => {
         uniqueEquipmentToLower.includes(equip.id)
       );
     });
+  };
+
+  const filtered = (workouts: Workout[]): Workout[] => {
+    let filteredWorkouts = [...workouts]; // Start with all workouts
+
+    filteredWorkouts = filterBySeach(filteredWorkouts);
+    filteredWorkouts = filterByDuration(filteredWorkouts);
+    filteredWorkouts = filterByMuscleGroups(filteredWorkouts);
+    filteredWorkouts = filterByDifficulty(filteredWorkouts);
+    filteredWorkouts = filterByGoal(filteredWorkouts);
+    filteredWorkouts = filteredByEquipment(filteredWorkouts);
+
+    return filteredWorkouts;
   };
 
   return (
@@ -329,7 +343,7 @@ const WorkoutForms = () => {
           />
         </div>
         <div className={styles.workoutForms}>
-          {filteredByEquipment(sampleWorkouts).map((workout) => (
+          {filtered(sampleWorkouts).map((workout) => (
             <WorkoutForm key={workout.id} workout={workout} />
           ))}
         </div>
