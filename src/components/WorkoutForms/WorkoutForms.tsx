@@ -4,7 +4,7 @@ import WorkoutForm from "../WorkoutForm/WorkoutForm";
 import mockExercises from "../../data/mockExercises";
 import { Workout } from "../../types/types";
 import WorkoutFilter from "../WorkoutFilter/WorkoutFilter";
-import { Regex } from "lucide-react";
+import { Group } from "lucide-react";
 
 interface MuscleGroups {
   fullBody: boolean;
@@ -16,6 +16,17 @@ interface MuscleGroups {
   biceps: boolean;
   back: boolean;
   forearms: boolean;
+}
+interface DifficultyLevels {
+  beginner: boolean;
+  intermediate: boolean;
+  advanced: boolean;
+}
+
+interface WorkoutGoals {
+  loseWeight: boolean;
+  gainMuscle: boolean;
+  gainStrength: boolean;
 }
 
 const sampleWorkouts: Workout[] = [
@@ -129,6 +140,17 @@ const WorkoutForms = () => {
     back: false,
     forearms: false,
   });
+  const [difficulty, setDifficulty] = useState<DifficultyLevels>({
+    beginner: false,
+    intermediate: false,
+    advanced: false,
+  });
+
+  const [goals, setGoals] = useState<WorkoutGoals>({
+    loseWeight: false,
+    gainMuscle: false,
+    gainStrength: false,
+  });
 
   const filterBySeach = (workouts: Workout[]): Workout[] => {
     if (search !== "") {
@@ -194,6 +216,40 @@ const WorkoutForms = () => {
     });
   };
 
+  const filterByDifficulty = (workouts: Workout[]): Workout[] => {
+    const activeGroups = Object.entries(difficulty)
+      .filter(([_, isActive]) => isActive)
+      .map(([group]) => group) as (keyof DifficultyLevels)[];
+
+    if (activeGroups.length == 0) {
+      return workouts;
+    }
+
+    return workouts.filter((workout) => {
+      const difficultyToLower = workout.difficulty.toLowerCase();
+
+      return activeGroups.some((group) => difficultyToLower === group);
+    });
+  };
+
+  const filterByGoal = (workouts: Workout[]): Workout[] => {
+    const activeGroups = Object.entries(goals)
+      .filter(([_, isActive]) => isActive)
+      .map(([group]) => group) as (keyof WorkoutGoals)[];
+
+    if (activeGroups.length == 0) {
+      return workouts;
+    }
+    console.log(workouts[0].goal.toLowerCase().replace(" ", ""));
+    console.log(activeGroups[0].toLowerCase());
+
+    return workouts.filter((workout) => {
+      const goalToLower = workout.goal.toLowerCase().replace(" ", "");
+
+      return activeGroups.some((group) => goalToLower === group.toLowerCase());
+    });
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -213,10 +269,14 @@ const WorkoutForms = () => {
             setDurationMax={setDurationMax}
             muscleGroups={muscleGroups}
             setMuscleGroups={setMuscleGroups}
+            difficulty={difficulty}
+            setDifficulty={setDifficulty}
+            goals={goals}
+            setGoals={setGoals}
           />
         </div>
         <div className={styles.workoutForms}>
-          {filterByMuscleGroupss(sampleWorkouts).map((workout) => (
+          {filterByGoal(sampleWorkouts).map((workout) => (
             <WorkoutForm key={workout.id} workout={workout} />
           ))}
         </div>

@@ -1,6 +1,6 @@
 import React, { useState, useRef, Ref } from "react";
 import styles from "./WorkoutFilter.module.css";
-import { BicepsFlexed, CheckIcon } from "lucide-react";
+import { CheckIcon } from "lucide-react";
 
 import Kettlebell from "../../assets/gym-fitness-rumbbel-health-svg.svg";
 import Barbell from "../../assets/barbell-svg.svg";
@@ -9,6 +9,7 @@ import Body from "../../assets/body-svgrepo-com 1.svg";
 import Dumbbell from "../../assets/dumbbell-gym-svg.svg";
 import Machine from "../../assets/chest-gym-svg.svg";
 import { backIn } from "framer-motion";
+import { Goal } from "../../types/Goals";
 
 interface MuscleGroups {
   fullBody: boolean;
@@ -22,12 +23,6 @@ interface MuscleGroups {
   forearms: boolean;
 }
 
-interface DifficultyLevels {
-  beginner: boolean;
-  intermediate: boolean;
-  advanced: boolean;
-}
-
 interface WorkoutGoals {
   loseWeight: boolean;
   gainMuscle: boolean;
@@ -39,6 +34,11 @@ interface EquipmentItem {
   icon: string;
   isSelected: boolean;
 }
+interface DifficultyLevels {
+  beginner: boolean;
+  intermediate: boolean;
+  advanced: boolean;
+}
 
 interface Props {
   search: string;
@@ -49,6 +49,10 @@ interface Props {
   setDurationMax: React.Dispatch<React.SetStateAction<number>>;
   muscleGroups: MuscleGroups;
   setMuscleGroups: React.Dispatch<React.SetStateAction<MuscleGroups>>;
+  difficulty: DifficultyLevels;
+  setDifficulty: React.Dispatch<React.SetStateAction<DifficultyLevels>>;
+  goals: WorkoutGoals;
+  setGoals: React.Dispatch<React.SetStateAction<WorkoutGoals>>;
 }
 
 const WorkoutFilters: React.FC<Props> = ({
@@ -60,17 +64,11 @@ const WorkoutFilters: React.FC<Props> = ({
   setDurationMax,
   muscleGroups,
   setMuscleGroups,
+  difficulty,
+  setDifficulty,
+  goals,
+  setGoals,
 }) => {
-  const [difficulty, setDifficulty] = useState<DifficultyLevels>({
-    beginner: false,
-    intermediate: false,
-    advanced: false,
-  });
-  const [goals, setGoals] = useState<WorkoutGoals>({
-    loseWeight: false,
-    gainMuscle: false,
-    gainStrength: false,
-  });
   const [equipment, setEquipment] = useState<EquipmentItem[]>([
     { id: "dumbbell", icon: Dumbbell, isSelected: false },
     { id: "body", icon: Body, isSelected: false },
