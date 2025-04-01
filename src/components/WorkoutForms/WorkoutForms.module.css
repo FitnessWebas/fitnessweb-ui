@@ -1,6 +1,8 @@
 /* WorkoutForms.module.css */
 .container {
     width: 100%;
+    max-width: 1800px;
+    margin: 0 auto;
 }
 
 .header h1 {
@@ -22,37 +24,57 @@
 }
 
 .forms {
-    width: 100%;
+    width: 90%;
     display: flex;
     padding-top: 30px;
     justify-content: center;
+    margin: 0 auto;
 }
 
 .filter {
-    margin-right: 200px;
+    margin-right: 100px;
+    flex-shrink: 0;
 }
 
 .workoutForms {
-    max-width: 1000px;
-    column-count: 2;
-    column-gap: 30px;
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 3fr));
+    gap: 80px;
+    align-items: start;
+    justify-content: center;
 }
 
 .workoutForms > * {
-    display: inline-block;
-    margin-bottom: 30px;
-    break-inside: avoid;
+    width: 100%;
+    height: auto;
+}
+@media (max-width: 1800px){
+    .workoutForms {
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    }
 }
 
-@media (max-width: 1100px){
-    @media screen and (max-width: 1100px) {
-        .workoutForms {
-            column-count: 1;
-        }
-        
-        .workoutForms {
-            width: 65%; 
-        }
+@media (max-width: 900px) {
+    .forms {
+        flex-direction: column;
+        align-items: center;
     }
     
+    .filter {
+        width: 90%;
+        margin-right: 0;
+        margin-bottom: 30px;
+    }
+    
+    .workoutForms {
+        grid-template-columns: 1fr;
+        width: 90%;
+    }
+
+    @media (max-width: 500px){
+        .workoutForms{
+            scale: 0.8;
+        }
+    }
 }
