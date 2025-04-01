@@ -19,6 +19,7 @@ button:disabled {
     align-self: center;
     max-width: 100%;
     font-size: 3rem;
+    margin-top: 40px;
     text-align: center;
   }
 .setup {
@@ -35,9 +36,20 @@ button:disabled {
   }
   .setup_weight{
     height: 100%;
+    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
+  }
+  .setup_weight input[type="number"] {
+    padding: 0.75rem 1rem;
+    font-size: 1.5rem;
+    outline: none;
+    border: 2px solid var(--light-1);
+    border-radius: 10px;
+    width: 120px;
+    text-align: center;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
   .setup_weight > *{
     margin-bottom: 40px;
@@ -55,7 +67,59 @@ button:disabled {
     justify-content: center;
   }
   .setup_weight .slider_container input{
-    width: 50%;
+    width: 70%;
+  }
+
+  .slider_container {
+    width: 100%;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+  }
+  .slider_labels {
+    width: 80%;  
+    display: flex;
+    justify-content: space-between; 
+    color: #666;
+    font-size: 1rem;
+  }
+  
+  .min_weight, .max_weight {
+    position: relative;
+    top: -5px;  
+  }
+  
+  .slider {
+    display: flex;
+    height: 18px;  
+    -webkit-appearance: none;
+    appearance: none;
+    background: linear-gradient(to right, #3498db, #2ecc71);
+    border-radius: 10px;  
+    outline: none;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 36px; 
+    height: 36px;  
+    border-radius: 50%;
+    background: var(--light-1);
+    border: 2px solid #3498db;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 30px;  
+    height: 30px;  
+    border-radius: 50%;
+    background: white;
+    border: 2px solid #3498db;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   }
   .setup_goals,   .setup_level{
     display: flex;
@@ -91,6 +155,11 @@ button:disabled {
   }
   .setup_goals h1{
     margin-bottom: 30px;
+  }
+  .setup_equipment button, .setup_workout button{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
   }
   .setup_buttons{
     display: flex;
@@ -141,6 +210,10 @@ button:disabled {
     }
     .setup_equipment button, .setup_workout button{
       width: 40%;
+    }
+    .setup
+    {
+      height: 600px;
     }
   }
   

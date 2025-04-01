@@ -165,11 +165,12 @@ export default function GeneratorForm() {
               value={weight !== null ? weight.toString() : ""}
               onChange={handleWeightChange}
               onKeyPress={handleKeyPress}
+              className={styles.input_weight_box}
             />
             <div className={styles.slider_container}>
               <input
                 type="range"
-                className="slider"
+                className={styles.slider}
                 min={1}
                 max={200}
                 value={weight !== null ? weight.toString() : ""}
