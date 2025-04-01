@@ -6,6 +6,13 @@ import { Workout } from "../../types/types";
 import WorkoutFilter from "../WorkoutFilter/WorkoutFilter";
 import { Group } from "lucide-react";
 
+import Kettlebell from "../../assets/gym-fitness-rumbbel-health-svg.svg";
+import Barbell from "../../assets/barbell-svg.svg";
+import Bands from "../../assets/rubber-band 1.svg";
+import Body from "../../assets/body-svgrepo-com 1.svg";
+import Dumbbell from "../../assets/dumbbell-gym-svg.svg";
+import Machine from "../../assets/chest-gym-svg.svg";
+
 interface MuscleGroups {
   fullBody: boolean;
   legs: boolean;
@@ -28,6 +35,19 @@ interface WorkoutGoals {
   gainMuscle: boolean;
   gainStrength: boolean;
 }
+interface EquipmentItem {
+  id: string;
+  icon: string;
+  isSelected: boolean;
+}
+const Equipment = [
+  "Barbell",
+  "Dumbbell",
+  "Bodyweight",
+  "Machine",
+  "Cardio",
+  "Kettlebell",
+];
 
 const sampleWorkouts: Workout[] = [
   {
@@ -145,7 +165,14 @@ const WorkoutForms = () => {
     intermediate: false,
     advanced: false,
   });
-
+  const [equipment, setEquipment] = useState<EquipmentItem[]>([
+    { id: "dumbbell", icon: Dumbbell, isSelected: false },
+    { id: "bodyweight", icon: Body, isSelected: false },
+    { id: "barbell", icon: Barbell, isSelected: false },
+    { id: "bands", icon: Bands, isSelected: false },
+    { id: "kettlebell", icon: Kettlebell, isSelected: false },
+    { id: "machine", icon: Machine, isSelected: false },
+  ]);
   const [goals, setGoals] = useState<WorkoutGoals>({
     loseWeight: false,
     gainMuscle: false,
@@ -217,36 +244,60 @@ const WorkoutForms = () => {
   };
 
   const filterByDifficulty = (workouts: Workout[]): Workout[] => {
-    const activeGroups = Object.entries(difficulty)
+    const activeDifficulties = Object.entries(difficulty)
       .filter(([_, isActive]) => isActive)
       .map(([group]) => group) as (keyof DifficultyLevels)[];
 
-    if (activeGroups.length == 0) {
+    if (activeDifficulties.length == 0) {
       return workouts;
     }
 
     return workouts.filter((workout) => {
       const difficultyToLower = workout.difficulty.toLowerCase();
 
-      return activeGroups.some((group) => difficultyToLower === group);
+      return activeDifficulties.some((group) => difficultyToLower === group);
     });
   };
 
   const filterByGoal = (workouts: Workout[]): Workout[] => {
-    const activeGroups = Object.entries(goals)
+    const activeGoals = Object.entries(goals)
       .filter(([_, isActive]) => isActive)
       .map(([group]) => group) as (keyof WorkoutGoals)[];
 
-    if (activeGroups.length == 0) {
+    if (activeGoals.length == 0) {
       return workouts;
     }
-    console.log(workouts[0].goal.toLowerCase().replace(" ", ""));
-    console.log(activeGroups[0].toLowerCase());
 
     return workouts.filter((workout) => {
       const goalToLower = workout.goal.toLowerCase().replace(" ", "");
 
-      return activeGroups.some((group) => goalToLower === group.toLowerCase());
+      return activeGoals.some((group) => goalToLower === group.toLowerCase());
+    });
+  };
+
+  const filteredByEquipment = (workouts: Workout[]): Workout[] => {
+    const activeEquipment = equipment.filter(
+      (equipment) => equipment.isSelected
+    );
+    const equipmentt = workouts[0].exercises.map(
+      (exercise) => exercise.exercise.equipment
+    );
+    console.log(activeEquipment);
+    return workouts.filter((workout) => {
+      const workoutEquipment = workout.exercises.map(
+        (exercise) => exercise.exercise.equipment
+      );
+
+      const linkedEquipment = workoutEquipment.map((index) => Equipment[index]);
+      const uniqueEquipment = [...new Set(linkedEquipment)];
+      const uniqueEquipmentToLower = uniqueEquipment.map((equipment) =>
+        equipment.toLowerCase()
+      );
+      console.log(uniqueEquipmentToLower);
+
+      return activeEquipment.every((equip) =>
+        uniqueEquipmentToLower.includes(equip.id)
+      );
     });
   };
 
@@ -273,10 +324,12 @@ const WorkoutForms = () => {
             setDifficulty={setDifficulty}
             goals={goals}
             setGoals={setGoals}
+            equipment={equipment}
+            setEquipment={setEquipment}
           />
         </div>
         <div className={styles.workoutForms}>
-          {filterByGoal(sampleWorkouts).map((workout) => (
+          {filteredByEquipment(sampleWorkouts).map((workout) => (
             <WorkoutForm key={workout.id} workout={workout} />
           ))}
         </div>

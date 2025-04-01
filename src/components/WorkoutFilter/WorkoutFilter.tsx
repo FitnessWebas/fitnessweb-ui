@@ -2,15 +2,6 @@ import React, { useState, useRef, Ref } from "react";
 import styles from "./WorkoutFilter.module.css";
 import { CheckIcon } from "lucide-react";
 
-import Kettlebell from "../../assets/gym-fitness-rumbbel-health-svg.svg";
-import Barbell from "../../assets/barbell-svg.svg";
-import Bands from "../../assets/rubber-band 1.svg";
-import Body from "../../assets/body-svgrepo-com 1.svg";
-import Dumbbell from "../../assets/dumbbell-gym-svg.svg";
-import Machine from "../../assets/chest-gym-svg.svg";
-import { backIn } from "framer-motion";
-import { Goal } from "../../types/Goals";
-
 interface MuscleGroups {
   fullBody: boolean;
   legs: boolean;
@@ -53,6 +44,8 @@ interface Props {
   setDifficulty: React.Dispatch<React.SetStateAction<DifficultyLevels>>;
   goals: WorkoutGoals;
   setGoals: React.Dispatch<React.SetStateAction<WorkoutGoals>>;
+  equipment: EquipmentItem[];
+  setEquipment: React.Dispatch<React.SetStateAction<EquipmentItem[]>>;
 }
 
 const WorkoutFilters: React.FC<Props> = ({
@@ -68,16 +61,9 @@ const WorkoutFilters: React.FC<Props> = ({
   setDifficulty,
   goals,
   setGoals,
+  equipment,
+  setEquipment,
 }) => {
-  const [equipment, setEquipment] = useState<EquipmentItem[]>([
-    { id: "dumbbell", icon: Dumbbell, isSelected: false },
-    { id: "body", icon: Body, isSelected: false },
-    { id: "barbell", icon: Barbell, isSelected: false },
-    { id: "bands", icon: Bands, isSelected: false },
-    { id: "kettlebell", icon: Kettlebell, isSelected: false },
-    { id: "machine", icon: Machine, isSelected: false },
-  ]);
-
   const handleMuscleGroupChange = (group: keyof MuscleGroups): void => {
     setMuscleGroups((prev) => {
       if (group === "fullBody") {

@@ -1,19 +1,24 @@
 import React, { useState } from "react";
 import styles from "./WorkoutForm.module.css";
 import CloakIcon from "../../assets/clock-svg.svg";
-import BarbellIcon from "../../assets/barbell-svg.svg";
-import DumbellIcon from "../../assets/dumbbell-gym-svg.svg";
-import BodyIcon from "../../assets/chest-gym-svg.svg";
-import MachineIcon from "../../assets/gym-fitness-rumbbel-health-svg.svg";
 import ArrowUpIcon from "../../assets/keyboard_arrow_up.svg";
 import { Workout, getWorkoutEquipment } from "../../types/types";
 import { EquipmentOptions } from "../../types/Equipments";
 
+import Kettlebell from "../../assets/gym-fitness-rumbbel-health-svg.svg";
+import Barbell from "../../assets/barbell-svg.svg";
+import Bands from "../../assets/rubber-band 1.svg";
+import Body from "../../assets/body-svgrepo-com 1.svg";
+import Dumbbell from "../../assets/dumbbell-gym-svg.svg";
+import Machine from "../../assets/chest-gym-svg.svg";
+
 const equipmentIcons: Record<string, string> = {
-  Barbell: BarbellIcon,
-  Dumbbell: DumbellIcon,
-  Bodyweight: BodyIcon,
-  Machine: MachineIcon,
+  Barbell: Barbell,
+  Dumbbell: Dumbbell,
+  Bodyweight: Body,
+  Machine: Machine,
+  Bands: Bands,
+  Kettlebell: Kettlebell,
 };
 
 interface WorkoutFormProps {
