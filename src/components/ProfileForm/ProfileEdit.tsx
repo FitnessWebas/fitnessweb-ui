@@ -1,29 +1,193 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import styles from "./ProfileEdit.module.css";
+import { useNavigate } from "react-router-dom";
 
-export const ProfileEdit = () => {
-  const [name, setName] = useState("Vardas");
-  const [surname, setSurname] = useState("Pavarde");
-  const [email, setEmail] = useState("varpav@gmail.com");
-  const [gender, setGender] = useState("Female");
-  const [dateOfBirth, setDateOfBirth] = useState("MMMM-YY-MM");
-  const [weight, setWeight] = useState("145 kg");
-  const [height, setHeight] = useState("175 cm");
-  const [oldPassword, setOldPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
+export const ProfileEdit: React.FC = () => {
+  const navigate = useNavigate();
+  // Form fields state
+  const [name, setName] = useState<string>("Vardas");
+  const [surname, setSurname] = useState<string>("Pavarde");
+  const [email, setEmail] = useState<string>("varpav@gmail.com");
+  const [gender, setGender] = useState<string>("Female");
+  const [dateOfBirth, setDateOfBirth] = useState<string>("MMMM-YY-MM");
+  const [weight, setWeight] = useState<string>("145 kg");
+  const [height, setHeight] = useState<string>("175 cm");
+  const [oldPassword, setOldPassword] = useState<string>("");
+  const [newPassword, setNewPassword] = useState<string>("");
+  const [repeatPassword, setRepeatPassword] = useState<string>("");
 
-  const handleSaveChanges = (e) => {
-    e.preventDefault();
-    // Add logic to save profile changes
-    console.log("Profile changes saved");
+  // Validation states
+  const [nameError, setNameError] = useState<string>("");
+  const [surnameError, setSurnameError] = useState<string>("");
+  const [emailError, setEmailError] = useState<string>("");
+  const [oldPasswordError, setOldPasswordError] = useState<string>("");
+  const [newPasswordError, setNewPasswordError] = useState<string>("");
+  const [repeatPasswordError, setRepeatPasswordError] = useState<string>("");
+
+  // Form touched states
+  const [nameTouched, setNameTouched] = useState<boolean>(false);
+  const [surnameTouched, setSurnameTouched] = useState<boolean>(false);
+  const [emailTouched, setEmailTouched] = useState<boolean>(false);
+  const [oldPasswordTouched, setOldPasswordTouched] = useState<boolean>(false);
+  const [newPasswordTouched, setNewPasswordTouched] = useState<boolean>(false);
+  const [repeatPasswordTouched, setRepeatPasswordTouched] =
+    useState<boolean>(false);
+
+  // Validation functions
+  useEffect(() => {
+    if (nameTouched) {
+      validateName(name);
+    }
+  }, [name, nameTouched]);
+
+  useEffect(() => {
+    if (surnameTouched) {
+      validateSurname(surname);
+    }
+  }, [surname, surnameTouched]);
+
+  useEffect(() => {
+    if (emailTouched) {
+      validateEmail(email);
+    }
+  }, [email, emailTouched]);
+
+  useEffect(() => {
+    if (newPasswordTouched || repeatPasswordTouched) {
+      validatePasswords(newPassword, repeatPassword);
+    }
+  }, [newPassword, repeatPassword, newPasswordTouched, repeatPasswordTouched]);
+
+  useEffect(() => {
+    if (oldPasswordTouched) {
+      validateOldPassword(oldPassword);
+    }
+  }, [oldPassword, oldPasswordTouched]);
+
+  const validateName = (value: string): void => {
+    if (!(/^[A-Za-z]+$/.test(value.trim()) && value.trim().length >= 1)) {
+      setNameError(
+        "Name must contain only letters and be at least 1 character long"
+      );
+    } else {
+      setNameError("");
+    }
   };
 
-  const handleChangePassword = (e) => {
-    e.preventDefault();
-    // Add password change logic
-    console.log("Password changed");
+  const validateSurname = (value: string): void => {
+    if (!(/^[A-Za-z]+$/.test(value.trim()) && value.trim().length >= 1)) {
+      setSurnameError(
+        "Surname must contain only letters and be at least 1 character long"
+      );
+    } else {
+      setSurnameError("");
+    }
   };
+
+  const validateEmail = (value: string): void => {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      setEmailError("Please enter a valid email address");
+    } else {
+      setEmailError("");
+    }
+  };
+
+  const validateOldPassword = (value: string): void => {
+    if (
+      value.length === 0 &&
+      (newPassword.length > 0 || repeatPassword.length > 0)
+    ) {
+      setOldPasswordError("Please enter your current password");
+    } else {
+      setOldPasswordError("");
+    }
+  };
+
+  const validatePasswords = (newPass: string, repeatPass: string): void => {
+    if (newPass.length > 0 || repeatPass.length > 0) {
+      // Check if passwords match
+      if (newPass !== repeatPass) {
+        setRepeatPasswordError("Passwords do not match");
+      } else {
+        setRepeatPasswordError("");
+      }
+
+      // Validate password strength
+      if (newPass.length > 0) {
+        const isLengthValid = newPass.length >= 8;
+        const hasUppercase = /[A-Z]/.test(newPass);
+        const hasLowercase = /[a-z]/.test(newPass);
+        const hasNumber = /[0-9]/.test(newPass);
+        const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(newPass);
+
+        if (
+          !isLengthValid ||
+          !hasUppercase ||
+          !hasLowercase ||
+          !hasNumber ||
+          !hasSpecial
+        ) {
+          setNewPasswordError(
+            "Password must be at least 8 characters and include uppercase, lowercase, number, and special character"
+          );
+        } else {
+          setNewPasswordError("");
+        }
+      }
+    } else {
+      setNewPasswordError("");
+      setRepeatPasswordError("");
+    }
+  };
+
+  const handleSaveChanges = (e: FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+
+    // Validate all profile fields
+    setNameTouched(true);
+    setSurnameTouched(true);
+    setEmailTouched(true);
+
+    validateName(name);
+    validateSurname(surname);
+    validateEmail(email);
+
+    // Only proceed if all validations pass
+    if (nameError === "" && surnameError === "" && emailError === "") {
+      console.log("Profile changes saved");
+      // Add logic to save profile changes
+      navigate("/profile");
+    }
+  };
+
+  const handleChangePassword = (e: FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+
+    // Validate all password fields
+    setOldPasswordTouched(true);
+    setNewPasswordTouched(true);
+    setRepeatPasswordTouched(true);
+
+    validateOldPassword(oldPassword);
+    validatePasswords(newPassword, repeatPassword);
+
+    // Only proceed if all validations pass
+    if (
+      oldPasswordError === "" &&
+      newPasswordError === "" &&
+      repeatPasswordError === ""
+    ) {
+      console.log("Password changed");
+      // Add password change logic
+    }
+  };
+
+  // Input change handler with type safety
+  const handleInputChange =
+    (setter: React.Dispatch<React.SetStateAction<string>>) =>
+    (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
+      setter(e.target.value);
+    };
 
   return (
     <div className={styles.container}>
@@ -64,32 +228,50 @@ export const ProfileEdit = () => {
 
             {/* Third column - Input fields */}
             <div className={styles.inputsColumn}>
-              <div className={styles.inputItem}>
+              <div className={styles.inputContainer}>
                 <input
                   type="text"
                   id="name"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className={styles.inputField}
+                  onChange={handleInputChange(setName)}
+                  onBlur={() => setNameTouched(true)}
+                  className={`${styles.inputField} ${
+                    nameError && styles.inputError
+                  }`}
                 />
+                {nameError && (
+                  <div className={styles.errorMessage}>{nameError}</div>
+                )}
               </div>
-              <div className={styles.inputItem}>
+              <div className={styles.inputContainer}>
                 <input
                   type="text"
                   id="surname"
                   value={surname}
-                  onChange={(e) => setSurname(e.target.value)}
-                  className={styles.inputField}
+                  onChange={handleInputChange(setSurname)}
+                  onBlur={() => setSurnameTouched(true)}
+                  className={`${styles.inputField} ${
+                    surnameError && styles.inputError
+                  }`}
                 />
+                {surnameError && (
+                  <div className={styles.errorMessage}>{surnameError}</div>
+                )}
               </div>
-              <div className={styles.inputItem}>
+              <div className={styles.inputContainer}>
                 <input
                   type="email"
                   id="email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className={styles.inputField}
+                  onChange={handleInputChange(setEmail)}
+                  onBlur={() => setEmailTouched(true)}
+                  className={`${styles.inputField} ${
+                    emailError && styles.inputError
+                  }`}
                 />
+                {emailError && (
+                  <div className={styles.errorMessage}>{emailError}</div>
+                )}
               </div>
             </div>
           </div>
@@ -117,7 +299,7 @@ export const ProfileEdit = () => {
                 </label>
                 <select
                   value={gender}
-                  onChange={(e) => setGender(e.target.value)}
+                  onChange={handleInputChange(setGender)}
                   className={styles.selectField}
                 >
                   <option value="Female">Female</option>
@@ -145,7 +327,7 @@ export const ProfileEdit = () => {
                 <input
                   type="text"
                   value={dateOfBirth}
-                  onChange={(e) => setDateOfBirth(e.target.value)}
+                  onChange={handleInputChange(setDateOfBirth)}
                   className={styles.inputField}
                   placeholder="MMMM-YY-MM"
                 />
@@ -173,7 +355,7 @@ export const ProfileEdit = () => {
                 <input
                   type="text"
                   value={weight}
-                  onChange={(e) => setWeight(e.target.value)}
+                  onChange={handleInputChange(setWeight)}
                   className={styles.inputField}
                 />
               </div>
@@ -197,7 +379,7 @@ export const ProfileEdit = () => {
                 <input
                   type="text"
                   value={height}
-                  onChange={(e) => setHeight(e.target.value)}
+                  onChange={handleInputChange(setHeight)}
                   className={styles.inputField}
                 />
               </div>
@@ -226,32 +408,56 @@ export const ProfileEdit = () => {
               </div>
 
               <div className={styles.passwordInputs}>
-                <div>
+                <div className={styles.inputContainer}>
                   <input
                     type="password"
                     id="oldPassword"
                     value={oldPassword}
-                    onChange={(e) => setOldPassword(e.target.value)}
-                    className={styles.inputField}
+                    onChange={handleInputChange(setOldPassword)}
+                    onBlur={() => setOldPasswordTouched(true)}
+                    className={`${styles.inputField} ${
+                      oldPasswordError && styles.inputError
+                    }`}
                   />
+                  {oldPasswordError && (
+                    <div className={styles.errorMessage}>
+                      {oldPasswordError}
+                    </div>
+                  )}
                 </div>
-                <div>
+                <div className={styles.inputContainer}>
                   <input
                     type="password"
                     id="newPassword"
                     value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
-                    className={styles.inputField}
+                    onChange={handleInputChange(setNewPassword)}
+                    onBlur={() => setNewPasswordTouched(true)}
+                    className={`${styles.inputField} ${
+                      newPasswordError && styles.inputError
+                    }`}
                   />
+                  {newPasswordError && (
+                    <div className={styles.errorMessage}>
+                      {newPasswordError}
+                    </div>
+                  )}
                 </div>
-                <div>
+                <div className={styles.inputContainer}>
                   <input
                     type="password"
                     id="repeatPassword"
                     value={repeatPassword}
-                    onChange={(e) => setRepeatPassword(e.target.value)}
-                    className={styles.inputField}
+                    onChange={handleInputChange(setRepeatPassword)}
+                    onBlur={() => setRepeatPasswordTouched(true)}
+                    className={`${styles.inputField} ${
+                      repeatPasswordError && styles.inputError
+                    }`}
                   />
+                  {repeatPasswordError && (
+                    <div className={styles.errorMessage}>
+                      {repeatPasswordError}
+                    </div>
+                  )}
                 </div>
               </div>
 

@@ -5,20 +5,17 @@
   padding: 20px;
   color: white;
 }
-
 .content {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-
 .divider {
   border: none;
   height: 1px;
   background-color: rgba(255, 255, 255, 0.2);
   margin: 10px 0;
 }
-
 /* Three-column layout for the profile section */
 .profileSection {
   display: grid;
@@ -27,7 +24,6 @@
   margin-bottom: 15px;
   align-items: start;
 }
-
 .profileImageColumn {
   position: relative;
   display: flex;
@@ -35,7 +31,6 @@
   justify-content: center;
   height: 100%;
 }
-
 .profileImage {
   width: 120px;
   height: 120px;
@@ -43,7 +38,6 @@
   overflow: hidden;
   background-color: #333;
 }
-
 .avatarPlaceholder {
   width: 100%;
   height: 100%;
@@ -52,7 +46,6 @@
   justify-content: center;
   align-items: center;
 }
-
 .editImageButton {
   position: absolute;
   bottom: 5px;
@@ -67,7 +60,6 @@
   align-items: center;
   cursor: pointer;
 }
-
 /* Label column */
 .labelsColumn {
   display: flex;
@@ -77,13 +69,11 @@
   justify-content: space-between;
   height: 120px; /* Same height as profile image */
 }
-
 .labelItem {
   font-weight: 500;
   display: flex;
   align-items: center;
 }
-
 /* Input fields column */
 .inputsColumn {
   display: flex;
@@ -92,11 +82,9 @@
   justify-content: space-between;
   height: 120px; /* Same height as profile image */
 }
-
 .inputItem {
   margin-bottom: 0;
 }
-
 .inputField,
 .selectField {
   padding: 10px;
@@ -108,7 +96,38 @@
   width: 100%;
   height: 36px;
 }
-
+/* Input validation styles */
+.inputContainer {
+  position: relative;
+  margin-bottom: 5px;
+}
+.inputError {
+  border-color: #ff5252 !important;
+}
+.errorMessage {
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  background-color: #ff5252;
+  color: white;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 2px;
+  white-space: nowrap;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.errorMessage::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 10px;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid #ff5252;
+}
 /* Two-column layout for info fields */
 .infoFieldsContainer {
   display: grid;
@@ -119,13 +138,11 @@
   margin-top: 15px;
   margin-bottom: 20px;
 }
-
 .infoFieldsColumn {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
-
 .buttonColumn {
   grid-column: 2;
   grid-row: 2;
@@ -133,26 +150,22 @@
   justify-content: flex-end;
   align-items: flex-end;
 }
-
 .fieldGroup {
   display: flex;
   flex-direction: column;
   gap: 5px;
   margin-bottom: 10px;
 }
-
 .fieldLabel {
   display: flex;
   align-items: center;
   gap: 8px;
   font-weight: 500;
 }
-
 .fieldIcon {
   width: 20px;
   height: 20px;
 }
-
 .saveButton,
 .passwordButton {
   background-color: #ff6b6b;
@@ -166,16 +179,13 @@
   transition: background-color 0.2s;
   width: fit-content;
 }
-
 .saveButton:hover,
 .passwordButton:hover {
   background-color: #ff5252;
 }
-
 .passwordSection {
   margin-top: 10px;
 }
-
 /* Password section grid layout */
 .passwordGrid {
   display: grid;
@@ -184,27 +194,23 @@
   column-gap: 20px;
   margin-top: 15px;
 }
-
 .passwordLabels {
   grid-column: 1;
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Match the gap of passwordInputs */
+  gap: 25px; /* Increased to account for error messages */
 }
-
 .passwordLabels > div {
   height: 36px; /* Match the height of input fields */
   display: flex;
   align-items: center; /* Vertically center the text */
 }
-
 .passwordInputs {
   grid-column: 2;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 25px; /* Increased to account for error messages */
 }
-
 .passwordButtonColumn {
   grid-column: 2;
   grid-row: 4;

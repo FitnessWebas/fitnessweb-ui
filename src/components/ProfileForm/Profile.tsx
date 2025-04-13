@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import Username from "../../assets/Username.png";
 import Username1 from "../../assets/Username1.jpg";
 import styles from "./Profile.module.css";
+import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState("Name Surname");
   const [memberSince, setMemberSince] = useState("MMMM-YY-XX");
   const [email, setEmail] = useState("PLACEHOLDER@gmail.com");
@@ -120,7 +122,9 @@ export const Profile = () => {
             </div>
           </div>
           <div className={styles.infoButton}>
-            <button type="button">Edit profile</button>
+            <button type="button" onClick={() => navigate("/ProfileEdit")}>
+              Edit profile
+            </button>
           </div>
         </form>
         <hr className={styles.hr} />
