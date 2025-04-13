@@ -33,6 +33,10 @@ export const ProfileEdit: React.FC = () => {
   const [repeatPasswordTouched, setRepeatPasswordTouched] =
     useState<boolean>(false);
 
+  // Password button disabled state
+  const [isPasswordButtonDisabled, setIsPasswordButtonDisabled] =
+    useState<boolean>(true);
+
   // Validation functions
   useEffect(() => {
     if (nameTouched) {
@@ -63,6 +67,46 @@ export const ProfileEdit: React.FC = () => {
       validateOldPassword(oldPassword);
     }
   }, [oldPassword, oldPasswordTouched]);
+
+  // Update password button disabled state based on validation and input values
+  useEffect(() => {
+    // Button should be enabled only when:
+    // 1. All password fields are filled
+    // 2. There are no validation errors
+    // 3. If changing password, all password fields must pass validation
+
+    const arePasswordFieldsFilled =
+      oldPassword.length > 0 &&
+      newPassword.length > 0 &&
+      repeatPassword.length > 0;
+    const arePasswordFieldsValid =
+      oldPasswordError === "" &&
+      newPasswordError === "" &&
+      repeatPasswordError === "";
+
+    // If any password field has content, we're attempting to change password and all fields should be validated
+    const isAttemptingPasswordChange =
+      oldPassword.length > 0 ||
+      newPassword.length > 0 ||
+      repeatPassword.length > 0;
+
+    if (isAttemptingPasswordChange) {
+      // Only enable button if all fields are filled and valid
+      setIsPasswordButtonDisabled(
+        !arePasswordFieldsFilled || !arePasswordFieldsValid
+      );
+    } else {
+      // If no password fields are touched, disable button (default state)
+      setIsPasswordButtonDisabled(true);
+    }
+  }, [
+    oldPassword,
+    newPassword,
+    repeatPassword,
+    oldPasswordError,
+    newPasswordError,
+    repeatPasswordError,
+  ]);
 
   const validateName = (value: string): void => {
     if (!(/^[A-Za-z]+$/.test(value.trim()) && value.trim().length >= 1)) {
@@ -462,7 +506,13 @@ export const ProfileEdit: React.FC = () => {
               </div>
 
               <div className={styles.passwordButtonColumn}>
-                <button type="submit" className={styles.passwordButton}>
+                <button
+                  type="submit"
+                  className={`${styles.passwordButton} ${
+                    isPasswordButtonDisabled ? styles.disabledButton : ""
+                  }`}
+                  disabled={isPasswordButtonDisabled}
+                >
                   Change Password
                 </button>
               </div>

@@ -183,6 +183,16 @@
 .passwordButton:hover {
   background-color: #ff5252;
 }
+/* Disabled button styling */
+.disabledButton {
+  background-color: #666 !important;
+  color: #999 !important;
+  cursor: not-allowed !important;
+  opacity: 0.7;
+}
+.disabledButton:hover {
+  background-color: #666 !important;
+}
 .passwordSection {
   margin-top: 10px;
 }
