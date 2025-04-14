@@ -1,5 +1,5 @@
-import { Equipment, EquipmentOptions } from "./Equipments";
-import { FitnessLevel } from "./FitnessLevels";
+import { Equipment, EquipmentOptions } from "../data/Equipment";
+import { FitnessLevel } from "../data/FitnessLevel";
 
 export type MuscleInfo = {
   id: string;
