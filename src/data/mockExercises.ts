@@ -19,7 +19,7 @@ const mockExercises: Exercise[] = [
     muscles: [{ id: "1", name: "Chest" }],
     equipment: Equipment.Barbell,
     difficulty: FitnessLevel.Intermediate,
-    minutesPerSet: 1,
+    secondsPerSet: 1,
     imagePath: benchPress,
     startingPositionDescription:
       "Lie flat on a bench with feet on the floor and grip the barbell with hands slightly wider than shoulder-width.",
@@ -32,7 +32,7 @@ const mockExercises: Exercise[] = [
     muscles: [{ id: "2", name: "Legs" }],
     equipment: Equipment.Barbell,
     difficulty: FitnessLevel.Intermediate,
-    minutesPerSet: 1,
+    secondsPerSet: 1,
     imagePath: squat,
     startingPositionDescription:
       "Stand with your feet shoulder-width apart, barbell resting on your upper back with your arms fully extended.",
@@ -45,7 +45,7 @@ const mockExercises: Exercise[] = [
     muscles: [{ id: "3", name: "Biceps" }],
     equipment: Equipment.Dumbbell,
     difficulty: FitnessLevel.Beginner,
-    minutesPerSet: 1,
+    secondsPerSet: 1,
     imagePath: bicepCurl,
     startingPositionDescription:
       "Stand with your feet shoulder-width apart, holding a dumbbell in each hand with arms fully extended at your sides.",
@@ -61,7 +61,7 @@ const mockExercises: Exercise[] = [
     ],
     equipment: Equipment.Barbell,
     difficulty: FitnessLevel.Expert,
-    minutesPerSet: 1,
+    secondsPerSet: 1,
     imagePath: deadlift,
     startingPositionDescription:
       "Stand with feet shoulder-width apart, barbell over the middle of your feet, and grip the bar just outside your knees.",
@@ -74,7 +74,7 @@ const mockExercises: Exercise[] = [
     muscles: [{ id: "5", name: "Shoulders" }],
     equipment: Equipment.Dumbbell,
     difficulty: FitnessLevel.Intermediate,
-    minutesPerSet: 1,
+    secondsPerSet: 1,
     imagePath: overheadPress,
     startingPositionDescription:
       "Stand with your feet shoulder-width apart, holding a dumbbell in each hand at shoulder height.",
@@ -87,7 +87,7 @@ const mockExercises: Exercise[] = [
     muscles: [{ id: "2", name: "Legs" }],
     equipment: Equipment.Dumbbell,
     difficulty: FitnessLevel.Intermediate,
-    minutesPerSet: 1,
+    secondsPerSet: 1,
     imagePath: lunges,
     startingPositionDescription:
       "Stand tall with feet hip-width apart, holding a dumbbell in each hand at your sides.",
@@ -103,7 +103,7 @@ const mockExercises: Exercise[] = [
     ],
     equipment: Equipment.BodyWeight,
     difficulty: FitnessLevel.Expert,
-    minutesPerSet: 1,
+    secondsPerSet: 1,
     imagePath: pullUp,
     startingPositionDescription:
       "Hang from a pull-up bar with your hands shoulder-width apart and palms facing away from your body.",
@@ -116,7 +116,7 @@ const mockExercises: Exercise[] = [
     muscles: [{ id: "2", name: "Legs" }],
     equipment: Equipment.Machine,
     difficulty: FitnessLevel.Intermediate,
-    minutesPerSet: 1,
+    secondsPerSet: 1,
     imagePath: legPress,
     startingPositionDescription:
       "Sit on the leg press machine with your feet shoulder-width apart on the platform, knees bent at 90 degrees.",
@@ -129,7 +129,7 @@ const mockExercises: Exercise[] = [
     muscles: [{ id: "6", name: "Triceps" }],
     equipment: Equipment.BodyWeight,
     difficulty: FitnessLevel.Intermediate,
-    minutesPerSet: 1,
+    secondsPerSet: 1,
     imagePath: tricepDips,
     startingPositionDescription:
       "Place your hands on a bench or dip bars with your palms facing down, arms fully extended.",
@@ -142,7 +142,7 @@ const mockExercises: Exercise[] = [
     muscles: [{ id: "1", name: "Chest" }],
     equipment: Equipment.Dumbbell,
     difficulty: FitnessLevel.Beginner,
-    minutesPerSet: 1,
+    secondsPerSet: 1,
     imagePath: chestFly,
     startingPositionDescription:
       "Lie on a flat bench holding a dumbbell in each hand with arms extended above your chest.",

@@ -10,7 +10,7 @@ export interface Exercise {
   id: number;
   name: string;
   muscles: MuscleInfo[];
-  minutesPerSet: number;
+  secondsPerSet: number;
   equipment: Equipment;
   difficulty: FitnessLevel;
   imagePath: string;

@@ -92,7 +92,7 @@ export default function ExerciseItem({ exercise }: { exercise: Exercise }) {
                   <span className={styles.metaInfoTitle}>Time</span>
                   <span className={styles.metaInfoValue}>
                     <span className={styles.metaInfoSecondsBolded}>
-                      {exercise.minutesPerSet}{" "}
+                      {exercise.secondsPerSet}{" "}
                     </span>
                     s per set
                   </span>
