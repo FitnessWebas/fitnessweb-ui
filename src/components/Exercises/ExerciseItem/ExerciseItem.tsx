@@ -1,8 +1,5 @@
 import { ChevronDown } from "lucide-react";
-import {
-  FitnessLevel,
-  FitnessLevelOptions,
-} from "../../../types/FitnessLevels";
+import { FitnessLevel, FitnessLevelOptions } from "../../../data/FitnessLevel";
 import { Exercise } from "../../../types/types";
 import styles from "./ExerciseItem.module.css";
 import { useState } from "react";
@@ -13,7 +10,7 @@ import MachineIcon from "../../../assets/gym-fitness-rumbbel-health-svg.svg";
 import KettlebellIcon from "../../../assets/kettlebell.svg";
 import CardioIcon from "../../../assets/treadmill.svg";
 
-import { EquipmentOptions } from "../../../types/Equipments";
+import { EquipmentOptions } from "../../../data/Equipment";
 import ExerciseMusclesDisplay from "./ExerciseMusclesDisplay/ExerciseMusclesDisplay";
 
 const equipmentIcons: Record<string, string> = {

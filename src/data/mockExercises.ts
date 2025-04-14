@@ -9,8 +9,8 @@ import legPress from "../assets/Leg_Press.webp";
 import tricepDips from "../assets/DIP.webp";
 import chestFly from "../assets/Dumbbell_Fly.webp";
 import { Exercise } from "../types/types";
-import { FitnessLevel } from "../types/FitnessLevels";
-import { Equipment } from "../types/Equipments";
+import { FitnessLevel } from "./FitnessLevel";
+import { Equipment } from "./Equipment";
 
 const mockExercises: Exercise[] = [
   {

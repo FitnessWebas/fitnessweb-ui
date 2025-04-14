@@ -3,7 +3,7 @@ import styles from "./WorkoutForm.module.css";
 import CloakIcon from "../../assets/clock-svg.svg";
 import ArrowUpIcon from "../../assets/keyboard_arrow_up.svg";
 import { Workout, getWorkoutEquipment } from "../../types/types";
-import { EquipmentOptions } from "../../types/Equipments";
+import { EquipmentOptions } from "../../data/Equipment";
 
 import Kettlebell from "../../assets/gym-fitness-rumbbel-health-svg.svg";
 import Barbell from "../../assets/barbell-svg.svg";
