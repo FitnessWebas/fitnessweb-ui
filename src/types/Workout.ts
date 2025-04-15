@@ -1,21 +1,25 @@
-import { EquipmentOptions } from "../data/Equipment";
+import { Equipment, EquipmentOptions } from "../data/Equipment";
+import { FitnessLevel } from "../data/FitnessLevel";
+import { MuscleInfo } from "./MuscleInfo";
 import { WorkoutExercise } from "./WorkoutExercise";
 
 export interface Workout {
-  id: number;
+  id: string;
+  userId: string;
+  dateOfCreation: Date;
   name: string;
-  date: string;
-  duration: number;
-  difficulty: "Beginner" | "Intermediate" | "Advanced";
-  goal: string;
-  muscleGroups: string[];
-  exercises: WorkoutExercise[];
+  difficulty: FitnessLevel;
+  equipment: Equipment[];
+  targetDurationMinutes: number;
+  goal: number;
+  muscleGroups: MuscleInfo[];
+  workoutExercises: WorkoutExercise[];
 }
 
 export const getWorkoutEquipment = (workout: Workout): string[] => {
   const equipmentSet = new Set<string>();
 
-  workout.exercises.forEach((exercise) => {
+  workout.workoutExercises.forEach((exercise) => {
     equipmentSet.add(EquipmentOptions[exercise.equipment].label);
   });
 
