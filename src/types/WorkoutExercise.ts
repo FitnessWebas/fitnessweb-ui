@@ -1,7 +1,10 @@
-import { Exercise } from "./Exercise";
+import { Equipment } from "../data/Equipment";
+import { MuscleInfo } from "./MuscleInfo";
 
 export interface WorkoutExercise {
-  exercise: Exercise;
+  exerciseName: string;
+  equipment: Equipment;
+  muscles: MuscleInfo[];
   sets: number;
   repsPerSet: number;
 }
