@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./WorkoutForm.module.css";
 import CloakIcon from "../../assets/clock-svg.svg";
 import ArrowUpIcon from "../../assets/keyboard_arrow_up.svg";
-import { Workout, getWorkoutEquipment } from "../../types/types";
 import { EquipmentOptions } from "../../data/Equipment";
-
 import Kettlebell from "../../assets/gym-fitness-rumbbel-health-svg.svg";
 import Barbell from "../../assets/barbell-svg.svg";
 import Bands from "../../assets/rubber-band 1.svg";
 import Body from "../../assets/body-svgrepo-com 1.svg";
 import Dumbbell from "../../assets/dumbbell-gym-svg.svg";
 import Machine from "../../assets/chest-gym-svg.svg";
+import { getWorkoutEquipment, Workout } from "../../types/Workout";
+import { FitnessLevelOptions } from "../../data/FitnessLevel";
+import { GoalOptions } from "../../data/Goal";
 
 const equipmentIcons: Record<string, string> = {
   Barbell: Barbell,
@@ -21,11 +22,7 @@ const equipmentIcons: Record<string, string> = {
   Kettlebell: Kettlebell,
 };
 
-interface WorkoutFormProps {
-  workout: Workout;
-}
-
-const WorkoutForm: React.FC<WorkoutFormProps> = ({ workout }) => {
+const WorkoutForm = ({ workout }: { workout: Workout }) => {
   const [isActive, setIsActive] = useState<boolean>(false);
 
   const showExercises = () => {
@@ -38,19 +35,25 @@ const WorkoutForm: React.FC<WorkoutFormProps> = ({ workout }) => {
   return (
     <div className={styles.container}>
       <h1>{workout.name}</h1>
-      <h2>{workout.date}</h2>
+      <h2>
+        {new Date(workout.dateOfCreation).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })}
+      </h2>
       <div className={styles.date}>
         <img src={CloakIcon} alt="clockSvg" />
-        <p>{workout.duration} min</p>
+        <p>{workout.targetDurationMinutes} min</p>
       </div>
       <div className={styles.types}>
-        <span>{workout.difficulty}</span>
-        <span>{workout.goal}</span>
+        <span>{FitnessLevelOptions[workout.difficulty].label}</span>
+        <span>{GoalOptions[workout.goal].label}</span>
       </div>
       <h2>Muscle Groups</h2>
       <div className={styles.muscles}>
         {workout.muscleGroups.map((muscle, index) => (
-          <span key={index}>{muscle}</span>
+          <span key={index}>{muscle.name}</span>
         ))}
       </div>
       <h2>Equipment</h2>
@@ -68,9 +71,9 @@ const WorkoutForm: React.FC<WorkoutFormProps> = ({ workout }) => {
       </div>
       <div className={`${styles.exercises} ${isActive ? styles.active : ""}`}>
         <h2>Exercises</h2>
-        {workout.exercises.map(({ exercise, sets, repsPerSet }, index) => (
+        {workout.workoutExercises.map((exercise, index) => (
           <div key={index} className={styles.exercise}>
-            <h2>{exercise.name}</h2>
+            <h2>{exercise.exerciseName}</h2>
             <div className={styles.boxes}>
               <div className={styles.equipmentInfo}>
                 <span>
@@ -88,8 +91,8 @@ const WorkoutForm: React.FC<WorkoutFormProps> = ({ workout }) => {
               </span>
             </div>
             <span className={styles.exerciseInfo}>
-              <span>Sets: {sets}</span>
-              <span>Reps per Set: {repsPerSet}</span>
+              <span>Sets: {exercise.sets}</span>
+              <span>Reps per Set: {exercise.repsPerSet}</span>
             </span>
           </div>
         ))}

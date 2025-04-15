@@ -1,12 +1,18 @@
-import React, { Component } from "react";
+import { useGetAllWorkouts } from "../api/workout/useGetAllWorkouts";
 import WorkoutForms from "../components/WorkoutForms/WorkoutForms";
 
-function Setup() {
+function Workouts() {
+  const { data: workouts } = useGetAllWorkouts();
+
+  if (!workouts) {
+    return <div>No workout data is available</div>;
+  }
+
   return (
     <div className="vh-100 d-flex justify-content-center">
-      <WorkoutForms />
+      <WorkoutForms workouts={workouts} />
     </div>
   );
 }
 
-export default Setup;
+export default Workouts;

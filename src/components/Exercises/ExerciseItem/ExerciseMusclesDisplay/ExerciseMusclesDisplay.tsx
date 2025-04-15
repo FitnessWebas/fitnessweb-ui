@@ -1,4 +1,4 @@
-import { MuscleInfo } from "../../../../types/types";
+import { MuscleInfo } from "../../../../types/MuscleInfo";
 import styles from "./ExerciseMusclesDisplay.module.css";
 
 export default function ExerciseMusclesDisplay({

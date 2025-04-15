@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./WorkoutForms.module.css";
 import WorkoutForm from "../WorkoutForm/WorkoutForm";
-import mockExercises from "../../data/mockExercises";
-import { Workout } from "../../types/types";
 import WorkoutFilter from "../WorkoutFilter/WorkoutFilter";
-import { Group } from "lucide-react";
-
 import Kettlebell from "../../assets/gym-fitness-rumbbel-health-svg.svg";
 import Barbell from "../../assets/barbell-svg.svg";
 import Bands from "../../assets/rubber-band 1.svg";
 import Body from "../../assets/body-svgrepo-com 1.svg";
 import Dumbbell from "../../assets/dumbbell-gym-svg.svg";
 import Machine from "../../assets/chest-gym-svg.svg";
+import { Workout } from "../../types/Workout";
+import { FitnessLevelOptions } from "../../data/FitnessLevel";
+import { GoalOptions } from "../../data/Goal";
 
 interface MuscleGroups {
   fullBody: boolean;
@@ -49,103 +48,7 @@ const Equipment = [
   "Kettlebell",
 ];
 
-const sampleWorkouts: Workout[] = [
-  {
-    id: 1,
-    name: "Upper Body Strength",
-    date: "March 19, 2025",
-    duration: 45,
-    difficulty: "Intermediate",
-    goal: "Gain Strength",
-    muscleGroups: ["Chest", "Back", "Shoulders", "Biceps", "Triceps"],
-    exercises: [
-      {
-        exercise: mockExercises[0],
-        sets: 4,
-        repsPerSet: 8,
-      },
-      {
-        exercise: mockExercises[6],
-        sets: 3,
-        repsPerSet: 10,
-      },
-      {
-        exercise: mockExercises[4],
-        sets: 3,
-        repsPerSet: 12,
-      },
-      {
-        exercise: mockExercises[2],
-        sets: 3,
-        repsPerSet: 15,
-      },
-      {
-        exercise: mockExercises[8],
-        sets: 3,
-        repsPerSet: 12,
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: "Leg Day",
-    date: "March 20, 2025",
-    duration: 50,
-    difficulty: "Advanced",
-    goal: "Gain muscle",
-    muscleGroups: ["Legs", "Glutes"],
-    exercises: [
-      {
-        exercise: mockExercises[1],
-        sets: 5,
-        repsPerSet: 10,
-      },
-      {
-        exercise: mockExercises[3],
-        sets: 4,
-        repsPerSet: 8,
-      },
-      {
-        exercise: mockExercises[5],
-        sets: 3,
-        repsPerSet: 12,
-      },
-      {
-        exercise: mockExercises[7],
-        sets: 4,
-        repsPerSet: 15,
-      },
-    ],
-  },
-  {
-    id: 3,
-    name: "Chest & Triceps",
-    date: "March 22, 2025",
-    duration: 40,
-    difficulty: "Beginner",
-    goal: "Gain muscle",
-    muscleGroups: ["Chest", "Triceps"],
-    exercises: [
-      {
-        exercise: mockExercises[0],
-        sets: 3,
-        repsPerSet: 12,
-      },
-      {
-        exercise: mockExercises[9],
-        sets: 3,
-        repsPerSet: 15,
-      },
-      {
-        exercise: mockExercises[8],
-        sets: 3,
-        repsPerSet: 12,
-      },
-    ],
-  },
-];
-
-const WorkoutForms = () => {
+const WorkoutForms = ({ workouts }: { workouts: Workout[] }) => {
   const [search, setSearch] = useState<string>("");
   const [durationMin, setDurationMin] = useState<number>(0);
   const [durationMax, setDurationMax] = useState<number>(90);
@@ -193,7 +96,8 @@ const WorkoutForms = () => {
   const filterByDuration = (workouts: Workout[]): Workout[] => {
     return workouts.filter(
       (workout) =>
-        workout.duration >= durationMin && workout.duration <= durationMax
+        workout.targetDurationMinutes >= durationMin &&
+        workout.targetDurationMinutes <= durationMax
     );
   };
 
@@ -202,7 +106,7 @@ const WorkoutForms = () => {
       return [];
     }
     const activeGroups = Object.entries(muscleGroups)
-      .filter(([_, isActive]) => isActive)
+      .filter(([, isActive]) => isActive)
       .map(([group]) => group) as (keyof MuscleGroups)[];
 
     if (activeGroups.length === 0) {
@@ -211,7 +115,7 @@ const WorkoutForms = () => {
 
     return workouts.filter((workout) => {
       const workoutGroupsLower = workout.muscleGroups.map((grp) =>
-        grp.toLowerCase()
+        grp.name.toLowerCase()
       );
       if (muscleGroups.fullBody) {
         const requiredGroups: (keyof MuscleGroups)[] = [
@@ -243,7 +147,7 @@ const WorkoutForms = () => {
       return [];
     }
     const activeDifficulties = Object.entries(difficulty)
-      .filter(([_, isActive]) => isActive)
+      .filter(([, isActive]) => isActive)
       .map(([group]) => group) as (keyof DifficultyLevels)[];
 
     if (activeDifficulties.length == 0) {
@@ -251,7 +155,8 @@ const WorkoutForms = () => {
     }
 
     return workouts.filter((workout) => {
-      const difficultyToLower = workout.difficulty.toLowerCase();
+      const difficultyToLower =
+        FitnessLevelOptions[workout.difficulty].label.toLowerCase();
 
       return activeDifficulties.some((group) => difficultyToLower === group);
     });
@@ -259,7 +164,7 @@ const WorkoutForms = () => {
 
   const filterByGoal = (workouts: Workout[]): Workout[] => {
     const activeGoals = Object.entries(goals)
-      .filter(([_, isActive]) => isActive)
+      .filter(([, isActive]) => isActive)
       .map(([group]) => group) as (keyof WorkoutGoals)[];
 
     if (activeGoals.length == 0) {
@@ -267,7 +172,9 @@ const WorkoutForms = () => {
     }
 
     return workouts.filter((workout) => {
-      const goalToLower = workout.goal.toLowerCase().replace(" ", "");
+      const goalToLower = GoalOptions[workout.goal].label
+        .toLowerCase()
+        .replace(" ", "");
 
       return activeGoals.some((group) => goalToLower === group.toLowerCase());
     });
@@ -280,13 +187,10 @@ const WorkoutForms = () => {
     const activeEquipment = equipment.filter(
       (equipment) => equipment.isSelected
     );
-    const equipmentt = workouts[0].exercises.map(
-      (exercise) => exercise.exercise.equipment
-    );
     console.log(activeEquipment);
     return workouts.filter((workout) => {
-      const workoutEquipment = workout.exercises.map(
-        (exercise) => exercise.exercise.equipment
+      const workoutEquipment = workout.workoutExercises.map(
+        (exercise) => exercise.equipment
       );
 
       const linkedEquipment = workoutEquipment.map((index) => Equipment[index]);
@@ -343,7 +247,7 @@ const WorkoutForms = () => {
           />
         </div>
         <div className={styles.workoutForms}>
-          {filtered(sampleWorkouts).map((workout) => (
+          {filtered(workouts).map((workout) => (
             <WorkoutForm key={workout.id} workout={workout} />
           ))}
         </div>
