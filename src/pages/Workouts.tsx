@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import WorkoutForms from "../components/WorkoutForms/WorkoutForms";
 
 function Setup() {

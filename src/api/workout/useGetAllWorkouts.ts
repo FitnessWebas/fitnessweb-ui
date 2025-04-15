@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import { Workout } from "../../types/MuscleInfo";
 import axios from "axios";
+import { Workout } from "../../types/Workout";
 
-export const useGetAllExercises = () => {
+export const useGetAllWorkouts = () => {
   return useQuery<Workout[], Error>({
     queryKey: ["getAllWorkouts"],
     queryFn: async () => {

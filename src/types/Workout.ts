@@ -15,7 +15,7 @@ export interface Workout {
 export const getWorkoutEquipment = (workout: Workout): string[] => {
   const equipmentSet = new Set<string>();
 
-  workout.exercises.forEach(({ exercise }) => {
+  workout.exercises.forEach((exercise) => {
     equipmentSet.add(EquipmentOptions[exercise.equipment].label);
   });
 
