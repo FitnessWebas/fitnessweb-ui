@@ -35,7 +35,13 @@ const WorkoutForm = ({ workout }: { workout: Workout }) => {
   return (
     <div className={styles.container}>
       <h1>{workout.name}</h1>
-      <h2>{workout.dateOfCreation.toString()}</h2>
+      <h2>
+        {new Date(workout.dateOfCreation).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })}
+      </h2>
       <div className={styles.date}>
         <img src={CloakIcon} alt="clockSvg" />
         <p>{workout.targetDurationMinutes} min</p>
