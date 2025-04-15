@@ -8,7 +8,7 @@ import pullUp from "../assets/PullUp.webp";
 import legPress from "../assets/Leg_Press.webp";
 import tricepDips from "../assets/DIP.webp";
 import chestFly from "../assets/Dumbbell_Fly.webp";
-import { Exercise } from "../types/types";
+import { Exercise } from "../types/MuscleInfo";
 import { FitnessLevel } from "./FitnessLevel";
 import { Equipment } from "./Equipment";
 

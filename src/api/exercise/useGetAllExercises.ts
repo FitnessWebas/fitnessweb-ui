@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { Exercise } from "../../types/types";
+import { Exercise } from "../../types/MuscleInfo";
 
 export const useGetAllExercises = () => {
   return useQuery<Exercise[], Error>({

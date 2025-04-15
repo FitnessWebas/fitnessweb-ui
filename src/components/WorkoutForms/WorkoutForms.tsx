@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./WorkoutForms.module.css";
 import WorkoutForm from "../WorkoutForm/WorkoutForm";
 import mockExercises from "../../data/mockExercises";
-import { Workout } from "../../types/types";
+import { Workout } from "../../types/MuscleInfo";
 import WorkoutFilter from "../WorkoutFilter/WorkoutFilter";
 import { Group } from "lucide-react";
 

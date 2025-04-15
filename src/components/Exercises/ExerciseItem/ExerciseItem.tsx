@@ -1,6 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import { FitnessLevel, FitnessLevelOptions } from "../../../data/FitnessLevel";
-import { Exercise } from "../../../types/types";
+import { Exercise } from "../../../types/MuscleInfo";
 import styles from "./ExerciseItem.module.css";
 import { useState } from "react";
 import BarbellIcon from "../../../assets/barbell-svg.svg";

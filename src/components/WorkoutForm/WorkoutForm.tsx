@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./WorkoutForm.module.css";
 import CloakIcon from "../../assets/clock-svg.svg";
 import ArrowUpIcon from "../../assets/keyboard_arrow_up.svg";
-import { Workout, getWorkoutEquipment } from "../../types/types";
+import { Workout, getWorkoutEquipment } from "../../types/MuscleInfo";
 import { EquipmentOptions } from "../../data/Equipment";
 
 import Kettlebell from "../../assets/gym-fitness-rumbbel-health-svg.svg";

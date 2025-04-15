@@ -1,6 +1,6 @@
 import ExerciseItem from "../ExerciseItem/ExerciseItem";
 import styles from "./ExerciseList.module.css";
-import { Exercise } from "../../../types/types";
+import { Exercise } from "../../../types/MuscleInfo";
 
 export default function ExerciseList({ exercises }: { exercises: Exercise[] }) {
   return (
