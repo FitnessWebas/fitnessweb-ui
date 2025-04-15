@@ -106,7 +106,7 @@ const WorkoutForms = ({ workouts }: { workouts: Workout[] }) => {
       return [];
     }
     const activeGroups = Object.entries(muscleGroups)
-      .filter(([_, isActive]) => isActive)
+      .filter(([, isActive]) => isActive)
       .map(([group]) => group) as (keyof MuscleGroups)[];
 
     if (activeGroups.length === 0) {
@@ -147,7 +147,7 @@ const WorkoutForms = ({ workouts }: { workouts: Workout[] }) => {
       return [];
     }
     const activeDifficulties = Object.entries(difficulty)
-      .filter(([_, isActive]) => isActive)
+      .filter(([, isActive]) => isActive)
       .map(([group]) => group) as (keyof DifficultyLevels)[];
 
     if (activeDifficulties.length == 0) {
@@ -164,7 +164,7 @@ const WorkoutForms = ({ workouts }: { workouts: Workout[] }) => {
 
   const filterByGoal = (workouts: Workout[]): Workout[] => {
     const activeGoals = Object.entries(goals)
-      .filter(([_, isActive]) => isActive)
+      .filter(([, isActive]) => isActive)
       .map(([group]) => group) as (keyof WorkoutGoals)[];
 
     if (activeGoals.length == 0) {
