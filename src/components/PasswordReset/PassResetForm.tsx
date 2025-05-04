@@ -1,30 +1,29 @@
 import React, { useState } from "react";
-import styles from "./LogInForm.module.css";
+import styles from "./PassResetForm.module.css";
 import user_icon from "../../assets/Username.png";
 import Password from "../../assets/Password.png";
 
-interface LogInFormProps {
+interface PassResetFormProps {
   onClose: () => void;
-  OnOpenRegister: () => void;
-  OnOpenEmailRequest: () => void;
   handleSubmit: () => void;
 }
 
-const LogInForm: React.FC<LogInFormProps> = ({
+const PassResetForm: React.FC<PassResetFormProps> = ({
   onClose,
-  OnOpenRegister,
-  OnOpenEmailRequest,
   handleSubmit,
 }) => {
-  const [username, setUsername] = useState("");
+  const [NewPassword, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const isFormValid = username.trim() !== "" && password.trim() !== "";
+  const isFormValid =
+    NewPassword.trim() !== "" &&
+    password.trim() !== "" &&
+    password === NewPassword;
 
   return (
     <div className={styles.container1}>
       <div className={styles.header}>
-        <p>Log In</p>
+        <p>Change password</p>
       </div>
       <hr className={styles.hr} />
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -32,9 +31,9 @@ const LogInForm: React.FC<LogInFormProps> = ({
           <div className={styles.input}>
             <img src={user_icon} alt="User Icon" />
             <input
-              type="text"
-              placeholder="Username / Email"
-              value={username}
+              type="password"
+              placeholder="New Password"
+              value={NewPassword}
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
@@ -42,21 +41,11 @@ const LogInForm: React.FC<LogInFormProps> = ({
             <img src={Password} alt="Password Icon" />
             <input
               type="password"
-              placeholder="Password"
+              placeholder="Repeat Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-        </div>
-        <div className={styles.noAccount}>
-          <button type="button" onClick={OnOpenRegister}>
-            Don't Have An Account ?
-          </button>
-        </div>
-        <div className={styles.forgotPassword}>
-          <button type="button" onClick={OnOpenEmailRequest}>
-            Forgot Password ?
-          </button>
         </div>
         <div className={styles.signupButton}>
           <button
@@ -66,7 +55,7 @@ const LogInForm: React.FC<LogInFormProps> = ({
             }`}
             disabled={!isFormValid}
           >
-            Log In
+            Change Password
           </button>
         </div>
       </form>
@@ -74,4 +63,4 @@ const LogInForm: React.FC<LogInFormProps> = ({
   );
 };
 
-export default LogInForm;
+export default PassResetForm;

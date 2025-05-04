@@ -6,6 +6,7 @@ interface LoginModalProps {
   show: boolean;
   onClose: () => void;
   OnOpenRegister: () => void;
+  OnOpenEmailRequest: () => void;
   handleSubmit: () => void;
 }
 
@@ -13,6 +14,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
   show,
   onClose,
   OnOpenRegister,
+  OnOpenEmailRequest,
   handleSubmit,
 }) => {
   return (
@@ -20,6 +22,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
       <LogInForm
         onClose={onClose}
         OnOpenRegister={OnOpenRegister}
+        OnOpenEmailRequest={OnOpenEmailRequest}
         handleSubmit={handleSubmit}
       />
     </Modal>

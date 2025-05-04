@@ -3,6 +3,8 @@ import styles from "./NavBar.module.css";
 import { useState, useRef, useEffect } from "react";
 import RegisterModal from "../ModalPopUp/RegisterModal";
 import LoginModal from "../ModalPopUp/LogInModal";
+import EmailRequestModal from "../ModalPopUp/EmailRequestModal";
+import PassResetModal from "../ModalPopUp/PassResetModal";
 import { useModal } from "../ModalPopUp/ModalOperations";
 import InitialProfileSetupModal from "../ModalPopUp/InitialProfileSetupModal";
 import { useGetByUserIdUserMetrics } from "../../api/userMetrics/useGetByUserIdUserMetrics";
@@ -25,7 +27,11 @@ function NavBar() {
     showRegisterModal,
     showLoginModal,
     showInitialProfileSetupModal,
+    showEmailRequestModal,
+    showPasswordChangeModal,
     toggleRegisterModal,
+    toggleEmailRequestModal,
+    togglePasswordChangeModal,
     toggleLoginModal,
     toggleInitialProfileSetupModal,
   } = useModal();
@@ -63,8 +69,18 @@ function NavBar() {
     closeSidebar();
   };
 
+  const handleOpenEmailRequestModal = () => {
+    toggleLoginModal();
+    toggleEmailRequestModal();
+  };
+
   const handleCloseInitialProfileSetupModal = () => {
     toggleInitialProfileSetupModal();
+  };
+
+  const handleOpenPasswordChangeModal = () => {
+    toggleEmailRequestModal();
+    togglePasswordChangeModal();
   };
 
   useEffect(() => {
@@ -191,11 +207,23 @@ function NavBar() {
         show={showLoginModal}
         onClose={toggleLoginModal}
         OnOpenRegister={handleOpenRegisterModalNoAcc}
+        OnOpenEmailRequest={handleOpenEmailRequestModal}
         handleSubmit={handleSubmitLoginModal}
       />
       <InitialProfileSetupModal
         show={showInitialProfileSetupModal}
         onClose={handleCloseInitialProfileSetupModal}
+      />
+      <EmailRequestModal
+        show={showEmailRequestModal}
+        onClose={toggleEmailRequestModal}
+        OnOpenPassReset={handleOpenPasswordChangeModal}
+        handleSubmit={handleSubmitLoginModal}
+      />
+      <PassResetModal
+        show={showPasswordChangeModal}
+        onClose={togglePasswordChangeModal}
+        handleSubmit={handleSubmitLoginModal}
       />
     </nav>
   );
