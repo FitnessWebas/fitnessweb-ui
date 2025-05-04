@@ -51,7 +51,7 @@ const Equipment = [
 const WorkoutForms = ({ workouts }: { workouts: Workout[] }) => {
   const [search, setSearch] = useState<string>("");
   const [durationMin, setDurationMin] = useState<number>(0);
-  const [durationMax, setDurationMax] = useState<number>(90);
+  const [durationMax, setDurationMax] = useState<number>(120);
   const [muscleGroups, setMuscleGroups] = useState<MuscleGroups>({
     fullBody: false,
     legs: false,
@@ -218,7 +218,6 @@ const WorkoutForms = ({ workouts }: { workouts: Workout[] }) => {
 
     return filteredWorkouts;
   };
-
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -246,6 +245,7 @@ const WorkoutForms = ({ workouts }: { workouts: Workout[] }) => {
             setEquipment={setEquipment}
           />
         </div>
+
         <div className={styles.workoutForms}>
           {filtered(workouts).map((workout) => (
             <WorkoutForm key={workout.id} workout={workout} />
