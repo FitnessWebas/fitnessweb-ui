@@ -1,156 +1,155 @@
 /* For whole page */
-.container{
-    background-color: var(--secondary);
-    width: 400px;
-    border-radius: 20px;
-    color: var(--light-1);
-    font-family: Poppins;
+.container {
+  background-color: var(--secondary);
+  width: 400px;
+  border-radius: 20px;
+  color: var(--light-1);
+  font-family: Poppins;
 
-    padding: 20px 15px 15px 15px;
+  padding: 20px 15px 15px 15px;
 }
-.container:hover{
-    scale: 1.03;
-    transition: 0.4s ease;
+.container:hover {
+  scale: 1.03;
+  transition: 0.4s ease;
 }
 /* text elements */
-.container > h1:first-of-type{
-    margin-bottom: 20px;
-    font-size: 28px;
+.container > h1:first-of-type {
+  margin-bottom: 20px;
+  font-size: 28px;
 }
 
-.container h2{
-    font-size: 20px;
+.container h2 {
+  font-size: 20px;
 }
-p{
-    font-size: 20px;
+p {
+  font-size: 20px;
 }
 /* for the date text and clock svg */
-.date{
-    display: flex;
-    align-items: center;
-    margin: 15px 0;
+.date {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
 }
-.date p{
-    align-self: center;
-    margin: auto 0;
-    margin-left: 10px;
-    font-size: 15px;
+.date p {
+  align-self: center;
+  margin: auto 0;
+  margin-left: 10px;
+  font-size: 15px;
 }
 
 /* Workouts difficulty and workout type */
-.types{
-    margin-bottom: 15px;
+.types {
+  margin-bottom: 15px;
 }
-.types span{
-    font-size: 16px;
-    border-radius: 5px;
-    padding: 2px 3px;
+.types span {
+  font-size: 16px;
+  border-radius: 5px;
+  padding: 2px 3px;
 }
-.types > span:first-of-type{
-    margin-right: 15px;
+.types > span:first-of-type {
+  margin-right: 15px;
 }
-.types span:first-of-type{
-    background-color: var(--accent-2);
+.types span:first-of-type {
+  background-color: var(--accent-2);
 }
-.types span:last-of-type{
-    background-color: var(--accent-4);
+.types span:last-of-type {
+  background-color: var(--accent-4);
 }
 /* Muscle groups */
 
-.muscles{
-    display: flex;
-    font-size: 12px;
-    margin-top: 10;
-    margin-bottom: 15px;
+.muscles {
+  display: flex;
+  font-size: 12px;
+  margin-top: 10;
+  margin-bottom: 15px;
 }
-.muscles span{
-    background-color: var(--tertiary);
-    margin-right: 12px;
-    border-radius: 5px;
-    padding: 2px 3px;
+.muscles span {
+  background-color: var(--tertiary);
+  margin-right: 12px;
+  border-radius: 5px;
+  padding: 2px 3px;
 }
 /* Equipment */
 
-
-.equipment img{
-    height: 30px;
-    width: 30px;
-    margin-right: 15px;
+.equipment img {
+  height: 30px;
+  width: 30px;
+  margin-right: 15px;
 }
 
 /* Exercises */
-.exercisesBtn{
-    color: var(--accent-1);
-    display: flex;
-    margin-top: 15px;
-    cursor: pointer;
+.exercisesBtn {
+  color: var(--accent-1);
+  display: flex;
+  margin-top: 15px;
+  cursor: pointer;
 }
-.exercisesBtn p{
-    margin: auto 0;
-    font-size: 18px;
-    margin-right: 7px;
+.exercisesBtn p {
+  margin: auto 0;
+  font-size: 18px;
+  margin-right: 7px;
 }
 /* Exercises list */
 
-.exercises{
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease-in-out, opacity 0.3s ease-in-out;
-    opacity: 0;
+.exercises {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0;
 }
-.active{
-    max-height: 1000px;
-    opacity: 1;
+.active {
+  max-height: 10000px;
+  opacity: 1;
 }
 
-.exercises h2{
-    margin: 20px 0;
+.exercises h2 {
+  margin: 20px 0;
 }
 .exercisesBtn img {
-    transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 }
 .exercisesBtn.active img {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
-.exercise{
-    background-color: var(--tertiary);
-    border-radius: 15px;
-    padding: 7px 12px;
+.exercise {
+  background-color: var(--tertiary);
+  border-radius: 15px;
+  padding: 7px 12px;
 }
 .exercise:not(:last-of-type) {
-    margin-bottom: 16px;
-  }
-.exercise h2{
-    margin-bottom: 10px;
-    font-size: 20px;
-    margin-top: 0;
-    font-size: 18px;
+  margin-bottom: 16px;
 }
-.boxes{
-    display: flex;
-    margin-bottom: 10px;
+.exercise h2 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  margin-top: 0;
+  font-size: 18px;
 }
-.boxes span{
-    background-color: var(--secondary);
-    border-radius: 5px;
-    padding: 3px 5px;
+.boxes {
+  display: flex;
+  margin-bottom: 10px;
 }
-.equipmentInfo{
-    margin-right: 20px;
-    background-color: var(--secondary);
-    border-radius: 5px;
+.boxes span {
+  background-color: var(--secondary);
+  border-radius: 5px;
+  padding: 3px 5px;
 }
-.equipmentInfo img{
-    fill: var(--accent-1);
+.equipmentInfo {
+  margin-right: 20px;
+  background-color: var(--secondary);
+  border-radius: 5px;
 }
-.exerciseInfo span:first-of-type{
-    margin-right: 35px;
+.equipmentInfo img {
+  fill: var(--accent-1);
+}
+.exerciseInfo span:first-of-type {
+  margin-right: 35px;
 }
 
-@media (max-width: 430px){
-    .equipment img{
-        height: 20px;
-        width: 20px;
-        margin-right: 10px;
-    }
+@media (max-width: 430px) {
+  .equipment img {
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+  }
 }
