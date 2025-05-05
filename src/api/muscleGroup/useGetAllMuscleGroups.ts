@@ -9,10 +9,6 @@ export const useGetAllMuscleGroups = () => {
             const {data} = await axios.get<MuscleGroup[]>(
                 `${import.meta.env.VITE_BASE_URL}/MuscleGroup/GetAll`
             )
-
-            const muscleGroups = await data.map(muscleGroup => muscleGroup.name);
-            console.log(data);
-            console.log(data[0].muscles[0].name);
             return data;
         }
 

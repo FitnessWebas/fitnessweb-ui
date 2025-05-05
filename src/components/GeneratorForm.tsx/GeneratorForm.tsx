@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./GeneratorForm.module.css";
 import { useNavigate } from "react-router-dom";
+import { useGetAllMuscleGroups } from "../../api/muscleGroup/useGetAllMuscleGroups";
 
 enum Gender {
   Male = 1,
@@ -17,14 +18,12 @@ enum Level {
   Expert = 3,
 }
 enum Workout {
-  push = 1,
-  pull = 2,
-  legs = 3,
-  upper = 4,
-  lower = 5,
-  fullBody = 6,
-  shoulders = 7,
-  abdominal = 8,
+  arms = 1,
+  legs = 2,
+  shoulders = 3,
+  back = 4,
+  abdominal = 5,
+  chest = 6,
 }
 export const workoutList = [
   "Push",
@@ -54,6 +53,14 @@ export default function GeneratorForm() {
   const [goal, setGoal] = useState<Goal | null>(null);
   const [level, setLevel] = useState<Level | null>(null);
   const [workout, setWorkout] = useState<Workout | null>(null);
+
+  const { data: muscleGroups } = useGetAllMuscleGroups();
+  const muscleGroupList = () => {
+    if (!muscleGroups) return [];
+    else return muscleGroups.map((muscleGroup) => muscleGroup.Name);
+  };
+
+  console.log(muscleGroupList());
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -99,34 +106,6 @@ export default function GeneratorForm() {
           break;
         case "3":
           setLevel(Level.Expert);
-          break;
-      }
-    }
-  };
-
-  const handleWorkoutChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = event.target.value;
-    if (value == "0") {
-      setLevel(null);
-    } else {
-      switch (value) {
-        case "1":
-          setWorkout(Workout.push);
-          break;
-        case "2":
-          setWorkout(Workout.pull);
-          break;
-        case "3":
-          setWorkout(Workout.legs);
-          break;
-        case "4":
-          setWorkout(Workout.upper);
-          break;
-        case "5":
-          setWorkout(Workout.lower);
-          break;
-        case "6":
-          setWorkout(Workout.fullBody);
           break;
       }
     }
@@ -269,7 +248,7 @@ export default function GeneratorForm() {
         {currentStep === 5 && (
           <div className={styles.setup_workout}>
             <h1>What you want to do today?</h1>
-            {workoutList.map((workout) => (
+            {muscleGroupList().map((workout) => (
               <button
                 key={workout}
                 type="button"
