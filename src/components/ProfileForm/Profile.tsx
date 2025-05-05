@@ -3,9 +3,11 @@ import Username from "../../assets/Username.png";
 import Username1 from "../../assets/Username1.jpg";
 import styles from "./Profile.module.css";
 import { useNavigate } from "react-router-dom";
+import { useLogoutUser } from "../../api/user/useLogoutUser";
 
 export const Profile = () => {
   const navigate = useNavigate();
+  const logout = useLogoutUser();
   const [name, setName] = useState("Name Surname");
   const [memberSince, setMemberSince] = useState("MMMM-YY-XX");
   const [email, setEmail] = useState("PLACEHOLDER@gmail.com");
@@ -128,6 +130,7 @@ export const Profile = () => {
           </div>
         </form>
         <hr className={styles.hr} />
+
         <form className={styles.account}>
           <h1>Account settings</h1>
           <div className={styles.accSettings}>
@@ -217,6 +220,17 @@ export const Profile = () => {
                 )}
               </div>
             </div>
+          </div>
+          <div className={styles.logoutButton}>
+            <button
+              type="button"
+              onClick={() => {
+                logout();
+                navigate("/");
+              }}
+            >
+              Logout
+            </button>
           </div>
         </form>
       </div>
