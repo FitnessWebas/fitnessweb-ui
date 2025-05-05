@@ -15,11 +15,11 @@ function NavBar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
 
-  const loggedInUserId = "eeb7d4e2-be0b-4cb7-8ae7-4e2074e105a8";
+  const loggedInUserId = localStorage.getItem("userId");
   const { data: getByUserIdUserMetricsData } = useGetByUserIdUserMetrics(
     loggedInUserId,
     {
-      enabled: isLoggedIn,
+      enabled: !!loggedInUserId && isLoggedIn,
     }
   );
 
@@ -186,6 +186,7 @@ function NavBar() {
         <Link to="/Login" onClick={handleOpenLoginModal}>
           Login
         </Link>
+
         <Link to="/Profile" onClick={closeSidebar}>
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { useAuth } from "../../providers/AuthProvider";
 
 export interface UserMetrics {
   height?: number;
@@ -14,14 +14,15 @@ export interface UserMetrics {
 }
 
 export const useGetByUserIdUserMetrics = (
-  userId: string | undefined,
+  userId: string | undefined | null,
   options: { enabled: boolean }
 ) => {
+  const { apiClient } = useAuth();
   return useQuery<UserMetrics | null, Error>({
     queryKey: ["getByUserIdUserMetrics", userId],
     queryFn: async () => {
-      const { data, status } = await axios.get<UserMetrics>(
-        `${import.meta.env.VITE_BASE_URL}/UserMetrics/GetByUserId`,
+      const { data, status } = await apiClient.get<UserMetrics>(
+        "/UserMetrics/GetByUserId",
         {
           params: { userId: userId },
         }

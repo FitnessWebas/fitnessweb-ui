@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./LogInForm.module.css";
 import user_icon from "../../assets/Username.png";
 import Password from "../../assets/Password.png";
+import { useLoginUser } from "../../api/user/useLoginUser";
 
 interface LogInFormProps {
   onClose: () => void;
@@ -20,6 +21,8 @@ const LogInForm: React.FC<LogInFormProps> = ({
   const [password, setPassword] = useState("");
 
   const isFormValid = username.trim() !== "" && password.trim() !== "";
+
+  const loginUserMutation = useLoginUser();
 
   return (
     <div className={styles.container1}>
@@ -65,6 +68,12 @@ const LogInForm: React.FC<LogInFormProps> = ({
               !isFormValid ? styles.submitDisabled : ""
             }`}
             disabled={!isFormValid}
+            onClick={() => {
+              loginUserMutation.mutate({
+                username: username,
+                password: password,
+              });
+            }}
           >
             Log In
           </button>
