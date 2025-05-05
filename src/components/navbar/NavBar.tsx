@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import { useState, useRef, useEffect } from "react";
 import RegisterModal from "../ModalPopUp/RegisterModal";
@@ -8,18 +8,21 @@ import PassResetModal from "../ModalPopUp/PassResetModal";
 import { useModal } from "../ModalPopUp/ModalOperations";
 import InitialProfileSetupModal from "../ModalPopUp/InitialProfileSetupModal";
 import { useGetByUserIdUserMetrics } from "../../api/userMetrics/useGetByUserIdUserMetrics";
+import { useLogoutUser } from "../../api/user/useLogoutUser";
 
 function NavBar() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
+  const logout = useLogoutUser();
+  const navigate = useNavigate();
 
-  const loggedInUserId = "eeb7d4e2-be0b-4cb7-8ae7-4e2074e105a8";
+  const loggedInUserId = localStorage.getItem("userId");
   const { data: getByUserIdUserMetricsData } = useGetByUserIdUserMetrics(
     loggedInUserId,
     {
-      enabled: isLoggedIn,
+      enabled: !!loggedInUserId && isLoggedIn,
     }
   );
 
@@ -186,6 +189,16 @@ function NavBar() {
         <Link to="/Login" onClick={handleOpenLoginModal}>
           Login
         </Link>
+        <Link
+          to="/"
+          onClick={() => {
+            logout();
+            navigate("/");
+          }}
+        >
+          Logout
+        </Link>
+
         <Link to="/Profile" onClick={closeSidebar}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
