@@ -49,18 +49,18 @@ const equipmentList = [
 export default function GeneratorForm() {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
-  const [weight, setWeight] = useState<Number>(25);
+  const [workoutName, setWorkoutName] = useState<string>("");
+  const [weight, setWeight] = useState<Number>(45);
   const [goal, setGoal] = useState<Goal | null>(null);
   const [level, setLevel] = useState<Level | null>(null);
   const [workout, setWorkout] = useState<Workout | null>(null);
 
   const { data: muscleGroups } = useGetAllMuscleGroups();
+
   const muscleGroupList = () => {
     if (!muscleGroups) return [];
     else return muscleGroups.map((muscleGroup) => muscleGroup.name);
   };
-
-  console.log(muscleGroupList());
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -115,19 +115,17 @@ export default function GeneratorForm() {
   const [selectedWorkout, setSelectedWorkou] = useState<string[]>([]);
 
   const toggleEquipment = (equipment: string) => {
-    setSelectedEquipment(
-      (prevSelected) =>
-        prevSelected.includes(equipment)
-          ? prevSelected.filter((item) => item !== equipment) // Remove if already selected
-          : [...prevSelected, equipment] // Add if not selected
+    setSelectedEquipment((prevSelected) =>
+      prevSelected.includes(equipment)
+        ? prevSelected.filter((item) => item !== equipment)
+        : [...prevSelected, equipment]
     );
   };
   const toggleWorkout = (workout: string) => {
-    setSelectedEquipment(
-      (prevSelected) =>
-        prevSelected.includes(workout)
-          ? prevSelected.filter((item) => item !== workout) // Remove if already selected
-          : [...prevSelected, workout] // Add if not selected
+    setSelectedWorkou((prevSelected) =>
+      prevSelected.includes(workout)
+        ? prevSelected.filter((item) => item !== workout)
+        : [...prevSelected, workout]
     );
   };
 
@@ -135,12 +133,26 @@ export default function GeneratorForm() {
     <div className={styles.container}>
       <form className={styles.setup}>
         {currentStep === 1 && (
+          <div className={styles.setup_name}>
+            <h1>Enter workout name</h1>
+            <input
+              type="text"
+              placeholder="Workout name"
+              onChange={(event) => {
+                setWorkoutName(event.target.value);
+              }}
+              defaultValue={workoutName}
+              className={styles.input_text_box}
+            />
+          </div>
+        )}
+        {currentStep === 2 && (
           <div className={styles.setup_weight}>
-            <h1>Enter your weight</h1>
+            <h1>Choose workout duration</h1>
             <input
               type="number"
               min={1}
-              max={200}
+              max={90}
               value={weight !== null ? weight.toString() : ""}
               onChange={handleWeightChange}
               onKeyPress={handleKeyPress}
@@ -151,14 +163,14 @@ export default function GeneratorForm() {
                 type="range"
                 className={styles.slider}
                 min={1}
-                max={200}
+                max={90}
                 value={weight !== null ? weight.toString() : ""}
                 onChange={handleSliderChange}
               />
             </div>
           </div>
         )}
-        {currentStep === 2 && (
+        {currentStep === 3 && (
           <div className={styles.setup_goals}>
             <h1>Choose your goal</h1>
             <button
@@ -192,7 +204,7 @@ export default function GeneratorForm() {
             </button>
           </div>
         )}
-        {currentStep === 3 && (
+        {currentStep === 4 && (
           <div className={styles.setup_level}>
             <h1>Select your fitness level</h1>
             <button
@@ -226,7 +238,7 @@ export default function GeneratorForm() {
             </button>
           </div>
         )}
-        {currentStep === 4 && (
+        {currentStep === 5 && (
           <div className={styles.setup_equipment}>
             <h1>Choose the equipment</h1>
             {equipmentList.map((equipment) => (
@@ -245,7 +257,7 @@ export default function GeneratorForm() {
             ))}
           </div>
         )}
-        {currentStep === 5 && (
+        {currentStep === 6 && (
           <div className={styles.setup_workout}>
             <h1>What you want to do today?</h1>
             {muscleGroupList().map((workout) => (
@@ -254,7 +266,7 @@ export default function GeneratorForm() {
                 type="button"
                 onClick={() => toggleWorkout(workout)}
                 className={
-                  selectedEquipment.includes(workout)
+                  selectedWorkout.includes(workout)
                     ? styles.button_selected
                     : ""
                 }
@@ -264,6 +276,10 @@ export default function GeneratorForm() {
             ))}
           </div>
         )}
+        {
+          currentStep === 7
+          //error page
+        }
         <div className={styles.setup_buttons}>
           <button
             type="button"
@@ -276,13 +292,13 @@ export default function GeneratorForm() {
           <button
             type="button"
             onClick={nextStep}
-            className={currentStep == 5 ? styles.submit : styles.submit_visible}
+            className={currentStep == 6 ? styles.submit : styles.submit_visible}
             disabled={
-              currentStep === 5 ||
-              (currentStep == 1 && weight == 0) ||
-              (currentStep == 2 && goal == null) ||
-              (currentStep == 3 && level == null) ||
-              (currentStep == 4 && selectedEquipment.length === 0)
+              (currentStep == 1 && workoutName == "") ||
+              (currentStep == 2 && weight == 0) ||
+              (currentStep == 3 && goal == null) ||
+              (currentStep == 4 && level == null) ||
+              (currentStep == 5 && selectedEquipment.length === 0)
             }
           >
             Next
@@ -290,7 +306,8 @@ export default function GeneratorForm() {
           <button
             type="submit"
             onClick={handleSubmit}
-            className={currentStep == 5 ? styles.submit_visible : styles.submit}
+            className={currentStep == 6 ? styles.submit_visible : styles.submit}
+            disabled={currentStep == 6 && selectedWorkout.length === 0}
           >
             Generate
           </button>
