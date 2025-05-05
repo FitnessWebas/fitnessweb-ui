@@ -5,7 +5,27 @@ function Workouts() {
   const { data: workouts } = useGetAllWorkouts();
 
   if (!workouts) {
-    return <div>No workout data is available</div>;
+    return (
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          fontWeight: "bold",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          color: "var(--light-1)",
+          fontSize: "3rem", // Adjust as needed for "much much bigger"
+          textAlign: "center",
+        }}
+      >
+        Log in to see your workouts!
+      </div>
+    );
   }
 
   return (
