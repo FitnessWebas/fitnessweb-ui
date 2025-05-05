@@ -57,7 +57,7 @@ export default function GeneratorForm() {
   const { data: muscleGroups } = useGetAllMuscleGroups();
   const muscleGroupList = () => {
     if (!muscleGroups) return [];
-    else return muscleGroups.map((muscleGroup) => muscleGroup.Name);
+    else return muscleGroups.map((muscleGroup) => muscleGroup.name);
   };
 
   console.log(muscleGroupList());
