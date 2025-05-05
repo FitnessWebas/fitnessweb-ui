@@ -60,8 +60,6 @@ export default function GeneratorForm() {
     else return muscleGroups.map((muscleGroup) => muscleGroup.name);
   };
 
-  console.log(muscleGroupList());
-
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     navigate("/");

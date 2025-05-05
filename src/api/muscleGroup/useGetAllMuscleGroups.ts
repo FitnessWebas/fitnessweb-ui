@@ -1,16 +1,16 @@
-import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { MuscleGroup } from "../../types/MuscleGroup";
+import { useAuth } from "../../providers/AuthProvider";
 
 export const useGetAllMuscleGroups = () => {
-    return useQuery<MuscleGroup[], Error>({
-        queryKey: ["getAllMuscleGroups"],
-        queryFn: async () => {
-            const {data} = await axios.get<MuscleGroup[]>(
-                `${import.meta.env.VITE_BASE_URL}/MuscleGroup/GetAll`
-            )
-            return data;
-        }
-
-    });
-}
+  const { apiClient } = useAuth();
+  return useQuery<MuscleGroup[], Error>({
+    queryKey: ["getAllMuscleGroups"],
+    queryFn: async () => {
+      const { data } = await apiClient.get<MuscleGroup[]>(
+        "/MuscleGroup/GetAll"
+      );
+      return data;
+    },
+  });
+};
