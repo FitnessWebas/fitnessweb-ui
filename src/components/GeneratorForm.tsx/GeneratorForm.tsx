@@ -6,6 +6,7 @@ import { GenerateWorkout } from "../../types/GenerateWorkout";
 import { Equipment, EquipmentOptions } from "../../data/Equipment";
 import { Goal } from "../../data/Goal";
 import { FitnessLevel } from "../../data/FitnessLevel";
+import { m } from "framer-motion";
 
 enum Gender {
   Male = 1,
@@ -66,6 +67,13 @@ export default function GeneratorForm() {
     });
     return equipmentEnum.filter((item) => item !== null);
   };
+  // const covertMuscleGroupToId = ()  => {
+  //   const muscleGroupIds = selectedWorkout?.forEach((selected) => {
+  //     muscleGroupList().forEach((muscleGroup) => {
+
+  //     }
+  //   }
+  // };
   //here
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -81,6 +89,7 @@ export default function GeneratorForm() {
       muscleGroups: selectedWorkout,
     };
     console.log(workoutData);
+
     navigate("/");
   };
 
