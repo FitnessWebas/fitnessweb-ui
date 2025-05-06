@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./GeneratorForm.module.css";
 import { useNavigate } from "react-router-dom";
 import { useGetAllMuscleGroups } from "../../api/muscleGroup/useGetAllMuscleGroups";
@@ -50,7 +50,7 @@ export default function GeneratorForm() {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
   const [workoutName, setWorkoutName] = useState<string>("");
-  const [weight, setWeight] = useState<Number>(45);
+  const [duration, setDuration] = useState<Number>(45);
   const [goal, setGoal] = useState<Goal | null>(null);
   const [level, setLevel] = useState<Level | null>(null);
   const [workout, setWorkout] = useState<Workout | null>(null);
@@ -81,7 +81,7 @@ export default function GeneratorForm() {
   const handleWeightChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.valueAsNumber;
     if (value >= 0) {
-      setWeight(value);
+      setDuration(value);
     }
   };
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -90,7 +90,7 @@ export default function GeneratorForm() {
     }
   };
   const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setWeight(Number(event.target.value));
+    setDuration(Number(event.target.value));
   };
   const handleLevelChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
@@ -129,6 +129,13 @@ export default function GeneratorForm() {
     );
   };
 
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
   return (
     <div className={styles.container}>
       <form className={styles.setup}>
@@ -153,7 +160,7 @@ export default function GeneratorForm() {
               type="number"
               min={1}
               max={90}
-              value={weight !== null ? weight.toString() : ""}
+              value={duration !== null ? duration.toString() : ""}
               onChange={handleWeightChange}
               onKeyPress={handleKeyPress}
               className={styles.input_weight_box}
@@ -164,7 +171,7 @@ export default function GeneratorForm() {
                 className={styles.slider}
                 min={1}
                 max={90}
-                value={weight !== null ? weight.toString() : ""}
+                value={duration !== null ? duration.toString() : ""}
                 onChange={handleSliderChange}
               />
             </div>
@@ -279,6 +286,7 @@ export default function GeneratorForm() {
         {
           currentStep === 7
           //error page
+          //to be implemented
         }
         <div className={styles.setup_buttons}>
           <button
@@ -295,7 +303,7 @@ export default function GeneratorForm() {
             className={currentStep == 6 ? styles.submit : styles.submit_visible}
             disabled={
               (currentStep == 1 && workoutName == "") ||
-              (currentStep == 2 && weight == 0) ||
+              (currentStep == 2 && duration == 0) ||
               (currentStep == 3 && goal == null) ||
               (currentStep == 4 && level == null) ||
               (currentStep == 5 && selectedEquipment.length === 0)
