@@ -1,20 +1,16 @@
-import React, { useState } from "react";
-import Username from "../../assets/Username.png";
+import { useState } from "react";
 import Username1 from "../../assets/Username1.jpg";
 import styles from "./Profile.module.css";
 import { useNavigate } from "react-router-dom";
 import { useLogoutUser } from "../../api/user/useLogoutUser";
+import { useGetByUserIdUserMetrics } from "../../api/userMetrics/useGetByUserIdUserMetrics";
+import { GenderOptions } from "../../data/Gender";
+import { useGetByUserIdUser } from "../../api/user/useGetByUserIdUser";
 
 export const Profile = () => {
   const navigate = useNavigate();
   const logout = useLogoutUser();
-  const [name, setName] = useState("Name Surname");
-  const [memberSince, setMemberSince] = useState("MMMM-YY-XX");
-  const [email, setEmail] = useState("PLACEHOLDER@gmail.com");
-  const [gender, setGender] = useState("Male");
-  const [dateOfBirth, setDateOfBirth] = useState("1900 01 01");
-  const [weight, setWeight] = useState("200 kg");
-  const [height, setHeight] = useState("192cm");
+  const [weight, setWeight] = useState("70 kg");
   const [privacy, setPrivacy] = useState("Public");
   const [theme, setTheme] = useState("Dark");
   const [units, setUnits] = useState("Metric");
@@ -37,6 +33,22 @@ export const Profile = () => {
     setIsUnitsOpen(false);
   };
 
+  const loggedInUserId = localStorage.getItem("userId");
+  const { data: metrics } = useGetByUserIdUserMetrics(loggedInUserId, {
+    enabled: !!loggedInUserId,
+  });
+  const { data: user } = useGetByUserIdUser(loggedInUserId, {
+    enabled: !!loggedInUserId,
+  });
+
+  if (!metrics || !user) {
+    return (
+      <div className="d-flex justify-content-center align-items-center text-center vh-100">
+        <h1 style={{ color: "red" }}>Loading profile...</h1>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.container1}>
       <div className={styles.content1}>
@@ -48,12 +60,19 @@ export const Profile = () => {
           </div>
           <div className={styles.credInfo}>
             <div>
-              <h4>{name}</h4>
-              <p>Member since: {memberSince}</p>
+              <h4>{user.username}</h4>
+              <p>
+                Member since:{" "}
+                {new Date(metrics.createdAt).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </p>
             </div>
             <div>
               <h4>Email address</h4>
-              <p>{email}</p>
+              <p>{user.email}</p>
             </div>
             <hr className={styles.hr} />
           </div>
@@ -111,16 +130,22 @@ export const Profile = () => {
           </div>
           <div className={styles.infoData}>
             <div>
-              <h4>{gender}</h4>
+              <h4>{GenderOptions[metrics.gender].label}</h4>
             </div>
             <div>
-              <h4>{dateOfBirth}</h4>
+              <h4>
+                {new Date(metrics.birthday).toLocaleDateString("en-EU", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </h4>
             </div>
             <div>
               <h4>{weight}</h4>
             </div>
             <div>
-              <h4>{height}</h4>
+              <h4>{metrics?.height}</h4>
             </div>
           </div>
           <div className={styles.infoButton}>

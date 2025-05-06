@@ -2,15 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../../providers/AuthProvider";
 
 export interface UserMetrics {
-  height?: number;
-  birthday?: Date;
-  gender?: number;
-  fitnessLevel?: number;
-  userId?: string;
-  user?: null;
-  id?: string;
-  createdAt?: Date;
-  lastModifiedAt?: Date;
+  height: number;
+  birthday: Date;
+  gender: number;
+  fitnessLevel: number;
+  userId: string;
+  user: null;
+  id: string;
+  createdAt: Date;
+  lastModifiedAt: Date;
 }
 
 export const useGetByUserIdUserMetrics = (
