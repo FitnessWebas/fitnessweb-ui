@@ -1,5 +1,5 @@
 .container {
-    padding-top: 50px;
+    padding-top: 100px;
     display: flex; 
     justify-content: center; 
     width: 100%;
@@ -226,6 +226,9 @@ button:disabled {
 
 
   @media (max-width: 600px) {
+    .container{
+      padding-top: 50px;
+    }
     .container h1{
       font-size: 2.2rem;
     }
@@ -234,7 +237,10 @@ button:disabled {
     }
     .setup
     {
+      margin-top: 20px;
       height: 600px;
+      scale: 0.8;
+      width: 100%;
     }
   }
   
