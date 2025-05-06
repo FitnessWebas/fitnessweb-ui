@@ -1,17 +1,40 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import styles from "./ProfileEdit.module.css";
 import { useNavigate } from "react-router-dom";
+import { useGetByUserIdUserMetrics } from "../../api/userMetrics/useGetByUserIdUserMetrics";
+import { useGetByUserIdUser } from "../../api/user/useGetByUserIdUser";
+import { GenderOptions } from "../../data/Gender";
 
 export const ProfileEdit: React.FC = () => {
+  const loggedInUserId = localStorage.getItem("userId");
+  const { data: metrics } = useGetByUserIdUserMetrics(loggedInUserId, {
+    enabled: !!loggedInUserId,
+  });
+  const { data: user } = useGetByUserIdUser(loggedInUserId, {
+    enabled: !!loggedInUserId,
+  });
+
+  if (!metrics || !user) {
+    return <div>Loading...</div>;
+  }
+
   const navigate = useNavigate();
   // Form fields state
-  const [name, setName] = useState<string>("Vardas");
-  const [surname, setSurname] = useState<string>("Pavarde");
-  const [email, setEmail] = useState<string>("varpav@gmail.com");
-  const [gender, setGender] = useState<string>("Female");
-  const [dateOfBirth, setDateOfBirth] = useState<string>("MMMM-YY-MM");
+  const [name, setName] = useState<string>(user.firstName);
+  const [surname, setSurname] = useState<string>(user.lastName);
+  const [email, setEmail] = useState<string>(user.email);
+  const [gender, setGender] = useState<string>(
+    GenderOptions[metrics.gender].label
+  );
+  const [dateOfBirth, setDateOfBirth] = useState<string>(
+    new Date(metrics.birthday).toLocaleDateString("en-EU", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })
+  );
   const [weight, setWeight] = useState<string>("145 kg");
-  const [height, setHeight] = useState<string>("175 cm");
+  const [height, setHeight] = useState<string>(metrics.height.toString());
   const [oldPassword, setOldPassword] = useState<string>("");
   const [newPassword, setNewPassword] = useState<string>("");
   const [repeatPassword, setRepeatPassword] = useState<string>("");
