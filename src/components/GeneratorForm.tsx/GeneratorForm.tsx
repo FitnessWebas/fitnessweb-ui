@@ -7,6 +7,7 @@ import { Equipment, EquipmentOptions } from "../../data/Equipment";
 import { Goal } from "../../data/Goal";
 import { FitnessLevel } from "../../data/FitnessLevel";
 import { m } from "framer-motion";
+import { useGenerateWorkout } from "../../api/workout/useGenerateWorkout";
 
 enum Gender {
   Male = 1,
@@ -31,6 +32,8 @@ const equipmentList = EquipmentOptions.map((equipment) => {
 });
 
 export default function GeneratorForm() {
+  const { mutate: generateWorkout, isPending, error } = useGenerateWorkout();
+
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
   const [workoutName, setWorkoutName] = useState<string>("");
@@ -44,6 +47,13 @@ export default function GeneratorForm() {
   const muscleGroupList = () => {
     if (!muscleGroups) return [];
     else return muscleGroups.map((muscleGroup) => muscleGroup.name);
+  };
+  const convertMuscleGroupToId = (): string[] => {
+    return (
+      muscleGroups
+        ?.filter((muscleGroup) => selectedWorkout?.includes(muscleGroup.name))
+        .map((muscleGroup) => muscleGroup.id) || []
+    );
   };
 
   const convertToEquipmentEnum = () => {
@@ -67,30 +77,33 @@ export default function GeneratorForm() {
     });
     return equipmentEnum.filter((item) => item !== null);
   };
-  // const covertMuscleGroupToId = ()  => {
-  //   const muscleGroupIds = selectedWorkout?.forEach((selected) => {
-  //     muscleGroupList().forEach((muscleGroup) => {
-
-  //     }
-  //   }
-  // };
-  //here
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+
+    const loggedInUserId = localStorage.getItem("userId");
+    const muscleGroupIds = convertMuscleGroupToId();
     const equipmentEnum = convertToEquipmentEnum();
-    if (goal == null || level == null) return;
+    if (goal == null || level == null || loggedInUserId == null) return;
     const workoutData: GenerateWorkout = {
-      userId: "57040336-941E-4B89-95F1-47EC65B9881F",
+      userId: loggedInUserId,
       name: workoutName,
       targetDurationMinutes: Number(duration),
       goal: goal,
       difficulty: level,
       equipment: equipmentEnum,
-      muscleGroups: selectedWorkout,
+      muscleGroups: muscleGroupIds,
     };
     console.log(workoutData);
 
-    navigate("/");
+    generateWorkout(workoutData, {
+      onSuccess: (data) => {
+        console.log("Workout generated:", data);
+        navigate("/");
+      },
+      onError: (err) => {
+        console.error("Workout generation failed:", err);
+      },
+    });
   };
 
   const nextStep = () => {
