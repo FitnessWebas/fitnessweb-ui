@@ -2,15 +2,16 @@ import React, { useEffect, useState } from "react";
 import styles from "./GeneratorForm.module.css";
 import { useNavigate } from "react-router-dom";
 import { useGetAllMuscleGroups } from "../../api/muscleGroup/useGetAllMuscleGroups";
+import { GenerateWorkout } from "../../types/GenerateWorkout";
+import { Equipment, EquipmentOptions } from "../../data/Equipment";
+import { Goal } from "../../data/Goal";
+import { FitnessLevel } from "../../data/FitnessLevel";
+import { m } from "framer-motion";
+import { useGenerateWorkout } from "../../api/workout/useGenerateWorkout";
 
 enum Gender {
   Male = 1,
   Female = 2,
-}
-enum Goal {
-  LoseWeight = 1,
-  GainStrength = 2,
-  GainMuscle = 3,
 }
 enum Level {
   Beginner = 1,
@@ -25,34 +26,20 @@ enum Workout {
   abdominal = 5,
   chest = 6,
 }
-export const workoutList = [
-  "Push",
-  "Pull",
-  "Legs",
-  "Upper",
-  "Lower",
-  "Full Body",
-  "Shoulders",
-  "Abdominal",
-];
 
-const equipmentList = [
-  "Dumbbell",
-  "Barbell",
-  "Bodyweight",
-  "Machine",
-  "Kettlebell",
-  "Cables",
-  "Band",
-];
+const equipmentList = EquipmentOptions.map((equipment) => {
+  return equipment.label;
+});
 
 export default function GeneratorForm() {
+  const { mutate: generateWorkout, isPending, error } = useGenerateWorkout();
+
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
   const [workoutName, setWorkoutName] = useState<string>("");
   const [duration, setDuration] = useState<Number>(45);
   const [goal, setGoal] = useState<Goal | null>(null);
-  const [level, setLevel] = useState<Level | null>(null);
+  const [level, setLevel] = useState<FitnessLevel | null>(null);
   const [workout, setWorkout] = useState<Workout | null>(null);
 
   const { data: muscleGroups } = useGetAllMuscleGroups();
@@ -61,10 +48,62 @@ export default function GeneratorForm() {
     if (!muscleGroups) return [];
     else return muscleGroups.map((muscleGroup) => muscleGroup.name);
   };
+  const convertMuscleGroupToId = (): string[] => {
+    return (
+      muscleGroups
+        ?.filter((muscleGroup) => selectedWorkout?.includes(muscleGroup.name))
+        .map((muscleGroup) => muscleGroup.id) || []
+    );
+  };
 
+  const convertToEquipmentEnum = () => {
+    const equipmentEnum = selectedEquipment.map((equipment) => {
+      switch (equipment) {
+        case "Dumbbell":
+          return Equipment.Dumbbell;
+        case "Barbell":
+          return Equipment.Barbell;
+        case "Bodyweight":
+          return Equipment.BodyWeight;
+        case "Machine":
+          return Equipment.Machine;
+        case "Kettlebell":
+          return Equipment.Kettlebell;
+        case "Cardio":
+          return Equipment.Cardio;
+        default:
+          return null;
+      }
+    });
+    return equipmentEnum.filter((item) => item !== null);
+  };
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    navigate("/");
+
+    const loggedInUserId = localStorage.getItem("userId");
+    const muscleGroupIds = convertMuscleGroupToId();
+    const equipmentEnum = convertToEquipmentEnum();
+    if (goal == null || level == null || loggedInUserId == null) return;
+    const workoutData: GenerateWorkout = {
+      userId: loggedInUserId,
+      name: workoutName,
+      targetDurationMinutes: Number(duration),
+      goal: goal,
+      difficulty: level,
+      equipment: equipmentEnum,
+      muscleGroups: muscleGroupIds,
+    };
+    console.log(workoutData);
+
+    generateWorkout(workoutData, {
+      onSuccess: (data) => {
+        console.log("Workout generated:", data);
+        navigate("/");
+      },
+      onError: (err) => {
+        console.error("Workout generation failed:", err);
+      },
+    });
   };
 
   const nextStep = () => {
@@ -99,13 +138,13 @@ export default function GeneratorForm() {
     } else {
       switch (value) {
         case "1":
-          setLevel(Level.Beginner);
+          setLevel(FitnessLevel.Beginner);
           break;
         case "2":
-          setLevel(Level.Intermediate);
+          setLevel(FitnessLevel.Intermediate);
           break;
         case "3":
-          setLevel(Level.Expert);
+          setLevel(FitnessLevel.Expert);
           break;
       }
     }
@@ -216,9 +255,11 @@ export default function GeneratorForm() {
             <h1>Select your fitness level</h1>
             <button
               type="button"
-              className={level === Level.Beginner ? styles.button_selected : ""}
+              className={
+                level === FitnessLevel.Beginner ? styles.button_selected : ""
+              }
               onClick={() => {
-                setLevel(Level.Beginner);
+                setLevel(FitnessLevel.Beginner);
               }}
             >
               Beginner
@@ -226,19 +267,23 @@ export default function GeneratorForm() {
             <button
               type="button"
               className={
-                level === Level.Intermediate ? styles.button_selected : ""
+                level === FitnessLevel.Intermediate
+                  ? styles.button_selected
+                  : ""
               }
               onClick={() => {
-                setLevel(Level.Intermediate);
+                setLevel(FitnessLevel.Intermediate);
               }}
             >
               Intermediate
             </button>
             <button
               type="button"
-              className={level === Level.Expert ? styles.button_selected : ""}
+              className={
+                level === FitnessLevel.Expert ? styles.button_selected : ""
+              }
               onClick={() => {
-                setLevel(Level.Expert);
+                setLevel(FitnessLevel.Expert);
               }}
             >
               Expert
