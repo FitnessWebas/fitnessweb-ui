@@ -147,7 +147,7 @@ export const Profile = () => {
               <h4>{weight}</h4>
             </div>
             <div>
-              <h4>{metrics?.height}</h4>
+              <h4>{metrics?.height} cm</h4>
             </div>
           </div>
           <div className={styles.infoButton}>
