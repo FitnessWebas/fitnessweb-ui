@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
+import { useAuth } from "../../providers/AuthProvider";
 
 export interface UserMetricsUpdate {
   userId: string;
@@ -10,10 +10,11 @@ export interface UserMetricsUpdate {
 }
 
 export const useCreateUserMetrics = () => {
+  const { apiClient } = useAuth();
   return useMutation<void, Error, UserMetricsUpdate>({
     mutationFn: async (userMetrics: UserMetricsUpdate) => {
-      const { data } = await axios.post<void>(
-        `${import.meta.env.VITE_BASE_URL}/UserMetrics/Create`,
+      const { data } = await apiClient.post<void>(
+        `/UserMetrics/Create`,
         userMetrics
       );
       return data;

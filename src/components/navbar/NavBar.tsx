@@ -13,13 +13,14 @@ function NavBar() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [fetchMetrics, setFetchMetrics] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
 
   const loggedInUserId = localStorage.getItem("userId");
   const { data: getByUserIdUserMetricsData } = useGetByUserIdUserMetrics(
     loggedInUserId,
     {
-      enabled: !!loggedInUserId && isLoggedIn,
+      enabled: !!loggedInUserId && fetchMetrics,
     }
   );
 
@@ -55,6 +56,7 @@ function NavBar() {
   const handleSubmitLoginModal = () => {
     toggleLoginModal();
     setIsLoggedIn(true);
+    setFetchMetrics(true);
   };
 
   const handleOpenLoginModalHasAcc = () => {
@@ -106,8 +108,8 @@ function NavBar() {
     if (getByUserIdUserMetricsData === null) {
       toggleInitialProfileSetupModal();
       closeSidebar();
+      setFetchMetrics(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getByUserIdUserMetricsData]);
 
   return (
