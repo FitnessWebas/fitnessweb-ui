@@ -6,15 +6,16 @@ export interface UserId {
 }
 
 export const useGetByEmailUserId = (
-  userId: string | undefined | null,
+  email: string | undefined | null,
   options: { enabled: boolean }
 ) => {
   return useQuery<UserId | null, Error>({
-    queryKey: ["getByEmailUserId", userId],
+    queryKey: ["getByEmailUserId", email],
     queryFn: async () => {
-      const { data } = await axios.get<UserId>("/User/GetByEmail", {
-        params: { Email: userId },
-      });
+      const { data } = await axios.get<UserId>(
+        `${import.meta.env.VITE_BASE_URL}/User/GetByEmail`,
+        { params: { email: email } }
+      );
       return data;
     },
     enabled: options.enabled,

@@ -28,7 +28,7 @@ const CombinedPasswordResetForm: React.FC<CombinedPasswordResetFormProps> = ({
     newPassword === repeatPassword &&
     newPassword.length >= 8;
   const updateUser = useUpdateUser();
-  const userId = useGetByEmailUserId(email, { enabled: fetchUserId });
+  const { data: userId } = useGetByEmailUserId(email, { enabled: fetchUserId });
 
   const handleEmailFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,12 +44,12 @@ const CombinedPasswordResetForm: React.FC<CombinedPasswordResetFormProps> = ({
       return;
     }
     setError("");
-    if (error === "") {
+    if (error === "" && userId) {
       console.log("Password changed");
 
       updateUser.mutate(
         {
-          userId: String(userId.data),
+          userId: String(userId),
           password: newPassword,
         },
         {}
@@ -60,12 +60,12 @@ const CombinedPasswordResetForm: React.FC<CombinedPasswordResetFormProps> = ({
 
   // React to userId.data and move to step 2 when userId is fetched
   useEffect(() => {
-    if (fetchUserId && userId.data) {
+    if (fetchUserId && userId) {
       setStep(2);
       setFetchUserId(false); // reset for future use if needed
-      console.log("User ID fetched:", userId.data.id);
+      console.log("User ID fetched:", userId);
     }
-  }, [fetchUserId, userId.data]);
+  }, [fetchUserId, userId]);
 
   return (
     <div className={styles.container1}>
