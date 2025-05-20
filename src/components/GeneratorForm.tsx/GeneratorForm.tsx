@@ -8,6 +8,7 @@ import { Goal } from "../../data/Goal";
 import { FitnessLevel } from "../../data/FitnessLevel";
 import { m } from "framer-motion";
 import { useGenerateWorkout } from "../../api/workout/useGenerateWorkout";
+import { div } from "framer-motion/client";
 
 enum Gender {
   Male = 1,
@@ -41,6 +42,9 @@ export default function GeneratorForm() {
   const [goal, setGoal] = useState<Goal | null>(null);
   const [level, setLevel] = useState<FitnessLevel | null>(null);
   const [workout, setWorkout] = useState<Workout | null>(null);
+  const [generationSuccess, setGenerationSuccess] = useState<boolean | null>(
+    null
+  );
 
   const { data: muscleGroups } = useGetAllMuscleGroups();
 
@@ -79,7 +83,7 @@ export default function GeneratorForm() {
   };
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-
+    setCurrentStep(currentStep + 1);
     const loggedInUserId = localStorage.getItem("userId");
     const muscleGroupIds = convertMuscleGroupToId();
     const equipmentEnum = convertToEquipmentEnum();
@@ -98,10 +102,11 @@ export default function GeneratorForm() {
     generateWorkout(workoutData, {
       onSuccess: (data) => {
         console.log("Workout generated:", data);
-        navigate("/");
+        setGenerationSuccess(true);
+        //navigate("/");
       },
       onError: (err) => {
-        console.error("Workout generation failed:", err);
+        setGenerationSuccess(false);
       },
     });
   };
@@ -174,6 +179,15 @@ export default function GeneratorForm() {
       document.body.style.overflow = "auto";
     };
   }, []);
+
+  useEffect(() => {
+    if (generationSuccess !== null) {
+      const timer = setTimeout(() => {
+        navigate("/");
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [generationSuccess]);
 
   return (
     <div className={styles.container}>
@@ -328,15 +342,21 @@ export default function GeneratorForm() {
             ))}
           </div>
         )}
-        {
-          currentStep === 7
-          //error page
-          //to be implemented
-        }
+        {currentStep === 7 && (
+          <div className={styles.generation}>
+            {generationSuccess === true && (
+              <h1>Workout was successfully generated!</h1>
+            )}
+            {generationSuccess === false && (
+              <h1>Failed to generate workout. Please try again.</h1>
+            )}
+            {generationSuccess === null && <h1>Generating workout...</h1>}
+          </div>
+        )}
         <div className={styles.setup_buttons}>
           <button
             type="button"
-            className={styles.submit_visible}
+            className={currentStep == 7 ? styles.submit : styles.submit_visible}
             onClick={prevStep}
             disabled={currentStep === 1}
           >
@@ -345,7 +365,11 @@ export default function GeneratorForm() {
           <button
             type="button"
             onClick={nextStep}
-            className={currentStep == 6 ? styles.submit : styles.submit_visible}
+            className={
+              currentStep == 6 || currentStep == 7
+                ? styles.submit
+                : styles.submit_visible
+            }
             disabled={
               (currentStep == 1 && workoutName == "") ||
               (currentStep == 2 && duration == 0) ||
