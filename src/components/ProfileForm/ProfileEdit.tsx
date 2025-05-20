@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useGetByUserIdUserMetrics } from "../../api/userMetrics/useGetByUserIdUserMetrics";
 import { useGetByUserIdUser } from "../../api/user/useGetByUserIdUser";
 import { GenderOptions } from "../../data/Gender";
+import { useUpdateUser } from "../../api/user/useUpdateUser";
 
 export const ProfileEdit: React.FC = () => {
   const loggedInUserId = localStorage.getItem("userId");
@@ -13,6 +14,7 @@ export const ProfileEdit: React.FC = () => {
   const { data: user } = useGetByUserIdUser(loggedInUserId, {
     enabled: !!loggedInUserId,
   });
+  const updateUser = useUpdateUser();
 
   if (!metrics || !user) {
     return <div>Loading...</div>;
@@ -219,11 +221,25 @@ export const ProfileEdit: React.FC = () => {
     validateSurname(surname);
     validateEmail(email);
 
-    // Only proceed if all validations pass
-    if (nameError === "" && surnameError === "" && emailError === "") {
-      console.log("Profile changes saved");
-      // Add logic to save profile changes
-      navigate("/profile");
+    if (
+      nameError === "" &&
+      surnameError === "" &&
+      emailError === "" &&
+      loggedInUserId
+    ) {
+      updateUser.mutate(
+        {
+          userId: loggedInUserId,
+          firstName: name,
+          lastName: surname,
+          email: email,
+        },
+        {
+          onSuccess: () => {
+            navigate("/profile");
+          },
+        }
+      );
     }
   };
 

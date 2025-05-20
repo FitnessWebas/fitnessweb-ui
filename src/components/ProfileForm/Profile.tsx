@@ -60,7 +60,9 @@ export const Profile = () => {
           </div>
           <div className={styles.credInfo}>
             <div>
-              <h4>{user.username}</h4>
+              <h4>
+                {user.firstName} {user.lastName}
+              </h4>
               <p>
                 Member since:{" "}
                 {new Date(metrics.createdAt).toLocaleDateString("en-US", {
