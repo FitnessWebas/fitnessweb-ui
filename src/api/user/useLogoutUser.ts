@@ -1,4 +1,5 @@
 import { QueryClient, useQueryClient } from "@tanstack/react-query";
+import { emitAuthChange } from "../../auth/authEvents";
 
 export const useLogoutUser = () => {
   const queryClient = useQueryClient();
@@ -6,6 +7,7 @@ export const useLogoutUser = () => {
   const logout = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("userId");
+    emitAuthChange();
     clearAllQueryData(queryClient);
     queryClient.resetQueries();
   };

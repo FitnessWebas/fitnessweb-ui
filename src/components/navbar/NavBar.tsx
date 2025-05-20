@@ -8,14 +8,16 @@ import PassResetModal from "../ModalPopUp/PassResetModal";
 import { useModal } from "../ModalPopUp/ModalOperations";
 import InitialProfileSetupModal from "../ModalPopUp/InitialProfileSetupModal";
 import { useGetByUserIdUserMetrics } from "../../api/userMetrics/useGetByUserIdUserMetrics";
+import { onAuthChange } from "../../auth/authEvents";
 
 function NavBar() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [fetchMetrics, setFetchMetrics] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
-
+  const [userId, setUserId] = useState(localStorage.getItem("userId"));
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isLoggedInBool = Boolean(userId);
   const loggedInUserId = localStorage.getItem("userId");
   const { data: getByUserIdUserMetricsData } = useGetByUserIdUserMetrics(
     loggedInUserId,
@@ -39,7 +41,7 @@ function NavBar() {
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const closeSidebar = () => setIsSidebarOpen(false);
-  const toggleSearch = () => setIsExpanded(!isExpanded);
+  //const toggleSearch = () => setIsExpanded(!isExpanded);
 
   const handleOpenRegisterModal = (event: React.MouseEvent) => {
     event.preventDefault();
@@ -112,12 +114,19 @@ function NavBar() {
     }
   }, [getByUserIdUserMetricsData]);
 
+  useEffect(() => {
+    const unsubscribe = onAuthChange(() => {
+      setUserId(localStorage.getItem("userId"));
+    });
+    return unsubscribe;
+  }, []);
+
   return (
     <nav className={styles.nav}>
       <Link to="/" className={styles.homeLink}>
         Home
       </Link>
-
+      {/* 
       <div
         ref={searchRef}
         className={`${styles.searchContainer} ${
@@ -136,6 +145,7 @@ function NavBar() {
         </button>
         <input type="text" placeholder="Search..." />
       </div>
+      */}
 
       <label className={styles.openSidebarButton} onClick={toggleSidebar}>
         <svg
@@ -174,11 +184,19 @@ function NavBar() {
         <Link to="/Exercises/Directory" onClick={closeSidebar}>
           Exercises
         </Link>
-        <Link to="/Workouts/MyWorkouts" onClick={closeSidebar}>
+        <Link
+          to="/Workouts/MyWorkouts"
+          onClick={closeSidebar}
+          className={isLoggedInBool ? "" : styles.hidden}
+        >
           Workouts
         </Link>
 
-        <Link to="/Workouts/Generator" onClick={closeSidebar}>
+        <Link
+          to="/Workouts/Generator"
+          onClick={closeSidebar}
+          className={isLoggedInBool ? "" : styles.hidden}
+        >
           Workout Generator
         </Link>
 
@@ -189,7 +207,11 @@ function NavBar() {
           Login
         </Link>
 
-        <Link to="/Profile" onClick={closeSidebar}>
+        <Link
+          to="/Profile"
+          onClick={closeSidebar}
+          className={isLoggedInBool ? "" : styles.hidden}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="30"

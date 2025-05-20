@@ -94,6 +94,10 @@ nav svg {
   fill: var(--primary);
 }
 
+.hidden {
+  display: none !important;
+}
+
 /* Sidebar */
 .openSidebarButton,
 .closeSidebarButton {
