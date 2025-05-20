@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useGetByUserIdUserMetrics } from "../../api/userMetrics/useGetByUserIdUserMetrics";
 import { useGetByUserIdUser } from "../../api/user/useGetByUserIdUser";
 import { GenderOptions } from "../../data/Gender";
+import { useUpdateUser } from "../../api/user/useUpdateUser";
+import { useUpdateUserMetrics } from "../../api/userMetrics/useUpdateUserMetrics";
 
 export const ProfileEdit: React.FC = () => {
   const loggedInUserId = localStorage.getItem("userId");
@@ -13,6 +15,8 @@ export const ProfileEdit: React.FC = () => {
   const { data: user } = useGetByUserIdUser(loggedInUserId, {
     enabled: !!loggedInUserId,
   });
+  const updateUser = useUpdateUser();
+  const updateUserMetrics = useUpdateUserMetrics();
 
   if (!metrics || !user) {
     return <div>Loading...</div>;
@@ -219,11 +223,40 @@ export const ProfileEdit: React.FC = () => {
     validateSurname(surname);
     validateEmail(email);
 
-    // Only proceed if all validations pass
-    if (nameError === "" && surnameError === "" && emailError === "") {
-      console.log("Profile changes saved");
-      // Add logic to save profile changes
-      navigate("/profile");
+    if (
+      nameError === "" &&
+      surnameError === "" &&
+      emailError === "" &&
+      loggedInUserId
+    ) {
+      updateUser.mutate(
+        {
+          userId: loggedInUserId,
+          firstName: name,
+          lastName: surname,
+          email: email,
+        },
+        {
+          onSuccess: () => {
+            navigate("/profile");
+          },
+        }
+      );
+
+      updateUserMetrics.mutate(
+        {
+          userId: loggedInUserId,
+          height: parseInt(height),
+          gender: Object.values(GenderOptions).findIndex(
+            (opt) => opt.label === gender
+          ),
+        },
+        {
+          onSuccess: () => {
+            navigate("/profile");
+          },
+        }
+      );
     }
   };
 
@@ -242,10 +275,21 @@ export const ProfileEdit: React.FC = () => {
     if (
       oldPasswordError === "" &&
       newPasswordError === "" &&
-      repeatPasswordError === ""
+      repeatPasswordError === "" &&
+      loggedInUserId
     ) {
       console.log("Password changed");
-      // Add password change logic
+      updateUser.mutate(
+        {
+          userId: loggedInUserId,
+          password: newPassword,
+        },
+        {
+          onSuccess: () => {
+            navigate("/profile");
+          },
+        }
+      );
     }
   };
 
@@ -396,7 +440,8 @@ export const ProfileEdit: React.FC = () => {
                   value={dateOfBirth}
                   onChange={handleInputChange(setDateOfBirth)}
                   className={styles.inputField}
-                  placeholder="MMMM-YY-MM"
+                  placeholder="MM-DD-YYYY"
+                  readOnly
                 />
               </div>
             </div>
@@ -424,6 +469,7 @@ export const ProfileEdit: React.FC = () => {
                   value={weight}
                   onChange={handleInputChange(setWeight)}
                   className={styles.inputField}
+                  readOnly
                 />
               </div>
 

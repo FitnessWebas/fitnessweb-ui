@@ -10,7 +10,7 @@ import { useGetByUserIdUser } from "../../api/user/useGetByUserIdUser";
 export const Profile = () => {
   const navigate = useNavigate();
   const logout = useLogoutUser();
-  const [weight, setWeight] = useState("70 kg");
+  const [weight] = useState("70 kg");
   const [privacy, setPrivacy] = useState("Public");
   const [theme, setTheme] = useState("Dark");
   const [units, setUnits] = useState("Metric");
@@ -60,7 +60,9 @@ export const Profile = () => {
           </div>
           <div className={styles.credInfo}>
             <div>
-              <h4>{user.username}</h4>
+              <h4>
+                {user.firstName} {user.lastName}
+              </h4>
               <p>
                 Member since:{" "}
                 {new Date(metrics.createdAt).toLocaleDateString("en-US", {
