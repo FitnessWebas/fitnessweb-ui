@@ -275,10 +275,21 @@ export const ProfileEdit: React.FC = () => {
     if (
       oldPasswordError === "" &&
       newPasswordError === "" &&
-      repeatPasswordError === ""
+      repeatPasswordError === "" &&
+      loggedInUserId
     ) {
       console.log("Password changed");
-      // Add password change logic
+      updateUser.mutate(
+        {
+          userId: loggedInUserId,
+          password: newPassword,
+        },
+        {
+          onSuccess: () => {
+            navigate("/profile");
+          },
+        }
+      );
     }
   };
 
