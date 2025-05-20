@@ -10,7 +10,7 @@ import { useGetByUserIdUser } from "../../api/user/useGetByUserIdUser";
 export const Profile = () => {
   const navigate = useNavigate();
   const logout = useLogoutUser();
-  const [weight, setWeight] = useState("70 kg");
+  const [weight] = useState("70 kg");
   const [privacy, setPrivacy] = useState("Public");
   const [theme, setTheme] = useState("Dark");
   const [units, setUnits] = useState("Metric");

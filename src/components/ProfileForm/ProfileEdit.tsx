@@ -5,6 +5,7 @@ import { useGetByUserIdUserMetrics } from "../../api/userMetrics/useGetByUserIdU
 import { useGetByUserIdUser } from "../../api/user/useGetByUserIdUser";
 import { GenderOptions } from "../../data/Gender";
 import { useUpdateUser } from "../../api/user/useUpdateUser";
+import { useUpdateUserMetrics } from "../../api/userMetrics/useUpdateUserMetrics";
 
 export const ProfileEdit: React.FC = () => {
   const loggedInUserId = localStorage.getItem("userId");
@@ -15,6 +16,7 @@ export const ProfileEdit: React.FC = () => {
     enabled: !!loggedInUserId,
   });
   const updateUser = useUpdateUser();
+  const updateUserMetrics = useUpdateUserMetrics();
 
   if (!metrics || !user) {
     return <div>Loading...</div>;
@@ -240,6 +242,21 @@ export const ProfileEdit: React.FC = () => {
           },
         }
       );
+
+      updateUserMetrics.mutate(
+        {
+          userId: loggedInUserId,
+          height: parseInt(height),
+          gender: Object.values(GenderOptions).findIndex(
+            (opt) => opt.label === gender
+          ),
+        },
+        {
+          onSuccess: () => {
+            navigate("/profile");
+          },
+        }
+      );
     }
   };
 
@@ -412,7 +429,8 @@ export const ProfileEdit: React.FC = () => {
                   value={dateOfBirth}
                   onChange={handleInputChange(setDateOfBirth)}
                   className={styles.inputField}
-                  placeholder="MMMM-YY-MM"
+                  placeholder="MM-DD-YYYY"
+                  readOnly
                 />
               </div>
             </div>
@@ -440,6 +458,7 @@ export const ProfileEdit: React.FC = () => {
                   value={weight}
                   onChange={handleInputChange(setWeight)}
                   className={styles.inputField}
+                  readOnly
                 />
               </div>
 
