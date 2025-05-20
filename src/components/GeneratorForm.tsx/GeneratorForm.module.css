@@ -223,7 +223,13 @@ button:disabled {
     cursor: pointer;
     transition: 0.3s ease;
   }
-
+ .generation
+ {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+ }
 
   @media (max-width: 600px) {
     .container{
