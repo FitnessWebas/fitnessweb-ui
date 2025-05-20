@@ -4,7 +4,6 @@ import user_icon from "../../assets/Username.png";
 import Password from "../../assets/Password.png";
 import { useGetByEmailUserId } from "../../api/user/UseGetByEmailUserId";
 import { useUpdateUser } from "../../api/user/useUpdateUser";
-import { User } from "lucide-react";
 
 interface CombinedPasswordResetFormProps {
   onClose: () => void;
@@ -14,8 +13,6 @@ interface CombinedPasswordResetFormProps {
 
 const CombinedPasswordResetForm: React.FC<CombinedPasswordResetFormProps> = ({
   onClose,
-  handleEmailSubmit,
-  handlePasswordReset,
 }) => {
   const [step, setStep] = useState<1 | 2>(1);
   const [email, setEmail] = useState("");
