@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styles from "./InitialProfileSetupForm.module.css";
+import { useUpdateUserMetrics } from "../../api/userMetrics/useUpdateUserMetrics";
+import { useCreateUserMetrics } from "../../api/userMetrics/UseCreateUserMetrics";
 
 interface InitialProfileSetupFormProps {
   onClose: () => void;
@@ -35,9 +37,24 @@ const InitialProfileSetupForm: React.FC<InitialProfileSetupFormProps> = ({
   const [birthday, setBirthday] = useState<string | null>(null);
   const [gender, setGender] = useState<Gender | null>(null);
   const [fitnessLevel, setFitnessLevel] = useState<FitnessLevel | null>(null);
+  const CreateUserMetrics = useCreateUserMetrics();
+  const loggedInUserId = localStorage.getItem("userId");
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+
+    if (loggedInUserId) {
+      CreateUserMetrics.mutate(
+        {
+          userId: loggedInUserId,
+          height: height,
+          birthday: birthday,
+          gender: gender?.valueOf(),
+          fitnessLevel: fitnessLevel?.valueOf(),
+        },
+        {}
+      );
+    }
   };
 
   const nextStep = () => {
