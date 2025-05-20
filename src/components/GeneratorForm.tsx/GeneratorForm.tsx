@@ -8,6 +8,7 @@ import { Goal } from "../../data/Goal";
 import { FitnessLevel } from "../../data/FitnessLevel";
 import { m } from "framer-motion";
 import { useGenerateWorkout } from "../../api/workout/useGenerateWorkout";
+import { div } from "framer-motion/client";
 
 enum Gender {
   Male = 1,
@@ -79,7 +80,7 @@ export default function GeneratorForm() {
   };
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-
+    setCurrentStep(currentStep + 1);
     const loggedInUserId = localStorage.getItem("userId");
     const muscleGroupIds = convertMuscleGroupToId();
     const equipmentEnum = convertToEquipmentEnum();
@@ -98,7 +99,7 @@ export default function GeneratorForm() {
     generateWorkout(workoutData, {
       onSuccess: (data) => {
         console.log("Workout generated:", data);
-        navigate("/");
+        //navigate("/");
       },
       onError: (err) => {
         console.error("Workout generation failed:", err);
@@ -328,15 +329,11 @@ export default function GeneratorForm() {
             ))}
           </div>
         )}
-        {
-          currentStep === 7
-          //error page
-          //to be implemented
-        }
+        {currentStep === 7 && <div className="siu"></div>}
         <div className={styles.setup_buttons}>
           <button
             type="button"
-            className={styles.submit_visible}
+            className={currentStep == 7 ? styles.submit : styles.submit_visible}
             onClick={prevStep}
             disabled={currentStep === 1}
           >
@@ -345,7 +342,11 @@ export default function GeneratorForm() {
           <button
             type="button"
             onClick={nextStep}
-            className={currentStep == 6 ? styles.submit : styles.submit_visible}
+            className={
+              currentStep == 6 || currentStep == 7
+                ? styles.submit
+                : styles.submit_visible
+            }
             disabled={
               (currentStep == 1 && workoutName == "") ||
               (currentStep == 2 && duration == 0) ||
