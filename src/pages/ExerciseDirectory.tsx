@@ -6,6 +6,8 @@ import { useState, useMemo } from "react";
 import { Exercise, MuscleInfo } from "../types/types";
 import { Equipment, EquipmentOptions } from "../data/Equipment";
 import { FitnessLevel, FitnessLevelOptions } from "../data/FitnessLevel";
+import { MuscleGroup } from "../types/MuscleGroup";
+import { useGetAllMuscleGroups } from "../api/muscleGroup/useGetAllMuscleGroups";
 
 interface MuscleGroups {
   chest: boolean;
@@ -84,11 +86,13 @@ const ExercisePage = () => {
     setTempFilters(initialFilterState);
     console.log("cliked");
   };
+  const { data: muscleGroups } = useGetAllMuscleGroups();
 
   const filteredExercises = useMemo(() => {
     if (!exercises) {
       return [];
     }
+
     const getEquipmentLabel = (value: Equipment): string | undefined => {
       const option = EquipmentOptions.find((opt) => opt.value === value);
       return option?.label.toLowerCase();
@@ -103,6 +107,11 @@ const ExercisePage = () => {
       .filter(([, isActive]) => isActive)
       .map(([name]) => name.toLowerCase());
 
+    const activeMG = muscleGroups?.filter((muscleGroup) =>
+      activeMuscleGroups.includes(muscleGroup.name.toLowerCase())
+    );
+    console.log(activeMG);
+
     const activeEquipment = Object.entries(filters.equipment)
       .filter(([, isActive]) => isActive)
       .map(([name]) => name.toLowerCase());
@@ -116,9 +125,16 @@ const ExercisePage = () => {
         exercise.name.toLowerCase().includes(search.toLowerCase())
       )
       .filter((exercise) => {
-        if (activeMuscleGroups.length === 0) return true;
+        if (activeMG?.length === 0) return true;
         return exercise.muscles.some((muscleInfo) =>
-          activeMuscleGroups.includes(muscleInfo.name.toLowerCase())
+          activeMG?.some((active) => {
+            const names =
+              active.muscles.map((muscle) => muscle.name.toLowerCase()) || [];
+
+            console.log(names);
+            console.log(muscleInfo.name);
+            return names.includes(muscleInfo.name.toLowerCase());
+          })
         );
       })
       .filter((exercise) => {
