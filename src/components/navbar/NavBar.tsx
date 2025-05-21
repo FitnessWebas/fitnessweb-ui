@@ -200,10 +200,18 @@ function NavBar() {
           Workout Generator
         </Link>
 
-        <Link to="/Register" onClick={handleOpenRegisterModal}>
+        <Link
+          to="/Register"
+          onClick={handleOpenRegisterModal}
+          className={isLoggedInBool ? styles.hidden : ""}
+        >
           Register
         </Link>
-        <Link to="/Login" onClick={handleOpenLoginModal}>
+        <Link
+          to="/Login"
+          onClick={handleOpenLoginModal}
+          className={isLoggedInBool ? styles.hidden : ""}
+        >
           Login
         </Link>
 
