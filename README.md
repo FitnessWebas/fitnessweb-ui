@@ -6,7 +6,7 @@ Our solution is FitnessWeb, a web-based application where registered users can g
 
 Users have access to a unique and exercise-filled database from which exercises are selected according to the user's preferences, goals and time availability. They can read about each exercise in detail and learn the intricacies of each exercise, view all the programs they have generated and edit their profile!
 
-This repository stores only front-end code, for the back-end code see [FitnessWeb server](https://github.com/FitnessWebas/fitnessweb-server).
+This repository stores only front-end code, for the back-end code see [FitnessWeb Server](https://github.com/FitnessWebas/fitnessweb-server).
 
 ## Tech stack used
 
@@ -15,7 +15,7 @@ This repository stores only front-end code, for the back-end code see [FitnessWe
 - [Vite](https://vitejs.dev/)
 - [Bootstrap](https://getbootstrap.com/)
 
-## Getting Started
+## Getting started
 
 ### Prerequisites
 
@@ -29,16 +29,21 @@ This repository stores only front-end code, for the back-end code see [FitnessWe
 # Clone the repository
 git clone https://github.com/FitnessWebas/fitnessweb-ui.git
 cd fitnessweb-ui
+```
 
-# Install dependencies
+### Install dependencies
+```bash
 npm install
+```
 
-# Setup .env.local as in .env.local_example (first ensure FitnessWeb server is setup)
+Setup `.env.local` as in `.env.local_example` (first ensure FitnessWeb server is setup)
 
-# Running the frontend (ensure FitnessWeb server is running)
+### Running the frontend (ensure FitnessWeb server is running)
+```bash
 npm run dev
-
-📁 Project Structure
+```
+## 📁 Project structure
+```bash
 src/
 ├── api/             # Hooks for data fetching
 ├── api/             # Pictures used
@@ -47,3 +52,4 @@ src/
 ├── data/            # Types and hard-coded data
 ├── App.tsx          # Root component
 ├── main.tsx         # Vite entry point
+```
