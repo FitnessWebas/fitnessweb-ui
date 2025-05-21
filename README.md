@@ -1,10 +1,12 @@
-# FitnessWeb
+# FitnessWeb UI
 
 Our team of talented programmers tackled a challenge that many sports people face - doing the same exercises over and over again becomes a routine, which can end up making the person feel like a caged animal.
 
 Our solution is FitnessWeb, a web-based application where registered users can generate unique exercise programmes by entering their personalised data, all at the touch of a button!
 
 Users have access to a unique and exercise-filled database from which exercises are selected according to the user's preferences, goals and time availability. They can read about each exercise in detail and learn the intricacies of each exercise, view all the programs they have generated and edit their profile!
+
+This repository stores only front-end code, for the back-end code see [FitnessWeb server](https://github.com/FitnessWebas/fitnessweb-server).
 
 ## Tech stack used
 
