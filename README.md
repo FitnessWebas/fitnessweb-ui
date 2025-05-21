@@ -1,50 +1,47 @@
-# React + TypeScript + Vite
+# FitnessWeb
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Our team of talented programmers tackled a challenge that many sports people face - doing the same exercises over and over again becomes a routine, which can end up making the person feel like a caged animal.
 
-Currently, two official plugins are available:
+Our solution is FitnessWeb, a web-based application where registered users can generate unique exercise programmes by entering their personalised data, all at the touch of a button!
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Users have access to a unique and exercise-filled database from which exercises are selected according to the user's preferences, goals and time availability. They can read about each exercise in detail and learn the intricacies of each exercise, view all the programs they have generated and edit their profile!
 
-## Expanding the ESLint configuration
+## Tech stack used
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [Bootstrap](https://getbootstrap.com/)
 
-- Configure the top-level `parserOptions` property like this:
+## Getting Started
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Prerequisites
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- Node.js v20.13.1
+- npm package manager
+- [FitnessWeb server](https://github.com/FitnessWebas/fitnessweb-server)
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Installation
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+```bash
+# Clone the repository
+git clone https://github.com/FitnessWebas/fitnessweb-ui.git
+cd fitnessweb-ui
+
+# Install dependencies
+npm install
+
+# Setup .env.local as in .env.local_example (first ensure FitnessWeb server is setup)
+
+# Running the frontend (ensure FitnessWeb server is running)
+npm run dev
+
+📁 Project Structure
+src/
+├── api/             # Hooks for data fetching
+├── api/             # Pictures used
+├── components/      # Reusable components
+├── pages/           # Pages / route components
+├── data/            # Types and hard-coded data
+├── App.tsx          # Root component
+├── main.tsx         # Vite entry point
